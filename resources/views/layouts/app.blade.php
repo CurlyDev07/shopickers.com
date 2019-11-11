@@ -2,7 +2,7 @@
 @include('layouts.nav')
   @yield('nav')
 
-  <div class="tcontainer tpt-5">
+  <div class="tcontainer tpy-8">
     @yield('content')
   </div>  
 

@@ -1,18 +1,28 @@
-
 <div class="tbg-blue-500">
     <div class="tborder-b tborder-gray-400">
         <div class="tcontainer">
-            <div class="tpy-2 tflex tflex-grow tjustify-between">
-                <ul class="tflex tfont-bold ttext-gray-300 ttext-xs">
-                    <li class="tmr-3 thover:underline tcursor-default">USD</li>
-                    <li class="tmr-3 thover:underline tcursor-default">ENGLISH</li>
-                    <li class="tmr-3 thover:underline tcursor-default">COMPARE</li>
+            <div class="tpy-2 tflex tflex-grow md:tjustify-between">
+                <ul class="thidden md:tflex tfont-bold ttext-blue-100 ttext-xs">
+                    <li class="hover:tunderline tmr-8 tcursor-default">USD</li>
+                    <li class="hover:tunderline tmr-8 tcursor-default">ENGLISH</li>
+                    <li class="hover:tunderline tmr-8 tcursor-default">COMPARE</li>
+                </ul>
+
+                <ul class="thidden md:tflex tfont-bold ttext-blue-100 ttext-xs">
+                    <li class="hover:tunderline tmr-8 tcursor-default">HELLO, REGGIE FRIAS</li>
+                    <li class="hover:tunderline tmr-8 tcursor-default">
+                        <a href="{{ route('contactus') }}">CONTACT US</a>
+                    </li>
+                    <li class="hover:tunderline tmr-8 tcursor-default">
+                        <a href="{{ route('aboutus') }}">ABOUT US</a>
+                    </li>
                 </ul>
                 
-                <ul class="tflex tfont-bold ttext-gray-300 ttext-xs">
-                    <li class="tmr-3 thover:underline tcursor-default">USD</li>
-                    <li class="tmr-3 thover:underline tcursor-default">ENGLISH</li>
-                    <li class="thover:underline tcursor-default">COMPARE</li>
+                <ul class="tflex tfont-bold ttext-blue-100 ttext-xs">
+                    <li class="hover:tunderline tmr-8 tcursor-default">MY WISHLIST</li>
+                    <li class="hover:tunderline tmr-8 tcursor-default">MY ACCOUNT</li>
+                    <li class="hover:tunderline tmr-8 tcursor-default"><a href="">SIGN UP</a></li>
+                    <li class="hover:tunderline tcursor-default"><a href="{{ route('login') }}">LOGIN</a></li>
                 </ul>
             </div>
         </div>
@@ -21,9 +31,14 @@
     <div class="tcontainer tpy-8">
         <div class="tflex tjustify-between">
             <h1 class="logo">
-                <img src="https://www.portotheme.com/magento/porto/skin/frontend/smartwave/porto/images/logo_white_new.png" alt="">
+                <a href="/">
+                    <img src="https://www.portotheme.com/magento/porto/skin/frontend/smartwave/porto/images/logo_white_new.png" alt="">
+
+                    {{-- TEA LOGO --}}
+                    {{-- <img class="logo-img" style="height:45px"  src="http://chaitan.like-themes.com/wp-content/uploads/2018/06/logo_04.png" alt=""> --}}
+                </a>
             </h1>
-            <div class="search tw-2/3 tflex">
+            <div class="search tw-2/3 thidden md:tflex">
                 <input type="text" class="browser-default tappearance-none tborder-gray-300 trounded-l-full tw-full tpy-2 tpx-4 ttext-gray-700 tleading-tight tfocus:outline-none tfocus:bg-white tfocus:border-white"  placeholder="Search ...">
                 
                 <div class="trelative">
@@ -41,8 +56,8 @@
                     <i class="fas fa-search ttext-white"></i>
                 </button>
             </div>
-            <div class="cart tself-center">
-                <i class="fas fa-shopping-cart fa-2x ttext-white"></i>
+            <div class="tself-center">
+                <a href="{{ route('cart') }}"><i class="fas fa-shopping-cart fa-2x ttext-white"></i></a>
             </div>
         </div>
     </div>

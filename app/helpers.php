@@ -292,12 +292,22 @@ function number_spinner_markup($args = []){
     $value = isset($args['value']) ? $args['value']: '1';
     $class = isset($args['class']) ? $args['class']: '';
 
-    return ('<div class="tflex">
-                <a class="btn tbg-blue-500 hover:tbg-blue-500 waves-effect waves-light qty_min">
+    return ('
+            <style>
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    /* display: none; <- Crashes Chrome on hover */
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+            </style>
+
+            <div class="tflex">
+                <a class="btn tbg-blue-500 hover:tbg-blue-500 waves-effect waves-light qty_min tflex titems-center" style="height:44px;">
                     <i class="fas fa-minus" style="font-size: 12px;"></i>
                 </a>
-                <input type="number" disabled value="'.$value.'" min="1" class="'.$class.' number_spinner  browser-default tappearance-none focus:tbg-white focus:toutline-none tappearance-none tbg-gray-200 tblock tborder tborder-gray-200 tleading-tight tpy-3 ttext-center ttext-gray-700" style="height: 38px; width: 43px;">
-                <a class="btn tbg-blue-500 hover:tbg-blue-500 waves-effect waves-light qty_add">
+                <input type="number" disabled value="'.$value.'" min="1" class="'.$class.' number_spinner  browser-default tappearance-none focus:tbg-white focus:toutline-none tappearance-none tbg-gray-200 tblock tborder tborder-gray-200 tleading-tight tpy-3 ttext-center ttext-gray-700" style="height: 45px; width: 43px;">
+                <a class="btn tbg-blue-500 hover:tbg-blue-500 waves-effect waves-light qty_add tflex titems-center" style="height: 44px;">
                     <i class="fas fa-plus" style="font-size: 12px;"></i>
                 </a>
             </div>

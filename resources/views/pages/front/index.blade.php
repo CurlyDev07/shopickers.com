@@ -32,28 +32,19 @@
     </div>
     <div class="tw-3/4">
         <div class="main-banner owl-carousel owl-theme trelative">
-            <div class="item">
-                <div class="trelative">
-                    <img src="https://www.portotheme.com/magento/porto/media/wysiwyg/porto/homepage/slider/06/slide2n.jpg" alt="">
-                    <div class="tabsolute" style="z-index:1;top:23%;left:8%;text-align:left;">
-                        <span class="ttext-2xl tfont-medium">UP TO <span class="ttext-3xl"><b>60%</b></span> OFF</span>
-                        <h2 class="tfont-extrabold ttext-5xl ttext-gray-900">GREAT DEALS</h2>
-                        <p class="ttext-sm tmt-2">Limited items available at this price.</p>
-                        <button class="tbg-black tmt-8 tpx-8 tpy-3 trounded ttext-sm ttext-white" style="font-family: arial;">SHOP NOW</button>
+            @for ($i = 0; $i < 3; $i++)
+                <div class="item">
+                    <div class="trelative">
+                        <img src="https://www.portotheme.com/magento/porto/media/wysiwyg/porto/homepage/slider/06/slide2n.jpg" alt="">
+                        <div class="tabsolute" style="z-index:1;top:23%;left:8%;text-align:left;">
+                            <span class="ttext-2xl tfont-medium">UP TO <span class="ttext-3xl"><b>60%</b></span> OFF</span>
+                            <h2 class="tfont-extrabold ttext-5xl ttext-gray-900">GREAT DEALS</h2>
+                            <p class="ttext-sm tmt-2">Limited items available at this price.</p>
+                            <button class="tbg-black tmt-8 tpx-8 tpy-3 trounded ttext-sm ttext-white" style="font-family: arial;">SHOP NOW</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="trelative">
-                    <img src="https://www.portotheme.com/magento/porto/media/wysiwyg/porto/homepage/slider/06/slide2n.jpg" alt="">
-                    <div class="tabsolute" style="z-index:1;top:23%;left:8%;text-align:left;">
-                        <span class="ttext-2xl tfont-medium">UP TO <span class="ttext-3xl"><b>60%</b></span> OFF</span>
-                        <h2 class="tfont-extrabold ttext-5xl ttext-gray-900">GREAT DEALS</h2>
-                        <p class="ttext-sm tmt-2">Limited items available at this price.</p>
-                        <button class="tbg-black tmt-8 tpx-8 tpy-3 trounded ttext-sm ttext-white" style="font-family: arial;">SHOP NOW</button>
-                    </div>
-                </div>
-            </div>
+            @endfor
         </div>
     </div>
 </div>
@@ -96,7 +87,7 @@
                 <div class="items owl-carousel owl-theme">
                     <div class="item">
                         <div class="tborder-1 tborder" onclick="item_show('{{ item_show_slug('Duis aute irure dolor in reprehen','3256461') }}')">
-                            <img src="//www.portotheme.com/magento/porto/media/catalog/product/cache/11/small_image/253x/17f82f742ffe127f42dca9de82fb58b1/3/_/3_16_2.jpg" alt="">
+                            <img src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/11/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/2/_/2_14_2.jpg" alt="">
                             <div class="tflex tflex-wrap tjustify-center titems-center tpy-2 tpx-3">
                                 <i class="fas fa-star fa-xs ttext-gray-500"></i>
                                 <i class="fas fa-star fa-xs ttext-gray-500"></i>
