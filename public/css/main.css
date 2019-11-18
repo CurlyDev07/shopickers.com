@@ -55,3 +55,74 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     -webkit-transform-origin: 100% 100%;
     transform-origin: 100% 100%;
 }
+
+.tabs .tab a {
+    color: rgba(66, 153, 225, 1);
+    /*Custom Text Color*/
+}
+
+.tabs .tab a.active {
+    background-color: transparent;
+    color: #4299e1!important;
+}
+
+.tabs .tab a:hover {
+    color:#3182ce;
+    /*Custom Color On Hover*/
+}
+
+.tabs .tab a:focus.active {
+    color: #ffffff!important;
+    /*Custom Text Color While Active*/
+    background-color: #4299e1;
+    /*Custom Background Color While Active*/
+}
+
+.tabs .indicator {
+    background-color:#3182ce;
+    /*Custom Color Of Indicator*/
+}
+
+
+@media only screen and (min-width: 601px) {
+    nav.nav-extended .nav-wrapper {
+        min-height:45px;
+    }
+
+    nav,nav .nav-wrapper i,nav a.sidenav-trigger,nav a.sidenav-trigger i {
+        height: 45px;
+        line-height: 50px!important;
+    }
+
+    .navbar-fixed {
+        height: 45px;
+    }
+}
+
+.form-control {
+    width: 100%;
+    height: auto;
+    padding: .4375rem .75rem;
+    font-size: .8125rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #e1e5eb;
+    font-weight: 300;
+    will-change: border-color,box-shadow;
+    border-radius: .25rem;
+    box-shadow: none;
+    transition: box-shadow 250ms cubic-bezier(.27,.01,.38,1.06),border 250ms cubic-bezier(.27,.01,.38,1.06);
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #007bff;
+    box-shadow: 0 0.313rem 0.719rem rgba(0,123,255,.1), 0 0.156rem 0.125rem rgba(0,0,0,.06);
+}
+
+.chips.focus {
+    border-bottom: 1px solid #3182ce;
+    -webkit-box-shadow: 0 1px 0 0 #3182ce;
+    box-shadow: 0 1px 0 0 #3182ce
+}
