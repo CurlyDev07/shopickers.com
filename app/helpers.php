@@ -8,6 +8,10 @@ function item_show_slug($slug, $id){
     return url(Str::slug($slug).'-i.'.$id);
 }
 
+function admin_parent_nav(){
+    return explode('/', url()->current())[4];
+}
+
 function is_matched_return_class($current_nav_url, $req_nav_name, $return_class){
     if (strtolower($current_nav_url) == strtolower($req_nav_name)) {
         return $return_class;

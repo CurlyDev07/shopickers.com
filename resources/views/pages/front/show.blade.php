@@ -3,32 +3,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <style>
-        .tabs .tab a {
-            color: rgba(66, 153, 225, 1);
-            /*Custom Text Color*/
-        }
-    
-        .tabs .tab a.active {
-            background-color: transparent;
-            color: #4299e1!important;
-        }
-    
-        .tabs .tab a:hover {
-            color:#3182ce;
-            /*Custom Color On Hover*/
-        }
-    
-        .tabs .tab a:focus.active {
-            color: #ffffff!important;
-            /*Custom Text Color While Active*/
-            background-color: #4299e1;
-            /*Custom Background Color While Active*/
-        }
-    
-        .tabs .indicator {
-            background-color:#3182ce;
-            /*Custom Color Of Indicator*/
-        }
+        
     
     </style>
 @endsection

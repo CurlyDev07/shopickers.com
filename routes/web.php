@@ -40,5 +40,10 @@ Route::get('cart', function () {
     return view('pages.front.cart');
 })->name('cart');
 
+Route::get('dashboard', function () {
+    return view('pages.user.dashboard');
+})->name('dashboard');
+
+
 Route::get('{slug}-i.{item_id}', 'ItemCon@show')->where(['item_id' => '[0-9]+', 'slug' => '.*']);
 Route::get('checkout', 'TransactionCon@checkout')->name('checkout');

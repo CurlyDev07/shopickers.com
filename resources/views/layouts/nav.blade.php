@@ -20,7 +20,7 @@
                 
                 <ul class="tflex tfont-bold ttext-blue-100 ttext-xs">
                     <li class="hover:tunderline tmr-8 tcursor-default">MY WISHLIST</li>
-                    <li class="hover:tunderline tmr-8 tcursor-default">MY ACCOUNT</li>
+                    <li class="hover:tunderline tmr-8 tcursor-default"><a href="{{ route('dashboard') }}">MY ACCOUNT</a></li>
                     <li class="hover:tunderline tmr-8 tcursor-default"><a href="">SIGN UP</a></li>
                     <li class="hover:tunderline tcursor-default"><a href="{{ route('login') }}">LOGIN</a></li>
                 </ul>
@@ -39,22 +39,19 @@
                 </a>
             </h1>
             <div class="search tw-2/3 thidden md:tflex">
-                <input type="text" class="browser-default tappearance-none tborder-gray-300 trounded-l-full tw-full tpy-2 tpx-4 ttext-gray-700 tleading-tight tfocus:outline-none tfocus:bg-white tfocus:border-white"  placeholder="Search ...">
-                
-                <div class="trelative">
-                    <select class="browser-default tblock tappearance-none ttext-gray-700 tpy-3 tpx-4 tpr-8 tleading-tight tfocus:outline-none tborder-l" id="grid-state">
-                        <option>New Mexico</option>
-                        <option>Missouri</option>
-                        <option>Texas</option>
-                    </select>
-                    <div class="tpointer-events-none tabsolute tinset-y-0 tright-0 tflex titems-center tpx-2 ttext-gray-700">
-                        <svg class="tfill-current th-4 tw-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                <nav class="tbg-white tbg-white trounded-l-full trounded-r-full">
+                    <div class="nav-wrapper">
+                        <form>
+                        <div class="input-field">
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search">
+                                <i class="material-icons" style="color:#4299e1;">search</i>
+                            </label>
+                            <i class="material-icons">close</i>
+                        </div>
+                        </form>
                     </div>
-                </div>
-
-                <button class="waves-effect browser-default focus:tbg-blue-600 tbg-blue-500 tappearance-none tborder-2 tborder-gray-300 trounded-r-full tpy-2 tpx-4 ttext-gray-700 tleading-tight tfocus:outline-none tfocus:bg-blue-600 tfocus:border-white">
-                    <i class="fas fa-search ttext-white"></i>
-                </button>
+                </nav>
             </div>
             <div class="tself-center">
                 <a href="{{ route('cart') }}"><i class="fas fa-shopping-cart fa-2x ttext-white"></i></a>
