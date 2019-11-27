@@ -6,7 +6,7 @@
         <div class="ttext-2xl ttext-title tfont-medium tpb-4">Products</div>
         <div class="tflex">
             <div class="tw-1/4 tmr-10 trounded-lg">
-                <ul class="collection with-header tshadow-lg tm-0">
+                <ul class="collection with-header tshadow-lg tm-0 tsticky ttop-0">
                     <li class="collection-item">
                         <div class="ttext-md ttext-black-100">
                             Product List

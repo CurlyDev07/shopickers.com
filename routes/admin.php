@@ -21,6 +21,8 @@ Route::namespace('Admin')->group(function () {
 
 
 
+
+
 Route::fallback(function () {
     dd('404 admin');
 });
