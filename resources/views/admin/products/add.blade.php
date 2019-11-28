@@ -315,7 +315,6 @@
         // VARIATION KEY AND VALUES AND CHIPS
         // ***********************************
         var variant_object = [];
-        var variant_key_values = [];
         var variant_values = new Array();
         var variant_count = 1;
 
@@ -364,10 +363,14 @@
         }); 
 
         function constract_variant_array_of_object(variant_obj) {
-            console.log('{{ get_variations('+variant_obj+') }}')
-        }
+            let varaints = Object.assign({}, variant_obj);
+            $.post( "/admin/variant", { varaints })
+            .done(function( data ) {
+                console.log(data); 
+            });
+        } 
     })
-    
+     
 </script>
 
 @endsection

@@ -19,7 +19,10 @@ Route::namespace('Admin')->group(function () {
 });
 
 
-
+Route::post('/variant', function(){
+    $varaints = (array)request()->varaints;
+    dd(get_variations($varaints));
+});
 
 
 

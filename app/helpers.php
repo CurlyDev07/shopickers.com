@@ -347,7 +347,6 @@ function currency($value){
 }
 
 function get_variations($arrays) {
-    return $arrays;
     $result = array(array());
 
     foreach ($arrays as $property => $property_values) {

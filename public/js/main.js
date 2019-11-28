@@ -54,3 +54,4 @@ items.on('mousewheel', '.owl-stage', function (e) {
 function item_show(item_show_link){
     window.location.href = item_show_link;
 }
+
