@@ -9,6 +9,7 @@
                     hover: true,
                 });
                 $('.tabs').tabs();
+                $('.tooltipped').tooltip();
             });
         </script>
 

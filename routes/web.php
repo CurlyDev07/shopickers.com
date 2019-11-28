@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,6 +11,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/variant', function(Request $request){
+    dd($request->all());
+    $v = [
+        'size' => ['sm', 'lg', 'md'],
+        'color' => ['red', 'blue', 'white'],
+        'material' => ['gold', 'silver', 'cooper']
+    ];
+
+    $variant = get_variations($v);
+    return response()->json($variant);
+})->name('variant');  
+
 
 Route::get('/', function () {
     return view('pages.front.index');
@@ -47,3 +60,4 @@ Route::get('dashboard', function () {
 
 Route::get('{slug}-i.{item_id}', 'ItemCon@show')->where(['item_id' => '[0-9]+', 'slug' => '.*']);
 Route::get('checkout', 'TransactionCon@checkout')->name('checkout');
+
