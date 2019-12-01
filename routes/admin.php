@@ -1,29 +1,23 @@
 <?php
 
-use Illuminate\Http\Request;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-| 
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::namespace('Admin')->group(function () {
     Route::get('dashboard', 'DashboardCon@index');
-    Route::get('products', 'ProductsCon@index');
+    
+    
+    /*
+    |--------------------------------------------------------------------------
+    | PRODUCTS Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('products')->group(function () {
+        Route::get('/', 'ProductsCon@index');
+        Route::get('/add', 'ProductsCon@add');
+        Route::post('/store', 'ProductsCon@store');
+        Route::post('/generate_variant', 'ProductsCon@generate_variant');
+    });
+
 });
-
-
-Route::post('/variant', function(){
-    $varaints = (array)request()->varaints;
-    dd(get_variations($varaints));
-});
-
 
 
 Route::fallback(function () {

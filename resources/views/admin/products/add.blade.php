@@ -1,7 +1,7 @@
 @extends('admin.products.layouts')
 
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ asset('input_counter/style.css') }}">
 
     <style>
         .dropzone {
@@ -40,16 +40,21 @@
         <div class="text-sm tfont-medium tpx-5 tpy-4 tmb-1 ttext-title">
             Images
         </div>
-        <div class="tflex tpx-5">
-            <div id="dropzone" class="dropzone tw-full">
+        <div class="tflex tflex-wrap tpx-5">
+            <input type="file" class="thidden" id="upload_file_input" multiple>
+
+            <div class="tw-full tpy-6 dropzone">
                 <div class="dz-message needsclick">    
                     <img src="https://cdn.shopify.com/shopifycloud/web/assets/5f3b0e3cd42c85abb313985bb5aa7c32.svg" class="tmx-auto tmb-5" style="height:75px" >
-                    <button class="focus:tbg-gray-100 focus:toutline-none  hover:tbg-gray-100 tbg-white  tshadow-md tborder tpx-4 tpy-2 trounded ttext-black-100 ttext-sm waves-effect">
+                    <button onclick="upload_file_input()" class="focus:tbg-gray-100 focus:toutline-none  hover:tbg-gray-100 tbg-white  tshadow-md tborder tpx-4 tpy-2 trounded ttext-black-100 ttext-sm waves-effect">
                         Add image
                     </button>
-                    <span class="ttext-sm tblock tmt-3">or drop images to upload</span>
+                    <span class="ttext-sm tblock tmt-3">Upload high quantity image for better user experience</span>
                 </div>
             </div>
+            <div class="tw-full tflex tflex-wrap tjustify-start tpy-3 t-mr-1" id="image_container">
+                
+            </div><!-- IMAGE CONTAINER -->
         </div>
     </div>
 
@@ -59,12 +64,12 @@
         </div>
         <div class="tflex tpx-5">
             <div class="tw-1/2 tflex tflex-col tmr-3">
-                <label for="title" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
-                <input type="number" id="title" class="browser-default form-control" style="padding: 6px;">
+                <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
+                <input type="number" onkeyup="allnumeric(this)" id="price" class="browser-default form-control" style="padding: 6px;">
             </div>
             <div class="tw-1/2 tflex tflex-col tml-3">
-                <label for="title" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Compare at price</label>
-                <input type="number" id="title" class="browser-default form-control" style="padding: 6px;">
+                <label for="compare_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Compare at price</label>
+                <input type="number" onkeyup="allnumeric(this)" id="compare_price" class="browser-default form-control" style="padding: 6px;">
             </div>
         </div>
     </div>
@@ -75,18 +80,18 @@
         </div>
         <div class="tflex tpx-5">
             <div class="tw-1/2 tflex tflex-col tmr-3">
-                <label for="title" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU (Stock Keeping Unit)</label>
-                <input type="number" id="title" class="browser-default form-control" style="padding: 6px;">
+                <label for="sku" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU (Stock Keeping Unit)</label>
+                <input type="number" onkeyup="allnumeric(this)" id="sku" class="browser-default form-control" style="padding: 6px;">
             </div>
             <div class="tw-1/2 tflex tflex-col tml-3">
-                <label for="title" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode (ISBN, UPC, GTIN, etc.)</label>
-                <input type="text" id="title" class="browser-default form-control" style="padding: 6px;">
+                <label for="barcode" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode (ISBN, UPC, GTIN, etc.)</label>
+                <input type="text" id="barcode" class="browser-default form-control" style="padding: 6px;">
             </div>
         </div>
         <div class="tflex tpx-5 tpt-4">
             <div class="tw-1/2 tflex tflex-col tmr-3 tpr-3">
-                <label for="title" class="tfont-normal ttext-sm tmb-2 ttext-black-100">QUANTITY</label>
-                <input type="number" id="title" class="browser-default form-control" style="padding: 6px;">
+                <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">QUANTITY</label>
+                <input type="number" onkeyup="allnumeric(this)" id="qty" class="browser-default form-control" style="padding: 6px;">
             </div>
         </div>
     </div>
@@ -168,209 +173,259 @@
                         <div class="tfont-medium ttext-black-100 ttext-sm">Barcode</div>
                         <div class="tfont-medium ttext-black-100 ttext-sm"></div>
                     </div><!-- Variants Headers -->
-                    <div class="tflex tjustify-between tpx-5 tborder-b tpy-3">
-                        <div class="ttext-black-100 ttext-sm tmr-3">
-                            <span class="">sm / red / wood</span>
-                        </div>
-                        <div class="ttext-black-100 ttext-sm tmr-3">
-                            <input type="number" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
-                        </div>
-                        <div class="ttext-black-100 ttext-sm tmr-3">
-                            <input type="number" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
-                        </div>
-                        <div class="ttext-black-100 ttext-sm tmr-3">
-                            <input type="text" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
-                        </div>
-                        <div class="ttext-black-100 ttext-sm">
-                            <input type="text" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
-                        </div>
-                        <div class="tflex titems-center tpl-4 ttext-black-100 ttext-sm">
-                            <i class="far fa-trash-alt hover:ttext-red-500 tooltipped" data-position="bottom" data-tooltip="delete variant" style="font-size: 20px;"></i>
-                        </div>
-                    </div><!-- Variants inputs -->
-                    <div class="tflex tjustify-between tpx-5 tborder-b tpy-3">
-                        <div class="ttext-black-100 ttext-sm tmr-3">
-                            <span class="">sm / red / wood</span>
-                        </div>
-                        <div class="ttext-black-100 ttext-sm tmr-3">
-                            <input type="number" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
-                        </div>
-                        <div class="ttext-black-100 ttext-sm tmr-3">
-                            <input type="number" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
-                        </div>
-                        <div class="ttext-black-100 ttext-sm tmr-3">
-                            <input type="text" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
-                        </div>
-                        <div class="ttext-black-100 ttext-sm">
-                            <input type="text" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
-                        </div>
-                        <div class="tflex titems-center tpl-4 ttext-black-100 ttext-sm">
-                            <i class="far fa-trash-alt hover:ttext-red-500 tooltipped" data-position="bottom" data-tooltip="delete variant" style="font-size: 20px;"></i>
-                        </div>
-                    </div><!-- Variants inputs -->
+                    <div class="variantion_items_container">
+                       
+                    </div>
                 </div>
             </div>
         </div>
     </div><!-- Variants -->
 
+    <div class="tflex tjustify-end tpy-5 trounded-lg 100 tmt-5">
+        <button class="focus:tbg-blue-500 tbg-blue-500 tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" onclick="submit()">Save</button>
+    </div>
+
+    
 @endsection
 
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-    <script src="{{ asset('js/helpers.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src="{{ asset('js/helpers.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('input_counter/script.js') }}"></script>
+
     <script>
         $(document).ready(function () {
            CKEDITOR.replace( 'description' );
         });
     </script>
 
-{{-- DROPZONE JS CONTROLS --}}
-<script>
-    var dropzone = new Dropzone('#dropzone', {
-        url: '/yeah',
-        parallelUploads: 2,
-        thumbnailHeight: 120,
-        thumbnailWidth: 120,
-        maxFilesize: 3,
-        filesizeBase: 1000,
-        thumbnail: function(file, dataUrl) {
-            console.log(file);
-            if (file.previewElement) {
-                file.previewElement.classList.remove("dz-file-preview");
-                var images = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
-                for (var i = 0; i < images.length; i++) {
-                    var thumbnailElement = images[i];
-                    thumbnailElement.alt = file.name;
-                    thumbnailElement.src = dataUrl;
-                    console.log(dataUrl);
-                }   
-                    setTimeout(function() { file.previewElement.classList.add("dz-image-preview"); }, 1);
+    {{-- UPLOAD IMAGES JS CONTROLS --}}
+    <script>
+        function upload_file_input (){
+            $("#upload_file_input").trigger( "click" );
+        }// trigger click to open file upload
+
+        
+        $(document).on('change', '#upload_file_input', function(e){
+            var files = e.target.files;
+            var file_size_err = 0;
+            var image_ext_err = 0;
+            
+            // UPLOAD IMAGE
+            $.each(files, function(i, file){
+                var reader = new FileReader();
+                var img_key = i+random_string_generator();
+                let main_image_badge = `<img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;
+                
+                reader.readAsDataURL(file);
+                reader.onload = function(e){
+
+                    var base64Img = e.target.result;
+
+                    if (base64MimeType(base64Img) != 'image') {
+                        alert('The file must be an image');
+                        return;
+
+                    }
+
+                    // RENDER IMAGE MARK-UP
+                    let img_markup = `
+                        <div class="tw-1/5 tmb-3 tpr-1 trelative">
+                            <i class="fas fa-backspace fa-lg tabsolute tright-0 tcursor-pointer delete_image" style="color: tomato; padding-right: 3px; margin-top: 1px;"></i>
+                            <img src="${base64Img}" class="image tborder" primary="false" style="height:148px; width: 164px;">
+                        </div>
+                        `;
+                        
+                        $('#image_container').prepend(img_markup); // PUT the image
+                    }
+                });
+            });
+            
+            // SET PRIMARY IMAGE
+            $(document).on('click', '.image', function (params) {
+                let last_maing_img = $(document).find('#main_image_badge'); // find the last primary image
+                last_maing_img.next().next().attr('primary', 'false')// set the last primary image primary attr to false
+                last_maing_img.remove();// remove the main image badge
+                let main_image_badge = `<img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;// main image badge markup
+                $(this).parent().prepend(main_image_badge);// prepend the image badge markup to new selected image
+                $(this).attr('primary', 'true'); // select the primary attr to true to make this image primary
+            })
+            
+            // DELETE IMAGE
+            $(document).on('click', '.delete_image', function (params) {
+                $(this).parent().remove();
+            })
+    </script>
+
+
+    {{-- VARIANTS CONTROLS --}}
+    <script>
+        $(document).ready(function(){
+
+            $('#has_variant').change(function(){
+                $('#variant-container').toggle();
+            });
+            
+            function change_the_option_squence_label() {
+                $(`[data-variant_option]:not(".thidden")`).each(function(option_count) {
+                    $(this).children(":first").children(":first").html('Option ' + parseInt(option_count + 1));
+                })
+            }//change the option label Ex: Option 3
+
+
+            // ***********************************
+            // ADD VARIATION OPTION
+            // ***********************************
+            $('#add_varian_option').click(function(){
+                if ($("[data-variant_option='1']").css('display')  == 'none') {
+                    $("[data-variant_option='1']").removeClass('thidden');
+                    change_the_option_squence_label();
+                    return;
+                }
+
+                if ($("[data-variant_option='2']").css('display')  == 'none') {
+                    $("[data-variant_option='2']").removeClass('thidden');
+                    change_the_option_squence_label();
+                    return;
+                }
+
+                $("[data-variant_option='3']").removeClass('thidden');
+                change_the_option_squence_label();
+                $(this).hide();// the minimum variant option is only 3
+                return;
+            });
+
+
+            // ***********************************
+            // REMOVE VARIATION OPTION
+            // ***********************************
+            $('.remove_varaint_options').click(function(){
+                var varian_option_count = $("[data-variant_option]:not('.thidden')").length - 1; //get the total variant option
+                console.log(varian_option_count);
+                if (varian_option_count == 2) {
+                    $('#add_varian_option').show();
+                }// limit the addition of variants by 3
+
+                $(this).parent().parent().addClass('thidden');//remove the varaint options
+
+                change_the_option_squence_label();
+            
+            }); //remove the varaint options
+
+
+            // ***********************************
+            // VARIATION KEY AND VALUES AND CHIPS
+            // ***********************************
+            var variant_object = [];
+            var variant_values = new Array();
+            var variant_count = 1;
+
+            $('.chips-placeholder').chips({
+                placeholder: 'Enter an options',
+                secondaryPlaceholder: '+Options',
+                onChipAdd: function (event, chip) {
+                    var variant_name = event.parent().prev().children().val();//  get the variant_name
+                    var variant_value = event[0].M_Chips.chipsData.map(obj => {return obj.tag;}); // return the chip variant_values
+
+                    // ***********************************************
+                    // **************** SHOW ERROR MESSAGE **********
+                    // ***********************************************
+                    if (variant_name) {
+                        $('#variant_value_validation').addClass('thidden');
+                    }else{
+                        $('#variant_value_validation').removeClass('thidden');
+                    }
+                    
+                    // ***********************************************
+                    // Insert the key and values in variant object
+                    // ***********************************************
+                    variant_object[variant_name] = variant_value; 
+
+                    constract_variant_array_of_object(variant_object);
+                },
+                onChipDelete: function (event, chip) {
+                    var variant_name = event.parent().prev().children().val();//  get the variant_name
+                    var variant_value = event[0].M_Chips.chipsData.map(obj => {return obj.tag;}); // return the chip variant_values
+                    
+                    // GET ALL THE INDEX OF $variant_name from $variant_values 
+                    let tobe_deleted_index = new Array();
+                    Object.getOwnPropertyNames(variant_values).forEach(key_num=>{
+                        Object.getOwnPropertyNames(variant_values[key_num]).forEach(key_variant=> {
+                            if (key_variant == variant_name) {
+                                tobe_deleted_index.push(key_num);
+                            }
+                        })
+                    });
+
+                    // DELETE ALL data base on get indexs
+                    variant_values.splice(tobe_deleted_index[0], (tobe_deleted_index.length));
+                    variant_object[variant_name] = variant_value; 
+                    constract_variant_array_of_object(variant_object);
+                }
+            }); 
+
+            function constract_variant_array_of_object(variant_obj) {
+                let variants = Object.assign({}, variant_obj);
+                $.post( "/admin/products/generate_variant", { variants })
+                .done(function( variant_form ) {
+                    $('.variantion_items_container').html(variant_form)   
+                });
+            }
+        })
+    </script>
+
+    {{-- FUNCTIONS --}}
+    <script>
+        function allnumeric(inputtxt){
+            var numbers = /^[0-9]+$/;
+            if(inputtxt.value.match(numbers)){
+                return true;
+            }else{
+                inputtxt.value = '';
+                return false;
             }
         }
-    });
-    Dropzone.autoDiscover = false;
+    </script>
 
-</script>
-
-
-{{-- VARIANTS CONTROLS --}}
-<script>
-
-    $(document).ready(function(){
-
-        $('#has_variant').change(function(){
-            $('#variant-container').toggle();
-        });
-        
-        function change_the_option_squence_label() {
-            $(`[data-variant_option]:not(".thidden")`).each(function(option_count) {
-                $(this).children(":first").children(":first").html('Option ' + parseInt(option_count + 1));
+    {{-- SUBMIT --}}
+    <script>
+        function submit() {
+            let title = $('#title').val();
+            let description = CKEDITOR.instances.description.getData();
+            let price = $('#price').val();
+            let compare_price = $('#compare_price').val();
+            
+            // inventory
+            let sku = $('#sku').val();
+            let barcode = $('#barcode').val();
+            let qty = $('#qty').val();
+            
+            let image = [];
+            
+            $.each($('.image'), function (i, el) {
+                image.push({
+                    'base64_image': $(this).attr('src'),
+                    'primary': $(this).attr('primary')
+                })
             })
-        }//change the option label Ex: Option 3
 
-
-        // ***********************************
-        // ADD VARIATION OPTION
-        // ***********************************
-        $('#add_varian_option').click(function(){
-            if ($("[data-variant_option='1']").css('display')  == 'none') {
-                $("[data-variant_option='1']").removeClass('thidden');
-                change_the_option_squence_label();
-                return;
-            }
-
-            if ($("[data-variant_option='2']").css('display')  == 'none') {
-                $("[data-variant_option='2']").removeClass('thidden');
-                change_the_option_squence_label();
-                return;
-            }
-
-            $("[data-variant_option='3']").removeClass('thidden');
-            change_the_option_squence_label();
-            $(this).hide();// the minimum variant option is only 3
-            return;
-        });
-
-
-        // ***********************************
-        // REMOVE VARIATION OPTION
-        // ***********************************
-        $('.remove_varaint_options').click(function(){
-            var varian_option_count = $("[data-variant_option]:not('.thidden')").length - 1; //get the total variant option
-            console.log(varian_option_count);
-            if (varian_option_count == 2) {
-                $('#add_varian_option').show();
-            }// limit the addition of variants by 3
-
-            $(this).parent().parent().addClass('thidden');//remove the varaint options
-
-            change_the_option_squence_label();
-        
-        }); //remove the varaint options
-
-
-        // ***********************************
-        // VARIATION KEY AND VALUES AND CHIPS
-        // ***********************************
-        var variant_object = [];
-        var variant_values = new Array();
-        var variant_count = 1;
-
-        $('.chips-placeholder').chips({
-            placeholder: 'Enter an options',
-            secondaryPlaceholder: '+Options',
-            onChipAdd: function (event, chip) {
-                var variant_name = event.parent().prev().children().val();//  get the variant_name
-                var variant_value = event[0].M_Chips.chipsData.map(obj => {return obj.tag;}); // return the chip variant_values
-
-                // ***********************************************
-                // **************** SHOW ERROR MESSAGE **********
-                // ***********************************************
-                if (variant_name) {
-                    $('#variant_value_validation').addClass('thidden');
-                }else{
-                    $('#variant_value_validation').removeClass('thidden');
-                }
-                
-                // ***********************************************
-                // Insert the key and values in variant object
-                // ***********************************************
-                variant_object[variant_name] = variant_value; 
-
-                constract_variant_array_of_object(variant_object);
-            },
-            onChipDelete: function (event, chip) {
-                var variant_name = event.parent().prev().children().val();//  get the variant_name
-                var variant_value = event[0].M_Chips.chipsData.map(obj => {return obj.tag;}); // return the chip variant_values
-                
-                // GET ALL THE INDEX OF $variant_name from $variant_values 
-                let tobe_deleted_index = new Array();
-                Object.getOwnPropertyNames(variant_values).forEach(key_num=>{
-                    Object.getOwnPropertyNames(variant_values[key_num]).forEach(key_variant=> {
-                        if (key_variant == variant_name) {
-                            tobe_deleted_index.push(key_num);
-                        }
-                    })
-                });
-
-                // DELETE ALL data base on get indexs
-                variant_values.splice(tobe_deleted_index[0], (tobe_deleted_index.length));
-                variant_object[variant_name] = variant_value; 
-                constract_variant_array_of_object(variant_object);
-            }
-        }); 
-
-        function constract_variant_array_of_object(variant_obj) {
-            let varaints = Object.assign({}, variant_obj);
-            $.post( "/admin/variant", { varaints })
-            .done(function( data ) {
-                console.log(data); 
+            $.post( "/admin/products/store", { 
+                title:title,
+                description:description,
+                price:price,
+                compare_price:compare_price,
+                sku:sku,
+                barcode:barcode,
+                qty:qty,
+                image:image,
+            })
+            .done(function( res ) {
+                console.log(res)
             });
-        } 
-    })
-     
-</script>
+        }
+    </script>
+
 
 @endsection
