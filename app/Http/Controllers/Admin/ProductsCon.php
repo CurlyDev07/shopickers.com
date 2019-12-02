@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Product;
+use App\ProductVariantType;
+use App\ProductVariantTypeValues;
 
 class ProductsCon extends Controller
 {
@@ -16,7 +19,28 @@ class ProductsCon extends Controller
     }
 
     public function store(Request $request){
-        return $request->all();
+        $product = Product::create($request->all());
+
+        foreach ($request->images as $key => $value) {
+            $product->images()->create([
+                'img' => url('/').'/'.base64ToImage($value['base64_image'], 'images/products/'),
+                'primary' => $value['primary']
+            ]);
+        }
+
+        foreach ($request->variant_types as $key => $value) {
+
+            $variant_types = $product->variant_types()->create([
+                'name' => $key,
+            ]);
+
+            foreach ($value as $value) {
+                ProductVariantTypeValues::create([
+                    'product_variant_types_id' => $variant_types->id,
+                    'name' => $value,
+                ]);
+            }
+        }
     }
 
     public function generate_variant(){

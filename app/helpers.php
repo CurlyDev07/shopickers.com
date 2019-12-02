@@ -360,3 +360,13 @@ function get_variations($arrays) {
     }
     return $result;
 }
+
+function base64ToImage($base64_string, $path) {
+    // df = directory_and_filename
+    $df = $path.$rand_name = time().uniqid().rand(1, 9999).'.jpg';
+    $file = fopen($df, "wb");
+    $data = explode(',', $base64_string);
+    fwrite($file, base64_decode($data[1]));
+    fclose($file);
+    return $df;
+}

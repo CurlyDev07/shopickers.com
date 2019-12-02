@@ -174,7 +174,7 @@
                         <div class="tfont-medium ttext-black-100 ttext-sm"></div>
                     </div><!-- Variants Headers -->
                     <div class="variantion_items_container">
-                       
+
                     </div>
                 </div>
             </div>
@@ -234,7 +234,7 @@
                     let img_markup = `
                         <div class="tw-1/5 tmb-3 tpr-1 trelative">
                             <i class="fas fa-backspace fa-lg tabsolute tright-0 tcursor-pointer delete_image" style="color: tomato; padding-right: 3px; margin-top: 1px;"></i>
-                            <img src="${base64Img}" class="image tborder" primary="false" style="height:148px; width: 164px;">
+                            <img src="${base64Img}" class="image tborder" primary="0" style="height:148px; width: 164px;">
                         </div>
                         `;
                         
@@ -246,11 +246,11 @@
             // SET PRIMARY IMAGE
             $(document).on('click', '.image', function (params) {
                 let last_maing_img = $(document).find('#main_image_badge'); // find the last primary image
-                last_maing_img.next().next().attr('primary', 'false')// set the last primary image primary attr to false
+                last_maing_img.next().next().attr('primary', 0)// set the last primary image primary attr to false
                 last_maing_img.remove();// remove the main image badge
                 let main_image_badge = `<img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;// main image badge markup
                 $(this).parent().prepend(main_image_badge);// prepend the image badge markup to new selected image
-                $(this).attr('primary', 'true'); // select the primary attr to true to make this image primary
+                $(this).attr('primary', 1); // select the primary attr to true to make this image primary
             })
             
             // DELETE IMAGE
@@ -405,7 +405,7 @@
             let image = [];
             let variant_options = [];
             let variant_types = JSON.parse($(document).find('#variant_key_values').val());
-
+            console.log(variant_types)
             $.each($('.image'), function (i, el) {
                 image.push({
                     'base64_image': $(this).attr('src'),
@@ -431,7 +431,7 @@
                 sku:sku,
                 barcode:barcode,
                 qty:qty,
-                image:image,
+                images:image,
                 variant_types: variant_types,
                 variant_options: variant_options,
             })
