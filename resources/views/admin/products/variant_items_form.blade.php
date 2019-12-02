@@ -3,19 +3,19 @@
 @foreach ($all_combination as $index => $variant)
     <div class="tflex tjustify-between titems-center tpx-5 tborder-b tpy-3 variant-row" deleted="false">
         <div class="ttext-black-100 ttext-sm tmr-3 tw-32">
-            <span class="">{{ $variant }}</span>
+            <span class="name">{{ $variant }}</span>
         </div>
         <div class="ttext-black-100 ttext-sm tmr-3">
-            <input type="number" class="browser-default form-control" onkeyup="allnumeric(this)" style="padding: 6px; font-size: 14px;">
+            <input type="number" class="browser-default form-control price" onkeyup="allnumeric(this)" style="padding: 6px; font-size: 14px;">
         </div>
         <div class="ttext-black-100 ttext-sm tmr-3">
-            <input type="number" class="browser-default form-control" onkeyup="allnumeric(this)" style="padding: 6px; font-size: 14px;">
+            <input type="number" class="browser-default form-control qty" onkeyup="allnumeric(this)" style="padding: 6px; font-size: 14px;">
         </div>
         <div class="ttext-black-100 ttext-sm tmr-3">
-            <input type="text" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
+            <input type="text" class="browser-default form-control sku" style="padding: 6px; font-size: 14px;">
         </div>
         <div class="ttext-black-100 ttext-sm">
-            <input type="text" class="browser-default form-control" style="padding: 6px; font-size: 14px;">
+            <input type="text" class="browser-default form-control barcode" style="padding: 6px; font-size: 14px;">
         </div>
 
         <div class="ttext-black-100 ttext-sm tmr-3 tpy-1 thidden variant_deleted_text">

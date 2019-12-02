@@ -403,13 +403,25 @@
             let qty = $('#qty').val();
             
             let image = [];
-            
+            let variant_options = [];
+            let variant_types = JSON.parse($(document).find('#variant_key_values').val());
+
             $.each($('.image'), function (i, el) {
                 image.push({
                     'base64_image': $(this).attr('src'),
                     'primary': $(this).attr('primary')
                 })
             })
+
+            $.each($('.variant-row'), function (i, el) {
+                variant_options.push({
+                    'name': $(this).find('.name').html(),
+                    'price': $(this).find('.price').val(),
+                    'qty': $(this).find('.qty').val(),
+                    'sku': $(this).find('.sku').val(),
+                    'barcode': $(this).find('.barcode').val(),
+                });
+            })// get each variant values
 
             $.post( "/admin/products/store", { 
                 title:title,
@@ -420,6 +432,8 @@
                 barcode:barcode,
                 qty:qty,
                 image:image,
+                variant_types: variant_types,
+                variant_options: variant_options,
             })
             .done(function( res ) {
                 console.log(res)
