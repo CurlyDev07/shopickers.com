@@ -12,7 +12,7 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
     
-    public function variant_types(){
-        return $this->hasMany(ProductVariantType::class);
+    public function product_variants(){
+        return $this->hasMany(ProductVariant::class);
     }
 }

@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
-use App\ProductVariantType;
-use App\ProductVariantTypeValues;
 
 class ProductsCon extends Controller
 {
@@ -30,13 +28,12 @@ class ProductsCon extends Controller
 
         foreach ($request->variant_types as $key => $value) {
 
-            $variant_types = $product->variant_types()->create([
+            $product_variant_types = $product->product_variants()->create([
                 'name' => $key,
             ]);
 
             foreach ($value as $value) {
-                ProductVariantTypeValues::create([
-                    'product_variant_types_id' => $variant_types->id,
+                $product_variant_types->product_variant_types()->create([
                     'name' => $value,
                 ]);
             }

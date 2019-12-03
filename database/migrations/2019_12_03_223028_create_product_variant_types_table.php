@@ -15,7 +15,7 @@ class CreateProductVariantTypesTable extends Migration
     {
         Schema::create('product_variant_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('product_id')->index();
+            $table->integer('product_variant_id')->index();
             $table->string('name')->nullable();
         });
     }
@@ -27,6 +27,6 @@ class CreateProductVariantTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('variant_types');
+        Schema::dropIfExists('product_variant_types');
     }
 }
