@@ -1,5 +1,5 @@
 
-<div class="tbg-gray-300">
+<div class="tbg-white">
     <div class="tcontainer tpy-5">
         <div class="tflex">
             <div class="tflex tw-full titems-center tjustify-center">

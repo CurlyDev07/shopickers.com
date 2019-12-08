@@ -4,6 +4,14 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+function uuid(){
+    return (string) Str::uuid();
+}
+
+function percentage_discount($high, $low){
+    return number_format((($high - $low) / $high) * 100);
+}
+
 function item_show_slug($slug, $id){
     return url(Str::slug($slug).'-i.'.$id);
 }
@@ -363,7 +371,7 @@ function get_variations($arrays) {
 
 function base64ToImage($base64_string, $path) {
     // df = directory_and_filename
-    $df = $path.$rand_name = time().uniqid().rand(1, 9999).'.jpg';
+    $df = $path.uuid().'.jpg';
     $file = fopen($df, "wb");
     $data = explode(',', $base64_string);
     fwrite($file, base64_decode($data[1]));

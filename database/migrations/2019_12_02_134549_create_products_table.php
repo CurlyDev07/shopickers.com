@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->integer('price')->nullable();
-            $table->integer('compare_price')->nullable();
-            $table->integer('qty')->nullable();
+            $table->integer('compare_price')->nullable()->default(0);
+            $table->integer('qty')->nullable()->default(0);
             $table->string('sku')->nullable();
             $table->string('barcode')->nullable();
             $table->integer('status')->default(0);

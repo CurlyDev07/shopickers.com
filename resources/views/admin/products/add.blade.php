@@ -109,9 +109,10 @@
                 <div id="varian_options_container">
                     <div class="tflex tjustify-between titems-center">
                         <span class="text-sm tfont-medium tpy-4 ttext-title" style="font-size:14px;">OPTIONS</span>
-                        <span class="ttext-sm ttext-red-500 thidden" id="variant_value_validation">
+                        {{-- VARIANT VALIDATION MESSAGE --}}
+                        <span class="ttext-sm ttext-red-500 thidden" id="variant_validation">
                             <a class="btn-floating pulse tbg-red-500 hover:tbg-red-500"><i class="fas fa-exclamation"></i></a>
-                            Please Enter the variant name
+                            Please enter the variant name and values. or Unchecked the variant checkbox.
                         </span>
                     </div>
                     <div class="tpb-5" data-variant_option="1">
@@ -182,9 +183,26 @@
     </div><!-- Variants -->
 
     <div class="tflex tjustify-end tpy-5 trounded-lg 100 tmt-5">
-        <button class="focus:tbg-blue-500 tbg-blue-500 tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" onclick="submit()">Save</button>
+        <button class="focus:tbg-blue-500 tbg-blue-500 tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" id="submit_btn" onclick="submit()">Save</button>
     </div>
 
+
+
+<!-- Modal Structure -->
+<div id="err_msg_modal" class="modal modal-fixed-footer">
+    <div class="modal-content tbg-white">
+        <div class="ttext-center tmb-5">
+            <a class="btn-floating pulse tbg-red-500 hover:tbg-red-500"><i class="fas fa-exclamation"></i></a>
+            <h4 class="ttext-lg">Ooops</h4>
+        </div>
+        <ul class="modal_err_msg">
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-light btn-flat ttext-white" style="background: #f65656;">Okay</a>
+    </div>
+</div>
+        
     
 @endsection
 
@@ -197,6 +215,7 @@
 
     <script>
         $(document).ready(function () {
+            $('.modal').modal();
            CKEDITOR.replace( 'description' );
         });
     </script>
@@ -265,7 +284,13 @@
         $(document).ready(function(){
 
             $('#has_variant').change(function(){
-                $('#variant-container').toggle();
+                console.log($('#has_variant').prop("checked"));
+                if($(this).prop("checked") == true){
+                    $('#variant-container').show();
+                }
+                else if($(this).prop("checked") == false){
+                    $('#variant-container').hide();
+                }
             });
             
             function change_the_option_squence_label() {
@@ -333,9 +358,9 @@
                     // **************** SHOW ERROR MESSAGE **********
                     // ***********************************************
                     if (variant_name) {
-                        $('#variant_value_validation').addClass('thidden');
+                        $('#variant_validation').addClass('thidden');
                     }else{
-                        $('#variant_value_validation').removeClass('thidden');
+                        $('#variant_validation').removeClass('thidden');
                     }
                     
                     // ***********************************************
@@ -392,6 +417,8 @@
     {{-- SUBMIT --}}
     <script>
         function submit() {
+            $('#submit_btn').attr('disabled', 'true');
+
             let title = $('#title').val();
             let description = CKEDITOR.instances.description.getData();
             let price = $('#price').val();
@@ -403,25 +430,44 @@
             let qty = $('#qty').val();
             
             let image = [];
+
+            let has_variant = $('#has_variant').prop("checked");
             let variant_options = [];
-            let variant_types = JSON.parse($(document).find('#variant_key_values').val());
-            console.log(variant_types)
+            let variant_types = false;
+
             $.each($('.image'), function (i, el) {
                 image.push({
                     'base64_image': $(this).attr('src'),
                     'primary': $(this).attr('primary')
                 })
             })
+            
+            if (has_variant) {
+                //********* VALIDATION *********
+                if ($('.variant-row').length < 1) {
+                    $('#variant_validation').removeClass('thidden');
+                    return;
+                }else{
+                    $('#variant_validation').addClass('thidden');
+                }
+                variant_types = JSON.parse($(document).find('#variant_key_values').val());
+            }
 
-            $.each($('.variant-row'), function (i, el) {
-                variant_options.push({
-                    'name': $(this).find('.name').html(),
-                    'price': $(this).find('.price').val(),
-                    'qty': $(this).find('.qty').val(),
-                    'sku': $(this).find('.sku').val(),
-                    'barcode': $(this).find('.barcode').val(),
-                });
-            })// get each variant values
+            if (variant_types) {
+                $.each($('.variant-row'), function (i, el) {
+                    if ($(this).attr('deleted') == 'true') {
+                        return;
+                    }// if variant row is deleted skip
+                    variant_options.push({
+                        'name': $(this).find('.name').html(),
+                        'price': $(this).find('.price').val(),
+                        'qty': $(this).find('.qty').val(),
+                        'sku': $(this).find('.sku').val(),
+                        'barcode': $(this).find('.barcode').val(),
+                    });
+                    console.log('pass')
+                })// get each variant values
+            }// if variants has a row
 
             $.post( "/admin/products/store", { 
                 title:title,
@@ -432,14 +478,38 @@
                 barcode:barcode,
                 qty:qty,
                 images:image,
-                variant_types: variant_types,
+                variant_types: variant_types,   
                 variant_options: variant_options,
+                has_variant: has_variant
+            })
+            .fail(function(response) {
+                $('#submit_btn').removeAttr('disabled');
+
+                let errDecoded = JSON.parse(response.responseText);
+                let markup = '';
+
+                if (errDecoded.errors < 1) {
+                    return;
+                }
+
+                $('#err_msg_modal').modal('open'); 
+                $.each(errDecoded.errors, function (key, val) {
+                    markup +=   `<li class="tmb-3" style="color:#f65656;">
+                                    <i class="fas fa-dot-circle tmr-3"></i>
+                                    ${val}
+                                </li>`;
+
+                });
+                $('.modal_err_msg').html(markup);
+              
+                console.log(errDecoded);
             })
             .done(function( res ) {
-                console.log(res)
+                // console.log(res) 
+                window.location.href = '/admin/products';
             });
         }
-    </script>
+    </script>   
 
 
 @endsection

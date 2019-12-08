@@ -2,8 +2,8 @@
 @include('layouts.nav')
   @yield('nav')
 
-  <div class="tcontainer tpy-8">
-    @yield('content')
-  </div>  
+  <div style="background: #f3f5f7">
+        @yield('content') 
+  </div>
 
 @include('layouts.footer')

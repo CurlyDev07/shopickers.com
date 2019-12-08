@@ -23,31 +23,34 @@
 
 @section('content')
 
-    <h1 class="tfont-bold ttext-2xl tmb-5">OUR STORY</h1>
+    <div class="tbg-white">
+        <div class="tcontainer tpy-8">
+            <h1 class="tfont-bold ttext-2xl tmb-5">OUR STORY</h1>
 
-    <p class="ttext-base ttracking-widest ttext-gray-600 tleading-relaxed">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged.
-    </p>
-    <br>
-    <p class="ttext-base ttracking-widest ttext-gray-600 tleading-relaxed">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-    </p>
-    <br>
-    <p class="ttext-lg ttracking-widest tleading-normal">
-        “ Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model search 
-        for evolved over sometimes by accident, sometimes on purpose ”
-    </p>
+            <p class="ttext-base ttracking-widest ttext-gray-600 tleading-relaxed">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                It has survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged.
+            </p>
+            <br>
+            <p class="ttext-base ttracking-widest ttext-gray-600 tleading-relaxed">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            </p>
+            <br>
+            <p class="ttext-lg ttracking-widest tleading-normal">
+                “ Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model search 
+                for evolved over sometimes by accident, sometimes on purpose ”
+            </p>
+        </div>
+    </div>
 
-</div><!-- close the container -->
 
-    <div class="tbg-gray-200 tmt-10 tpy-12">
-        <div class="tcontainer">
+
+    <div class="tcontainer tpy-12">
             <h1 class="tfont-bold ttext-2xl tmb-5">WHY CHOOSE US</h1>
 
             <div class="tflex">
@@ -79,34 +82,35 @@
                     </p>    
                 </div>
             </div>
-        </div>
     </div>
 
-    <div class="tcontainer tpy-12">
-        <h1 class="tfont-bold ttext-2xl tpb-12 ttext-center">TESTIMONIAL</h1>
-
-        <div class="owl-carousel owl-theme">
-            @for ($i = 0; $i < 8; $i++)
-                <div class="item">
-                    <div class="tw-full">
-                        <div class="tflex titems-center">
-                            <img src="http://www.portotheme.com/magento/porto/media/wysiwyg/porto/aboutus/4/client1.png" class="trounded-full" style="height:60px; width:60px" alt="">
-                            <div class="tml-4 tflex tflex-col titems-center">
-                                <div class="tfont-medium">John Smith</div>
-                                <div class="ttext-sm">{{ now()->diffForHumans() }}</div>
+    <div class="tbg-white">
+        <div class="tcontainer tpy-12">
+            <h1 class="tfont-bold ttext-2xl tpb-12 ttext-center">TESTIMONIAL</h1>
+        
+            <div class="owl-carousel owl-theme">
+                @for ($i = 0; $i < 8; $i++)
+                    <div class="item">
+                        <div class="tw-full">
+                            <div class="tflex titems-center">
+                                <img src="http://www.portotheme.com/magento/porto/media/wysiwyg/porto/aboutus/4/client1.png" class="trounded-full" style="height:60px; width:60px" alt="">
+                                <div class="tml-4 tflex tflex-col titems-center">
+                                    <div class="tfont-medium">John Smith</div>
+                                    <div class="ttext-sm">{{ now()->diffForHumans() }}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tflex tpy-2 tpx-16">
-                            <div class="tmr-5">
-                                <i class="fas fa-quote-left ttext-blue-700"></i>
+                            <div class="tflex tpy-2 tpx-16">
+                                <div class="tmr-5">
+                                    <i class="fas fa-quote-left ttext-blue-700"></i>
+                                </div>
+                                <span class="tfont-light ttext-black ttracking-wider">
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit animi cupiditate ratione iusto facilis nostrum a, sint quam doloribus architecto tenetur delectus dolorum ex molestiae modi. Maxime numquam voluptas laudantium?
+                                </span>
                             </div>
-                            <span class="tfont-light ttext-black ttracking-wider">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit animi cupiditate ratione iusto facilis nostrum a, sint quam doloribus architecto tenetur delectus dolorum ex molestiae modi. Maxime numquam voluptas laudantium?
-                            </span>
                         </div>
                     </div>
-                </div>
-            @endfor
+                @endfor
+            </div>
         </div>
     </div>
 

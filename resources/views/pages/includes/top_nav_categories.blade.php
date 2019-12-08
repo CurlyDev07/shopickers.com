@@ -1,4 +1,4 @@
-<div class="tbg-gray-300">
+<div class="tbg-white">
     <div class="tcontainer tpy-4">
         <div class="tflex">
             <div class="flex tflex-grow">

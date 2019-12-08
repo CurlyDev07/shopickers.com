@@ -5,39 +5,66 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use App\ProductImage;
+use App\ProductVariantOption;
+use App\Http\Requests\Products\UploadProductsRequest;
 
 class ProductsCon extends Controller
 {
     public function index(){
-        return view('admin.products.index');
+        $products = Product::with(array('images' => function($query){
+                $query->where('primary', 1);
+            })
+        )->get()->toArray();
+        return view('admin.products.index', compact('products'));
     }
     
     public function add(){
         return view('admin.products.add');
     }
 
-    public function store(Request $request){
+    public function store(UploadProductsRequest $request){
         $product = Product::create($request->all());
 
+        $primary = 0;
         foreach ($request->images as $key => $value) {
             $product->images()->create([
                 'img' => url('/').'/'.base64ToImage($value['base64_image'], 'images/products/'),
                 'primary' => $value['primary']
             ]);
+            $value['primary'] == 1 ? $primary++ : '';
         }
 
-        foreach ($request->variant_types as $key => $value) {
+        if ($primary == 0) {
+            $product->images()->first()->update(['primary' => 1]);
+        }// Set Main image if user didnt choose primary img
 
-            $product_variant_types = $product->product_variants()->create([
-                'name' => $key,
-            ]);
-
-            foreach ($value as $value) {
-                $product_variant_types->product_variant_types()->create([
-                    'name' => $value,
+        if ($request->has_variant == false) {
+            foreach ($request->variant_types as $key => $value) {
+    
+                $product_variant_types = $product->product_variants()->create([
+                    'name' => $key,
+                ]);
+    
+                foreach ($value as $value) {
+                    $product_variant_types->product_variant_types()->create([
+                        'name' => $value,
+                    ]);
+                }
+            }
+    
+            foreach ($request->variant_options as $key => $value) {
+                $product->product_variant_options()->create([
+                    "name" => $value['name'],
+                    "price" => $value['price'],
+                    "qty" => $value['qty'],
+                    "sku" => $value['sku'],
+                    "barcode" => $value['barcode'],
                 ]);
             }
         }
+
+        return response()->json(['code' => 200]);
     }
 
     public function generate_variant(){
