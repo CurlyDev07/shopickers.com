@@ -28,6 +28,18 @@
                 <input type="text" id="title" class="browser-default form-control" style="padding: 6px;">
             </div>
         </div>
+    </div>
+
+    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
+        <div class="tborder-b text-base tfont-medium tpx-5 tpy-4 t ttext-title">
+            Details
+        </div>
+        <div class="tflex tpx-5 tpt-5">
+            <div class="tw-full tflex tflex-col tmr-2">
+                <label for="short_description" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Short Description</label>
+                <textarea id="short_description" class="browser-default form-control" name="short_description" rows="5" style="padding: 6px;"></textarea>
+            </div>
+        </div>
         <div class="tflex tpx-5 tpt-5">
             <div class="tw-full tflex tflex-col tmr-2">
                 <label for="description" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Description</label>
@@ -216,7 +228,8 @@
     <script>
         $(document).ready(function () {
             $('.modal').modal();
-           CKEDITOR.replace( 'description' );
+
+           let description = CKEDITOR.replace( 'description' );
         });
     </script>
 
@@ -420,6 +433,7 @@
             $('#submit_btn').attr('disabled', 'true');
 
             let title = $('#title').val();
+            let short_description = $('#short_description').val();
             let description = CKEDITOR.instances.description.getData();
             let price = $('#price').val();
             let compare_price = $('#compare_price').val();
@@ -471,6 +485,7 @@
 
             $.post( "/admin/products/store", { 
                 title:title,
+                short_description:short_description,
                 description:description,
                 price:price,
                 compare_price:compare_price,

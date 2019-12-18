@@ -29,7 +29,7 @@
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Actions</th>
                     </tr>
                     @foreach ($products as $product)
-                        <tr class="tborder-0 hover:tbg-blue-100">
+                        <tr class="tborder-0 hover:tbg-blue-100" onclick="item_show('{{ item_show_slug($product['title'], $product['id']) }}')">
                             <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td>
                             <td class="tp-3 tpx-5">
                                 <img src="{{ $product['images'][0]['img'] }}" style="height: 50px;width: 50px;">

@@ -53,8 +53,11 @@
                     </div>
                 </nav>
             </div>
-            <div class="tself-center">
-                <a href="{{ route('cart') }}"><i class="fas fa-shopping-cart fa-2x ttext-white"></i></a>
+            <div class="tself-center trelative">
+                <a href="{{ route('cart') }}" id="cart" class="btn-floating hover:tbg-white tbg-white">
+                    <i class="material-icons" style="color: #4299e1;">shopping_cart</i>
+                </a>
+                <span id="cart_item_count" class="thidden t-ml-4 t-mt-2 tabsolute tbg-red-500 trounded-full ttext-white" style="z-index: 999;padding: 0px 7px;">1</span>
             </div>
         </div>
     </div>

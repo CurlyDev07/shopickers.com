@@ -24,4 +24,5 @@ class ProductsCon extends Controller
 
         return view('pages.products.all', compact('products'));
     }
+  
 }

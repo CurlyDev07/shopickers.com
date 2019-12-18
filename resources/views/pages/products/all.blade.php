@@ -46,10 +46,10 @@
                     <div class="tbg-white tshadow-lg">
                         <img src="{{ $product['images'][0]['img'] }}" style="margin: 0 auto;height: 232px;" alt="">
                         <div class="tpx-3 tpy-2">
-                            <div class="tmt-1 ttext-gray-800 ttruncate">
+                            <div class="tmt-1 ttext-gray-800 ttruncate tcursor-default">
                                 {{ $product['title'] }}
                             </div>
-                            <div class="tflex titems-center tmt-1">
+                            <div class="tflex titems-center tmt-1 tcursor-default">
                                 <div class="tfont-medium ttext-blue-500 ttext-lg">
                                     ₱{{ number_format($product['price']) }}
                                 </div>
@@ -57,13 +57,6 @@
                                     {{ $product['compare_price'] != '' ? '₱'.number_format($product['compare_price']) : '' }}
                                 </strike>
                             </div>
-                        </div>
-                        
-                        <div class="action tflex tjustify-between">
-                            <a class="tflex titems-center tjustify-center tp-2 ttext-xs tw-full tborder tbg-blue-500 ttext-white tborder-blue-600 hover:tbg-blue-600 focus:tbg-blue-600 waves-effect">
-                                <i class="fas fa-cart-plus fa-2x tmr-2"></i>
-                                <span>ADD TO CART</span>
-                            </a>
                         </div>
                     </div>
                 </div>

@@ -36,9 +36,7 @@ Route::get('signup', function () {
     return view('pages.auth.signup');
 })->name('signup');
 
-Route::get('cart', function () {
-    return view('pages.front.cart');
-})->name('cart');
+
 
 Route::get('dashboard', function () {
     return view('pages.user.dashboard');
@@ -49,5 +47,12 @@ Route::get('{slug}-i.{item_id}', 'ProductsCon@show')->where(['item_id' => '[0-9]
 Route::get('products', 'ProductsCon@all')->name('products.all');
 
 
-Route::get('checkout', 'TransactionCon@checkout')->name('checkout');
+// CART
+Route::get('cart', 'CartCon@index')->name('cart');
+Route::get('cart/add/{id}', 'CartCon@add')->name('cart.add');
+Route::get('cart/clear/all', 'CartCon@clear_all')->name('cart.clear.all');
+Route::get('cart/count', 'CartCon@count')->name('cart.count');
 
+
+// CHECKOUT
+Route::get('checkout/{base64_item_details}', 'CheckoutCon@index')->name('checkout');

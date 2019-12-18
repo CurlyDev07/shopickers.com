@@ -118,6 +118,25 @@
         <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
         <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
         @yield('js')
+        
+        <script>
+            function addToCart(){
+                
+                $.get( "{{ route('cart.count') }}", function( count ) {
+                    if (count > 0) {
+                        
+                        $('#cart_item_count').removeClass('thidden').html(count);
+                    }
+                });
+            }
+            addToCart();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
     </footer>
 </body>
 </html>

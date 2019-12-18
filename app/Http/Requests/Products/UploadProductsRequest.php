@@ -26,6 +26,7 @@ class UploadProductsRequest extends FormRequest
         return [
             'title' => 'required|min:2|max:200',
             'description' => 'required',
+            'short_description' => 'required',
             'price' => 'required|integer',
             // 'compare_price' => 'integer',
             // 'qty' => 'integer',

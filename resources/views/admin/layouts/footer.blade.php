@@ -17,6 +17,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            function item_show(item_show_link){
+                window.location.href = item_show_link;
+            }
         </script>
 
         @yield('js')

@@ -2,6 +2,11 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <style>
+        h2#swal2-title {
+            font-size: 22px;
+        }
+    </style>
 @endsection
 
 @section('nav')
@@ -23,14 +28,12 @@
             <li class="ttext-title  tcursor-pointer hover:tunderline">all</li>
         </ul>
 
-        <div class="tflex tw-full">
-            <div class="tw-3/4 tbg-white tp-5">
-                <div class="tflex">
+        <div class="tflex tw-full tbg-white tp-5">
                     <div class="tw-2/5">
                         <div class="owl-main owl-carousel owl-theme">
                             @foreach ($product['images'] as $item)
                                 <div class="item">
-                                    <img src="{{ $item['img'] }}" data-hash="{{ $item['id'] }}" class="tinline" style="width: 396px;height: 292px;">
+                                    <img src="{{ $item['img'] }}" data-hash="{{ $item['id'] }}" class="tblock tmx-auto" style="width: 396px;height: 292px;">
                                 </div>
                             @endforeach
                         </div><!-- MAIN IMAGE -->
@@ -58,17 +61,17 @@
                     </div><!-- IMAGES -->
                     <div class="tw-3/5">
                         <div class="tpl-10">
-                            <h2 class="tfont-semibold ttext-3xl ttext-gray-800">{{ $product['title'] }}</h2>
-                            <div class="tpy-3 tflex tmb-2">
-                                <div class="tflex">
-                                    <div class="ttext-sm tmr-5">
-                                        <i class="fas fa-star ttext-yellow-400"></i> 4.8
-                                    </div>
-                                    <div class="tborder-gray-400 tborder-l ttext-sm tpl-5">0 Review(s)</div>
+                            <h2 class="tfont-medium tleading-tight ttext-gray-800 ttext-xl">{{ $product['title'] }}</h2>
+                            <div class="tflex tjustify-end tpy-3 ttext-md">
+                                <div class="tmr-5 ttext-blue-500">
+                                    <i class="fas fa-star"></i>
+                                    <span class="tunderline">4.8</span>
                                 </div>
+                                <div class="tborder-gray-400 tborder-l  tpx-5">182 Ratings</div>
+                                <div class="tborder-gray-400 tborder-l  tpl-5">336 Sold</div>
                             </div><!-- RATINGS -->
                             <div class="tleading-relaxed tpb-5 tborder-b">
-                                {!! $product['description'] !!}
+                                {!! nl2br($product['short_description']) !!}
                             </div><!-- SHORT DESCRIPTION -->
                             <div class="tpb-5 tborder-b">
                                 <div class="tflex tflex-col tmt-4">
@@ -76,7 +79,7 @@
                                     @if ($product['compare_price'] != '')
                                         <div class="">
                                             <span class="tline-through ttext-gray-500">{{ currency($product['compare_price']) }}</span>
-                                            <span class="">-{{ percentage_discount($product['compare_price'], $product['price']) }}%</span>
+                                            <span class="tbg-blue-500 tfont-medium tpx-2 ttext-white">-{{ percentage_discount($product['compare_price'], $product['price']) }}% OFF</span>
                                         </div>
                                     @endif
                                 </div>
@@ -97,14 +100,12 @@
                                         <i class="fas fa-heart ttext-blue-500"></i>
                                     </div>
                                 </div>
-                                <a class="focus:tbg-blue-500 hover:tbg-blue-500 tbg-blue-500 tpy-3 trounded-b trounded-t ttext-center ttext-white tw-1/3 waves-effect waves-light">Add To Cart</a>
-                                <a href="{{ route('checkout') }}" class="focus:tbg-blue-500 hover:tbg-blue-500 tbg-blue-500 tpy-3 trounded-b trounded-t ttext-center ttext-white tw-1/3 waves-effect waves-light">Buy Now</a>
+                                <a id="add_to_cart" data-id="{{ $product['id'] }}" class="focus:tbg-blue-500 tbg-blue-100 tborder tborder-blue-500 tpy-3 trounded-b trounded-t ttext-blue-500 ttext-center tw-1/3 waves-effect waves-light">Add To Cart</a>
+                                <a href="" class="tborder tborder-blue-500 focus:tbg-blue-500 hover:tbg-blue-500 tbg-blue-500 tpy-3 trounded-b trounded-t ttext-center ttext-white tw-1/3 waves-effect waves-light">Buy Now</a>
                             </div>
                         </div>    
                     </div><!-- DETAILS -->
-                </div>
-            </div>
-            <div class="tw-1/4 tp-5" style="background:#fafafa;">
+            {{-- <div class="tw-1/4 tp-5" style="background:#fafafa;">
                 <div class="tflex tflex-wrap">
                     <div class="tflex titems-center tjustify-center tmb-5 tpb-5 tw-full">
                         <i class="fas fa-shipping-fast fa-2x ttext-blue-700"></i>
@@ -128,7 +129,7 @@
                         </div>
                     </div>
                 </div>   
-            </div>
+            </div> --}}
         </div>
         <div class="tflex tflex-col tmt-8">
             <div class="tw-full tbg-white">
@@ -227,13 +228,8 @@
                 @endforeach
             </div><!-- RATINGS & REVIEWS -->
             <div id="specifications" class="tbg-white tw-full tpy-5 tpx-4">
-                <div class="tflex tflex-wrap">
-                    @for ($i = 0; $i < 4; $i++)
-                        <div class="tw-6/12 tmb-2"><span class="ttext-gray-500 tmr-2">Brand Name:</span>Samsung</div>
-                        <div class="tw-6/12 tmb-2"><span class="ttext-gray-500 tmr-2">Phone Type:</span>Smart Phones</div>
-                        <div class="tw-6/12 tmb-2"><span class="ttext-gray-500 tmr-2">Display Resolution: </span>2960x1440</div>
-                        <div class="tw-6/12 tmb-2"><span class="ttext-gray-500 tmr-2">Biometrics Technology:</span>Fingerprint Recognition</div>
-                    @endfor
+                <div class="tcontainer">
+                    {!! $product['description'] !!}
                 </div>
             </div><!-- SPECIFICATIONS -->
         </div><!-- TABS -->
@@ -243,7 +239,7 @@
 
 @section('js')
     {!! number_spinner_js() !!}
-
+    <script src="{{ asset('js/plugins/sweatalert.js') }}"></script>
     <script>
         $(document).ready(function(){
             $('.tabs').tabs();
@@ -288,6 +284,29 @@
             nav:true,
             items:5
         })
+
+        // ADD TO CART
+        $('#add_to_cart').click(function () {
+            let id = $(this).data('id');
+            $.get( "cart/add/" + id, function( data ) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'item has been added to your shopping cart',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    showClass: {
+                        popup: 'animated tada fast'
+                    },
+                    hideClass: {
+                        popup: 'animated fadeOut slow'
+                    }
+                })
+
+                // ADD TO CART
+                $('#cart').addClass('pulse'); // trigger pulse on added cart
+                addToCart();// Update cart item count
+            });
+        });
 
     </script>
 @endsection
