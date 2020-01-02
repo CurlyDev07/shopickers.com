@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use File;
 use App\ProductImage;
 use App\ProductVariantOption;
 use App\Http\Requests\Products\UploadProductsRequest;
@@ -65,6 +66,80 @@ class ProductsCon extends Controller
         }
 
         return response()->json(['code' => 200]);
+    }
+
+    public function update($id){
+        $products = Product::where('id', $id)->with(['images'])->get()->toArray()[0];
+        return view('admin.products.update', compact('products'));
+    }
+    
+    public function patch(UploadProductsRequest $request){
+        /*--------------------------------------------------------------------------
+        | FIND AND UPDATE THE PROPERTY
+        |--------------------------------------------------------------------------*/
+        $product = Product::find($request->id);
+        $update = $product->update($request->except(['id', 'images']));
+        
+        /*--------------------------------------------------------------------------
+        | DELETE IMAGES
+        |--------------------------------------------------------------------------*/
+        $siteURL = url('/');// get the current url
+        $delete_image = ProductImage::where('product_id', $request->id)->get();// delete images
+        foreach ($delete_image as $value) {
+            $value->delete();// delete  image db value
+            $trim_img_url = ltrim($value['img'], $siteURL);// generate the url to use on deleting image
+            File::delete($trim_img_url); // delete image
+        }
+
+        /*--------------------------------------------------------------------------
+        | CRATE NEW IMAGES
+        |--------------------------------------------------------------------------*/
+        $primary = 0;
+        foreach ($request->images as $key => $value) {
+            $product->images()->create([
+                'img' => url('/').'/'.base64ToImage($value['base64_image'], 'images/products/'),
+                'primary' => $value['primary']
+            ]);
+            $value['primary'] == 1 ? $primary++ : '';
+        }
+
+        /*--------------------------------------------------------------------------
+        | SET MAIN IMAGE IF NOT SET
+        |--------------------------------------------------------------------------*/
+        if ($primary == 0) {
+            $product->images()->first()->update(['primary' => 1]);
+        }
+
+        return response()->json(['code' => 200]);
+    
+    }
+
+    public function status(Request $request){
+       Product::find($request->id)->update(['status' => $request->status]);
+    }
+
+    public function delete(Request $request){
+        foreach ($request->property_ids as $property_id) {
+            Product::find($property_id)->delete();
+        }
+    }
+
+    public function restore(Request $request){
+        foreach ($request->property_ids as $property_id) {
+            Product::withTrashed()->find($property_id)->restore();
+        }
+    }
+
+    public function archive(){
+        $archive = Product::with(array('images' => function($query){
+                $query->where('primary', 1);
+            })
+        )
+        ->select('id', 'title', 'price', 'deleted_at')
+        ->onlyTrashed()->get()->toArray();
+
+        $ids = Product::onlyTrashed()->pluck('id');
+        return view('admin.products.archive', compact('archive', 'ids'));
     }
 
     public function generate_variant(){

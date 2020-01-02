@@ -51,7 +51,7 @@
                         </div>
                         <div class="tw-1/2 tflex titems-end">
                             <input type="email" class="browser-default tpx-4 tpy-3 tw-2/3 ttext-black">
-                            <button type="button" class="tborder-0 focus:tbg-blue-600 waves-effect tpx-4 tpy-3 tw-1/4 tbg-blue-500 hover:tbg-blue-600">SUBCRIBE</button>
+                            <button type="button" class="tborder-0 focus:tbg-blue-600 waves-effect tpx-4 tpy-3 tw-1/4 tbg-primary hover:tbg-blue-600">SUBCRIBE</button>
                         </div>
                     </div>
                     <div class="tw-full tflex tflex-wrap tborder-gray-700 tborder-t tpy-8">
@@ -124,7 +124,6 @@
                 
                 $.get( "{{ route('cart.count') }}", function( count ) {
                     if (count > 0) {
-                        
                         $('#cart_item_count').removeClass('thidden').html(count);
                     }
                 });

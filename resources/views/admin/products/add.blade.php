@@ -195,25 +195,25 @@
     </div><!-- Variants -->
 
     <div class="tflex tjustify-end tpy-5 trounded-lg 100 tmt-5">
-        <button class="focus:tbg-blue-500 tbg-blue-500 tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" id="submit_btn" onclick="submit()">Save</button>
+        <button class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" id="submit_btn" onclick="submit()">Save</button>
     </div>
 
 
 
-<!-- Modal Structure -->
-<div id="err_msg_modal" class="modal modal-fixed-footer">
-    <div class="modal-content tbg-white">
-        <div class="ttext-center tmb-5">
-            <a class="btn-floating pulse tbg-red-500 hover:tbg-red-500"><i class="fas fa-exclamation"></i></a>
-            <h4 class="ttext-lg">Ooops</h4>
+    <!-- Modal Structure -->
+    <div id="err_msg_modal" class="modal modal-fixed-footer">
+        <div class="modal-content tbg-white">
+            <div class="ttext-center tmb-5">
+                <a class="btn-floating pulse tbg-red-500 hover:tbg-red-500"><i class="fas fa-exclamation"></i></a>
+                <h4 class="ttext-lg">Ooops</h4>
+            </div>
+            <ul class="modal_err_msg">
+            </ul>
         </div>
-        <ul class="modal_err_msg">
-        </ul>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-light btn-flat ttext-white" style="background: #f65656;">Okay</a>
+        </div>
     </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-light btn-flat ttext-white" style="background: #f65656;">Okay</a>
-    </div>
-</div>
         
     
 @endsection
@@ -431,6 +431,7 @@
     <script>
         function submit() {
             $('#submit_btn').attr('disabled', 'true');
+            progress_loading(true);// show loader
 
             let title = $('#title').val();
             let short_description = $('#short_description').val();
@@ -499,6 +500,7 @@
             })
             .fail(function(response) {
                 $('#submit_btn').removeAttr('disabled');
+                progress_loading(false);// hide loader
 
                 let errDecoded = JSON.parse(response.responseText);
                 let markup = '';
@@ -520,7 +522,7 @@
                 console.log(errDecoded);
             })
             .done(function( res ) {
-                // console.log(res) 
+                progress_loading(false);// hide loader
                 window.location.href = '/admin/products';
             });
         }

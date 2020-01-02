@@ -1,64 +1,74 @@
-<div class="tbg-blue-500">
-    <div class="tborder-b tborder-gray-400">
-        <div class="tcontainer">
-            <div class="tpy-2 tflex tflex-grow md:tjustify-between">
-                <ul class="thidden md:tflex tfont-bold ttext-blue-100 ttext-xs">
-                    <li class="hover:tunderline tmr-8 tcursor-default">USD</li>
-                    <li class="hover:tunderline tmr-8 tcursor-default">ENGLISH</li>
-                    <li class="hover:tunderline tmr-8 tcursor-default">COMPARE</li>
-                </ul>
-
-                <ul class="thidden md:tflex tfont-bold ttext-blue-100 ttext-xs">
-                    <li class="hover:tunderline tmr-8 tcursor-default">HELLO, REGGIE FRIAS</li>
-                    <li class="hover:tunderline tmr-8 tcursor-default">
-                        <a href="{{ route('contactus') }}">CONTACT US</a>
-                    </li>
-                    <li class="hover:tunderline tmr-8 tcursor-default">
-                        <a href="{{ route('aboutus') }}">ABOUT US</a>
-                    </li>
-                </ul>
-                
-                <ul class="tflex tfont-bold ttext-blue-100 ttext-xs">
-                    <li class="hover:tunderline tmr-8 tcursor-default">MY WISHLIST</li>
-                    <li class="hover:tunderline tmr-8 tcursor-default"><a href="{{ route('dashboard') }}">MY ACCOUNT</a></li>
-                    <li class="hover:tunderline tmr-8 tcursor-default"><a href="">SIGN UP</a></li>
-                    <li class="hover:tunderline tcursor-default"><a href="{{ route('login') }}">LOGIN</a></li>
-                </ul>
-            </div>
-        </div>
-    </div><!-- nav top link  -->
-
-    <div class="tcontainer tpy-8">
+<div class="tbg-primary" style="background: #4d7418;">
+    <div class="tcontainer tpy-3">
         <div class="tflex tjustify-between">
             <h1 class="logo">
                 <a href="/">
-                    <img src="https://www.portotheme.com/magento/porto/skin/frontend/smartwave/porto/images/logo_white_new.png" alt="">
-
-                    {{-- TEA LOGO --}}
-                    {{-- <img class="logo-img" style="height:45px"  src="http://chaitan.like-themes.com/wp-content/uploads/2018/06/logo_04.png" alt=""> --}}
+                    <img src="{{ asset('images\logo\main.png') }}" class="tabsolute" style="height: 100px;margin-top: -1px;" alt="">
                 </a>
             </h1>
-            <div class="search tw-2/3 thidden md:tflex">
-                <nav class="tbg-white tbg-white trounded-l-full trounded-r-full">
-                    <div class="nav-wrapper">
-                        <form>
-                        <div class="input-field">
-                            <input id="search" type="search" required>
-                            <label class="label-icon" for="search">
-                                <i class="material-icons" style="color:#4299e1;">search</i>
-                            </label>
-                            <i class="material-icons">close</i>
-                        </div>
-                        </form>
-                    </div>
-                </nav>
-            </div>
+            <ul class="tflex tfont-medium titems-center ttext-white">
+                <li class="tborder-white tpr-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <i class="fab fa-envira"></i>
+                    Oolong tea
+                </li>
+                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <i class="fab fa-envira"></i>
+                    Green tea
+                </li>
+                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <i class="fab fa-envira"></i>
+                    Black tea
+                </li>
+                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <i class="fab fa-envira"></i>
+                    Puer tea
+                </li>
+                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <i class="fab fa-envira"></i>
+                    Oriental Beauty tea
+                </li>
+                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <i class="fab fa-envira"></i>
+                    Wild tea
+                </li>
+                <li class="tborder-white tpl-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <i class="fab fa-envira"></i>
+                    Goddess tea
+                </li>
+            </ul>
             <div class="tself-center trelative">
                 <a href="{{ route('cart') }}" id="cart" class="btn-floating hover:tbg-white tbg-white">
-                    <i class="material-icons" style="color: #4299e1;">shopping_cart</i>
+                    <i class="material-icons" style="color: #88b44e;">shopping_cart</i>
                 </a>
                 <span id="cart_item_count" class="thidden t-ml-4 t-mt-2 tabsolute tbg-red-500 trounded-full ttext-white" style="z-index: 999;padding: 0px 7px;">1</span>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="tbg-white">
+    <div class="tcontainer tpy-5">
+        <div class="tflex tflex-growt tjustify-between titems-center">
+            <ul class="tflex tml-40">
+                <li>
+                    <h4 class="text-base tfont-medium ttext-title thidden">a</h4>
+                </li>
+            </ul>
+            <ul class="tflex tfont-bold ttext-primary ttext-xs">
+                <li class="hover:tunderline tmr-8 tcursor-default">
+                    <a href="{{ route('products.all') }}">PRODUCTS</a>
+                </li>
+                <li class="hover:tunderline tmr-8 tcursor-default">
+                    <a href="{{ route('contactus') }}">CONTACT US</a>
+                </li>
+                <li class="hover:tunderline tmr-8 tcursor-default">
+                    <a href="{{ route('aboutus') }}">ABOUT US</a>
+                </li>
+                <li class="hover:tunderline tmr-8 tcursor-default">MY WISHLIST</li>
+                <li class="hover:tunderline tmr-8 tcursor-default"><a href="{{ route('dashboard') }}">MY ACCOUNT</a></li>
+                <li class="hover:tunderline tmr-8 tcursor-default"><a href="">SIGN UP</a></li>
+                <li class="hover:tunderline tcursor-default"><a href="{{ route('login') }}">LOGIN</a></li>
+            </ul>
         </div>
     </div>
 </div>

@@ -4,22 +4,22 @@
 }
 /* label focus color */
 .input-field input[type]:focus + label, textarea,textarea:focus + label {
-    color:  #4299e1;
+    color:  #88b44e;
 }
 /* label underline focus color */
 .input-field input[type]:focus, textarea:focus {
-    border-bottom: 1px solid #4299e1;
-    box-shadow: 0 1px 0 0 #4299e1;
+    border-bottom: 1px solid #88b44e;
+    box-shadow: 0 1px 0 0 #88b44e;
 }
 /* valid color */
 .input-field input[type].valid, textarea {
-    border-bottom: 1px solid #4299e1;
-    box-shadow: 0 1px 0 0 #4299e1;
+    border-bottom: 1px solid #88b44e;
+    box-shadow: 0 1px 0 0 #88b44e;
 }
 /* invalid color */
 .input-field input[type].invalid, textarea{
-    border-bottom: 1px solid #4299e1;
-    box-shadow: 0 1px 0 0 #4299e1;
+    border-bottom: 1px solid #88b44e;
+    box-shadow: 0 1px 0 0 #88b44e;
 }
 /* icon prefix focus color */
 .input-field .prefix.active, textarea {
@@ -27,16 +27,16 @@
 }
 
 input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #4299e1;
+    border-bottom: 1px solid #88b44e;
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    border-bottom-color: #4299e1;
-    -webkit-box-shadow: 0 1px 0 0 #4299e1;
-    box-shadow: 0 1px 0 0 #4299e1;
+    border-bottom-color: #88b44e;
+    -webkit-box-shadow: 0 1px 0 0 #88b44e;
+    box-shadow: 0 1px 0 0 #88b44e;
 }
 
 input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label, input[type=email]:not(.browser-default):focus:not([readonly])+label, input[type=url]:not(.browser-default):focus:not([readonly])+label, input[type=time]:not(.browser-default):focus:not([readonly])+label, input[type=date]:not(.browser-default):focus:not([readonly])+label, input[type=datetime]:not(.browser-default):focus:not([readonly])+label, input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, input[type=tel]:not(.browser-default):focus:not([readonly])+label, input[type=number]:not(.browser-default):focus:not([readonly])+label, input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
-    color: #4299e1;
+    color: #88b44e;
 }
 
 [type="checkbox"]:checked+span:not(.lever):before {
@@ -46,8 +46,8 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     height: 22px;
     border-top: 2px solid transparent;
     border-left: 2px solid transparent;
-    border-right: 2px solid #4299e1;
-    border-bottom: -1px solid #4299e1;
+    border-right: 2px solid #88b44e;
+    border-bottom: -1px solid #88b44e;
     -webkit-transform: rotate(40deg);
     transform: rotate(40deg);
     -webkit-backface-visibility: hidden;
@@ -57,29 +57,29 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 }
 
 .tabs .tab a {
-    color: rgba(66, 153, 225, 1);
+    color: #88b44e;
     /*Custom Text Color*/
 }
 
 .tabs .tab a.active {
     background-color: transparent;
-    color: #4299e1!important;
+    color: #88b44e!important;
 }
 
 .tabs .tab a:hover {
-    color:#3182ce;
+    color:#88b44e;
     /*Custom Color On Hover*/
 }
 
 .tabs .tab a:focus.active {
     color: #ffffff!important;
     /*Custom Text Color While Active*/
-    background-color: #4299e1;
+    background-color: #88b44e;
     /*Custom Background Color While Active*/
 }
 
 .tabs .indicator {
-    background-color:#3182ce;
+    background-color:#88b44e;
     /*Custom Color Of Indicator*/
 }
 
@@ -122,9 +122,9 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 }
 
 .chips.focus {
-    border-bottom: 1px solid #3182ce;
-    -webkit-box-shadow: 0 1px 0 0 #3182ce;
-    box-shadow: 0 1px 0 0 #3182ce
+    border-bottom: 1px solid #88b44e;
+    -webkit-box-shadow: 0 1px 0 0 #88b44e;
+    box-shadow: 0 1px 0 0 #88b44e
 }
 
 .truncate {

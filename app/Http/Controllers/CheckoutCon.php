@@ -41,8 +41,9 @@ class CheckoutCon extends Controller
             "subtotal" => $subtotal,
             "total" => ($shipping + $subtotal),
         ];
-        // dd($data);
 
         return view('pages.front.checkout', $data);
     }
+
+    
 }

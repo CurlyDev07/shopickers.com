@@ -6,13 +6,6 @@ let main_banner = $('.main-banner.owl-carousel').owlCarousel({
     autoplay: false,
 });
 
-let side_promo_banner = $('.side_promo-banner.owl-carousel').owlCarousel({
-    items: 1,
-    loop:true,
-    center: true,
-    margin:10,
-    autoplay: true,
-});
 
 let testimonial_side = $('.testimonial_side.owl-carousel').owlCarousel({
     items: 1,
@@ -89,4 +82,30 @@ function random_string_generator(){
     var super_unique_id = random_str;
 
     return super_unique_id;
+}
+
+function getBase64Image(imgUrl, callback) {
+
+    var img = new Image();
+
+    // onload fires when the image is fully loadded, and has width and height
+
+    img.onload = function(){
+
+      var canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      var dataURL = canvas.toDataURL("image/png");
+        //   dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+
+      callback(dataURL); // the base64 string
+
+    };
+
+    // set attributes and src 
+    img.setAttribute('crossOrigin', 'anonymous'); //
+    img.src = imgUrl;
+
 }

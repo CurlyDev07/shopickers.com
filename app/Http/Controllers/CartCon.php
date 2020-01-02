@@ -42,13 +42,16 @@ class CartCon extends Controller
     }
 
     public function count(Request $request){
-        $count = json_decode($request->cookie('product_ids'));
-        return count($count);
+        $product_ids = json_decode($request->cookie('product_ids')); // get all product ids from cart
+        $products = [];
+        if ($product_ids) {
+            $products = Product::whereIn('id', $product_ids)
+            ->get('id');
+        }
+        return(count($products));
     }
 
     public function compute_selected_cart_items(Request $request){
-        // 
-
         foreach (json_decode($request->item) as $item) {
             return DB::table('products')->where('id', $item->id)
             ->select('id', DB::raw("price * {$item->qty}"))->get();

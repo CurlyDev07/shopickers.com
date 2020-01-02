@@ -11,7 +11,7 @@
 </ul><!-- USER DROP DOWN -->
 
 
-<div class="tbg-blue-500">
+<div class="tbg-primary">
     <div class="tcontainer">
         <div class="tflex titems-center tjustify-between tpy-3">
             <div class="">

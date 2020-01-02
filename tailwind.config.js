@@ -10,6 +10,9 @@ module.exports = {
         }
       }
     },
+    backgroundColors: {
+      primary: '#88b44e',
+    },
     container: {
       center: true,
       padding: '2rem'

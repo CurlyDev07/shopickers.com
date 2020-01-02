@@ -25,7 +25,8 @@ Route::get('/about-us', function () {
     
 
 Route::get('/', function () {
-    return view('pages.front.index');
+    $page = 'Home';
+    return view('pages.front.index', compact('page'));
 });
 
 Route::get('login', function () {
@@ -56,3 +57,14 @@ Route::get('cart/count', 'CartCon@count')->name('cart.count');
 
 // CHECKOUT
 Route::get('checkout/{base64_item_details}', 'CheckoutCon@index')->name('checkout');
+
+
+// PAYMENT 
+Route::get('test', function(){
+    return view('pages\front\payment_success');
+});
+
+Route::get('payment', 'PaymentController@index');
+Route::post('charge', 'PaymentController@charge');
+Route::get('paymentsuccess', 'PaymentController@payment_success');
+Route::get('paymenterror', 'PaymentController@payment_error');

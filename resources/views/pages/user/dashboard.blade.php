@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col s12 tmb-8 tpx-0 tbg-white">
+    <div class="col s12 tmb-8 tpx-0 tbg-white tborder-t">
         <div class="tcontainer py-8">
             <ul class="tabs">
                 <li class="tab col s3"><a class="active" href="#profile">Profile</a></li>
@@ -29,7 +29,5 @@
                 // swipeable: true
             });
         });
-            
-            
     </script>
 @endsection

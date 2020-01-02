@@ -3,9 +3,9 @@
 @section('content')
     <div class="tcontainer tpy-8">
 
-        <h1 class="tfont-medium tmb-4 tmt-2 ttext-blue-500 ttext-xl">CREATE AN ACCOUNT</h1>
+        <h1 class="tfont-medium tmb-4 tmt-2 ttext-primary ttext-xl">CREATE AN ACCOUNT</h1>
 
-        <div class="tbg-white md:tp-8 tpx-5 tpy-8  tmb-10 tborder" style="border-top: 4px solid #4299e1;">
+        <div class="tbg-white md:tp-8 tpx-5 tpy-8  tmb-10 tborder-primary tborder-t-4">
             <form class="" action="javascript:void(0)">
                 <h2 class="ttext-gray-700 ttext-xl tmb-4 ttext-gray-500">PERSONAL INFORMATION</h2>
                 <div class="row tmb-0">
@@ -39,8 +39,8 @@
                     </div>
                 </div>
                 <div class="tflex tjustify-between titems-center tpx-2">
-                    <div class="hover:tunderline tcursor-pointer ttext-blue-500 ttext-md">«  Back</div>
-                    <button class="tbg-blue-500 focus:tbg-blue-500 waves-effect tpx-5 tpt-2 tpb-3 ttext-white">Submit</button>
+                    <div class="hover:tunderline tcursor-pointer ttext-primary ttext-md">«  Back</div>
+                    <button class="tbg-primary focus:tbg-primary waves-effect tpx-5 tpt-2 tpb-3 ttext-white">Submit</button>
                 </div>
             </form>
         </div>

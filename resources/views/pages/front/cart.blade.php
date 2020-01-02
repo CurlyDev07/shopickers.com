@@ -33,7 +33,7 @@
 
     <div class="tcontainer tpy-8">
         <div class="tflex tjustify-between titems-center tmb-5">
-            <h1 class="ttext-blue-500 ttext-xl tfont-medium">SHOPPING CART</h1>
+            <div class="ttext-2xl ttext-title tfont-medium">Shopping Cart</div>
         </div>
 
         {{-- FOR CART CONTAIN ITEMS --}}
@@ -69,7 +69,7 @@
                                         <div class="tflex titems-center">
                                             <img class="tblock lg:thidden tmr-3 th-12" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt="">
                                             <img class="thidden lg:tblock tmr-3" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt="">
-                                            <a href="{{ item_show_slug($item['title'], $item['id']) }}" class="ttext-blue-500 hover:tunderline" style="text-align: left">{{ $item['title'] }}</a>
+                                            <a href="{{ item_show_slug($item['title'], $item['id']) }}" class="ttext-primary hover:tunderline" style="text-align: left">{{ $item['title'] }}</a>
                                         </div>
                                     </td>
                                     <td class="ttext-center" id="price">{{ $item['price'] }}</td>
@@ -88,15 +88,15 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="ttext-blue-500 ttext-center">₱ <span id="subtotal">{{ $item['price'] }}</span> </td>
+                                    <td class="ttext-primary ttext-center">₱ <span id="subtotal">{{ $item['price'] }}</span> </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     
                     <div class="thidden md:tflex md:tjustify-between titems-center tpt-5 tmt-3">
-                        <a href="javascript:void(0)" id="clear_all_cart" class="hover:tbg-blue-500 hover:ttext-white tborder tpx-4 tpy-2 ttext-gray-700 ttext-sm waves-effect">Clear Shopping Cart</a>
-                        <a href="javascript:void(0)" class="hover:tbg-blue-500 hover:ttext-white tborder tpx-4 tpy-2 ttext-gray-700 ttext-sm waves-effect">Continue Shopping</a>
+                        <a href="javascript:void(0)" id="clear_all_cart" class="hover:tbg-primary hover:ttext-white tborder tpx-4 tpy-2 ttext-gray-700 ttext-sm waves-effect">Clear Shopping Cart</a>
+                        <a href="javascript:void(0)" class="hover:tbg-primary hover:ttext-white tborder tpx-4 tpy-2 ttext-gray-700 ttext-sm waves-effect">Continue Shopping</a>
                     </div>
 
                 </div>
@@ -108,7 +108,7 @@
                     <div class="tflex titems-center">
                         <label for="voucher" class="tfont-medium tmr-5 ttext-base ttext-title">Voucher</label>
                         <input type="text" id="voucher" class="browser-default tborder tborder-gray-400 tp-1 trounded tmr-8 ">
-                        <button id="promo_code" style="padding: 6px 20px;" class="focus:tbg-blue-500 focus:ttext-white tborder tborder-blue-500 trounded ttext-blue-500 ttext-sm waves waves-effect">Apply</button>
+                        <button id="promo_code" style="padding: 6px 20px;" class="focus:tbg-primary focus:ttext-white tborder tborder-primary trounded ttext-primary ttext-sm waves waves-effect">Apply</button>
                     </div>
                 </div>
                 <div class="tborder-t tflex titems-center tjustify-between tpt-6">
@@ -118,8 +118,8 @@
                     <div class="tw-1/2">
                         <div class="tflex tjustify-end titems-center">
                             <div class="tfont-medium ttext-black-100 tmr-2">Total (<span id="total_items">0</span> items):</div>
-                            <div class="tfont-medium ttext-3xl ttext-blue-500 tmr-5">₱ <span id="total">0</span></div>
-                            <button class="tbg-blue-500 ttext-white focus:tbg-blue-500 waves-effect" onclick="checkout()" style="padding: 10px 60px;">Checkout</button>
+                            <div class="tfont-medium ttext-3xl ttext-primary tmr-5">₱ <span id="total">0</span></div>
+                            <button class="tbg-primary ttext-white focus:tbg-primary waves-effect" onclick="checkout()" style="padding: 10px 60px;">Checkout</button>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
             <div class="ttext-center tbg-white tp-8 tpb-20">
                 <img src="{{ asset('images/cart/emptycart.png') }}" class="tmx-auto t-mt-8" alt="emptycart.png">
                 <p class="tfont-medium tmb-5 t-mt-8">Your shopping cart is empty</p>
-                <a href="{{ route('products.all') }}" class="tbg-blue-500 trounded ttext-white" style="padding: 9px 45px;">Go Shopping Now</a>
+                <a href="{{ route('products.all') }}" class="tbg-primary trounded ttext-white" style="padding: 9px 45px;">Go Shopping Now</a>
             </div>
         @endif
 
@@ -190,7 +190,7 @@
             });
 
             if ($('.cart-item:checked').length == 0) {
-                Swal.fire({
+                return Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'You have not selected any items for checkout',

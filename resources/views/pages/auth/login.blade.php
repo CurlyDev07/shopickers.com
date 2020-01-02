@@ -4,9 +4,9 @@
 
     <div class="tcontainer tpy-8">
 
-        <h1 class="tfont-medium tmb-4  ttext-blue-500 ttext-xl">LOGIN OR CREATE AN ACCOUNT</h1>
+        <h1 class="tfont-medium tmb-4  ttext-primary ttext-xl">LOGIN OR CREATE AN ACCOUNT</h1>
 
-        <div class="tbg-white tflex tflex-col md:tflex-row md:tp-8 tpx-5 tpy-8  tmb-10 tborder" style="border-top: 4px solid #4299e1;">
+        <div class="md:tflex-row md:tp-8 tbg-white tborder-primary tborder-t-4 tflex tflex-col tmb-10 tpx-5 tpy-8">
             <div class="md:tw-1/2 torder-last md:torder-first tflex tflex-wrap tjustify-end md:tmr-5 md:tpx-8 md:tpx-4 tpx-3 tpy-2">
                 <div class="">
                     <h2 class="ttext-gray-700 ttext-xl tmb-4">New Customers</h2>
@@ -17,7 +17,7 @@
                         orders in your account and more.
                     </p>
                 </div>
-                <a href="{{ route('signup') }}" class="tself-end tbg-blue-500 focus:tbg-blue-500 waves-effect tpx-5 tmt-6 md:tmt-0 tpy-3 ttext-white">Create an Account</a>
+                <a href="{{ route('signup') }}" class="tself-end tbg-primary focus:tbg-primary waves-effect tpx-5 tmt-6 md:tmt-0 tpy-3 ttext-white">Create an Account</a>
             </div>
             <div class="md:tw-1/2 md:tml-5 tpy-2">
                 <div class="row tmb-3">
@@ -41,8 +41,8 @@
                         </div>
                     </div>
                     <div class="tflex tjustify-between tpx-2">
-                        <a href="" class="hover:tunderline ttext-blue-500">Forgot Your Password?</a>
-                        <button class="tbg-blue-500 focus:tbg-blue-500 waves-effect tpx-5 tpt-2 tpb-3 ttext-white">Login</button>
+                        <a href="" class="hover:tunderline ttext-primary">Forgot Your Password?</a>
+                        <button class="tbg-primary focus:tbg-primary waves-effect tpx-5 tpt-2 tpb-3 ttext-white">Login</button>
                     </div>
                 </form>
             </div>

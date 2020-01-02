@@ -3,17 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $fillable = ['title', 'description', 'price', 'compare_price', 'qty', 'sku', 'barcode', 'short_description'];
+    use SoftDeletes;
+    
+    protected $fillable = ['title', 'description', 'price', 'compare_price', 'qty', 'sku', 'barcode', 'short_description', 'status'];
 
-    protected $hidden = ['status', 'created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function images(){
         return $this->hasMany(ProductImage::class);
     }
-    
+
     public function product_variants(){
         return $this->hasMany(ProductVariant::class);
     }

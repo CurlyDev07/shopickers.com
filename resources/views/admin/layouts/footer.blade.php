@@ -6,7 +6,7 @@
         <script>
             $(document).ready(function(){
                 $(".dropdown-trigger").dropdown({
-                    hover: true,
+                    constrainWidth: false
                 });
                 $('.tabs').tabs();
                 $('.tooltipped').tooltip();
@@ -20,6 +20,14 @@
 
             function item_show(item_show_link){
                 window.location.href = item_show_link;
+            }
+
+            function progress_loading(visibility) {
+                console.log('clock')
+                if (visibility) {
+                    return $('#progress').show();
+                }
+                $('#progress').hide();
             }
         </script>
 

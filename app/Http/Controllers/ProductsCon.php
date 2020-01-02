@@ -12,17 +12,23 @@ class ProductsCon extends Controller
         ->where('id', $item_id)
         ->first()
         ->toArray();
+
         
         return view('pages.products.show', compact('product'));
     }
 
-    public function all(){
+    public function all(Request $request){
+        $page = 'Products';
         $products = Product::with(array('images' => function($query){
                 $query->where('primary', 1);
             })
-        )->select('id', 'title', 'price', 'compare_price')->get()->toArray();
-
-        return view('pages.products.all', compact('products'));
+        )
+        ->where('status', 'active')
+        ->select('id', 'title', 'price', 'compare_price')
+        ->when($request->price, function ($query, $price) {
+            return $query->orderBy('price', $price);
+        })
+        ->get()->toArray();
+        return view('pages.products.all', compact('products', 'page'));
     }
-  
 }
