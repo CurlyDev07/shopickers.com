@@ -5,7 +5,7 @@ use App\ProductImage;
 Route::namespace('Admin')->group(function () {
     Route::get('dashboard', 'DashboardCon@index');
     
-    
+     
     /*
     |--------------------------------------------------------------------------
     | PRODUCTS Routes
@@ -36,6 +36,21 @@ Route::namespace('Admin')->group(function () {
         Route::get('/', 'OrderCon@index');
         Route::get('/view/{transaction_id}', 'OrderCon@show');
     });
+
+
+    
+    /*
+    |--------------------------------------------------------------------------
+    | CATEGORIES Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('categories')->group(function () {
+        Route::get('/', 'CategoriesCon@index')->name('category.list');
+        Route::get('/add', 'CategoriesCon@add')->name('category.add');
+        Route::post('/store', 'CategoriesCon@store')->name('category.store');
+        Route::post('/delete', 'CategoriesCon@delete')->name('category.delete');
+    });
+
 });
 
 

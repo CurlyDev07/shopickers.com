@@ -7,34 +7,12 @@
                 </a>
             </h1>
             <ul class="tflex tfont-medium titems-center ttext-white">
-                <li class="tborder-white tpr-3 hover:ttext-primary hover:tunderline tcursor-pointer">
-                    <i class="fab fa-envira"></i>
-                    Oolong tea
-                </li>
-                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
-                    <i class="fab fa-envira"></i>
-                    Green tea
-                </li>
-                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
-                    <i class="fab fa-envira"></i>
-                    Black tea
-                </li>
-                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
-                    <i class="fab fa-envira"></i>
-                    Puer tea
-                </li>
-                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
-                    <i class="fab fa-envira"></i>
-                    Oriental Beauty tea
-                </li>
-                <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
-                    <i class="fab fa-envira"></i>
-                    Wild tea
-                </li>
-                <li class="tborder-white tpl-3 hover:ttext-primary hover:tunderline tcursor-pointer">
-                    <i class="fab fa-envira"></i>
-                    Goddess tea
-                </li>
+                @foreach (\App\Category::categories() as $item)
+                    <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                        <i class="fab fa-envira"></i>
+                        <a href="{{ $item['link'] }}">{{ $item['title'] }}</a>
+                    </li>
+                @endforeach
             </ul>
             <div class="tself-center trelative">
                 <a href="{{ route('cart') }}" id="cart" class="btn-floating hover:tbg-white tbg-white">
