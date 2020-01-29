@@ -108,6 +108,7 @@ class PaymentController extends Controller
         $total = 0;
 
         $transaction = Transaction::create([
+            'user_id' => auth()->user()->id,
             "first_name" => $request->first_name,
             "last_name" => $request->last_name, 
             "phone_number" => $request->phone_number,  

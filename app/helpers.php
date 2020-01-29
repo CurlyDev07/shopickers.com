@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 function uuid(){
-    return (string) Str::uuid();
+    return Str::slug(Str::uuid(), '');
 }
 
 function percentage_discount($high, $low){
@@ -377,4 +377,13 @@ function base64ToImage($base64_string, $path) {
     fwrite($file, base64_decode($data[1]));
     fclose($file);
     return $df;
+}
+
+function s3_upload_image($path_and_file_name, $base64_string){
+    $base64decoded = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64_string));
+    $upload_success_md = Storage::disk('s3')->put($path_and_file_name, $base64decoded);
+}
+
+function rm_cloudfront($img){
+    return str_replace(config('app.cloudfront'), "", $img);
 }

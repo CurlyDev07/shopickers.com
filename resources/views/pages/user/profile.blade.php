@@ -4,71 +4,77 @@
         <div class="tw-1/3 tbg-white tmr-16 trounded-lg tshadow-lg">
             <div class="tflex tflex-col tborder-b tp-5">
                 <div class="tmt-5 tmb-4">
-                    <img class="trounded-full tmx-auto" src="https://designrevision.com/demo/shards-dashboard-lite/images/avatars/0.jpg" width="110px" alt="">
+                    <img class="trounded-full tmx-auto" src="{{ asset('icons/user.png') }}" width="110px" alt="">
                 </div>
                 <div class="ttext-center">
-                    <span class="ttext-2xl ttext-title tmx-auto tfont-semibold">Sierra Brooks</span>
+                    <span class="ttext-2xl ttext-title tmx-auto tfont-semibold">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
                 </div>
                 <div class="ttext-center">
-                    <span class="tfont-semibold tmx-auto ttext-gray-600">Aug 25, 2018</span>
+                    <span class="tfont-semibold tmx-auto ttext-gray-600">{{ auth()->user()->created_at->format('M d, Y') }}</span>
                 </div>
                 
             </div>
             <div class="tflex tp-5">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum repudiandae sit at, corporis blanditiis animi totam eligendi minima nihil maiores, dignissimos dolorem illum esse explicabo facere, ullam maxime libero neque?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum repudiandae sit at, corporis blanditiis animi totam eligendi minima nihil maiores, dignissimos dolorem illum esse explicabo facere, ullam maxime libero neque?
+                {{ auth()->user()->about_me }}
             </div>
         </div>
         <div class="tw-3/4 tbg-white ttext-black-100 trounded-lg tshadow-lg">
-            <div class="tborder-b text-base tfont-medium tpx-5 tpy-4 t ttext-title">
-                Account Details
-            </div>
-            <div class="tflex tpx-5 tpt-5">
-                <div class="tw-1/2 tflex tflex-col tmr-2">
-                    <label for="first_name" class="tfont-normal ttext-base tmb-2 ttext-black-100">First Name</label>
-                    <input type="text" id="first_name" class="browser-default form-control" style="padding: 6px;">
+            <form action="{{ route('dashboard.profile.update') }}" method="post">
+                @csrf
+
+                <div class="tborder-b text-base tfont-medium tpx-5 tpy-4 t ttext-title">
+                    Account Details
                 </div>
-                <div class="tw-1/2 tflex tflex-col tml-2">
-                    <label for="last_name" class="tfont-normal ttext-base tmb-2 ttext-black-100">Last Name</label>
-                    <input type="text" id="last_name" class="browser-default form-control" style="padding: 6px;">
+                <div class="tflex tpx-5 tpt-5">
+                    <div class="tw-1/2 tflex tflex-col tmr-2">
+                        <label for="first_name" class="tfont-normal ttext-base tmb-2 ttext-black-100">First Name</label>
+                        <input type="text" id="first_name" class="browser-default form-control" style="padding: 6px;" name="first_name" value="{{ auth()->user()->first_name }}">
+                    </div><!-- First Name -->
+                    <div class="tw-1/2 tflex tflex-col tml-2">
+                        <label for="last_name" class="tfont-normal ttext-base tmb-2 ttext-black-100">Last Name</label>
+                        <input type="text" id="last_name" class="browser-default form-control" style="padding: 6px;" name="last_name" value="{{ auth()->user()->last_name }}">
+                    </div><!-- Last Name -->
                 </div>
-            </div>
-            <div class="tflex tpx-5 tpt-5">
-                <div class="tw-1/2 tflex tflex-col tmr-2">
-                    <label for="email" class="tfont-normal ttext-base tmb-2 ttext-black-100">Email</label>
-                    <input type="email" id="email" class="browser-default form-control" style="padding: 6px;">
+                <div class="tflex tpx-5 tpt-5">
+                    <div class="tw-1/2 tflex tflex-col tmr-2">
+                        <label for="email" class="tfont-normal ttext-base tmb-2 ttext-black-100">Email</label>
+                        <input type="email" id="email" class="browser-default form-control tcursor-not-allowed" style="padding: 6px;" disabled value="{{ auth()->user()->email }}">
+                    </div><!-- Email -->
+                    <div class="tw-1/2 tflex tflex-col tml-2">
+                        <label for="password" class="tfont-normal ttext-base tmb-2 ttext-black-100">Password</label>
+                        <input type="password" id="password" class="browser-default form-control  tcursor-not-allowed" style="padding: 6px;" name="password" value="********" disabled>
+                    </div><!-- Password -->
                 </div>
-                <div class="tw-1/2 tflex tflex-col tml-2">
-                    <label for="password" class="tfont-normal ttext-base tmb-2 ttext-black-100">Password</label>
-                    <input type="text" id="password" class="browser-default form-control" style="padding: 6px;">
+                <div class="tw-full tpx-5 tpt-5">
+                    <div class="tw-2/2 tflex tflex-col tml-2">
+                        <label for="address" class="tfont-normal ttext-base tmb-2 ttext-black-100">Address</label>
+                        <input type="text" id="address" class="browser-default form-control" style="padding: 6px;" name="address" value="{{ auth()->user()->address }}">
+                    </div><!-- Address -->
                 </div>
-            </div>
-            <div class="tw-full tpx-5 tpt-5">
-                <div class="tw-2/2 tflex tflex-col tml-2">
-                    <label for="addr" class="tfont-normal ttext-base tmb-2 ttext-black-100">Address</label>
-                    <input type="text" id="addr" class="browser-default form-control" style="padding: 6px;">
+                <div class="tflex tpx-5 tpt-5">
+                    <div class="tw-3/5 tflex tflex-col tml-2">
+                        <label for="city" class="tfont-normal ttext-base tmb-2 ttext-black-100">City</label>
+                        <input type="text" id="city" class="browser-default form-control" style="padding: 6px;" name="city" value="{{ auth()->user()->city }}">
+                    </div><!-- City -->
+                    <div class="tw-2/5 tflex tflex-col tml-2">
+                        <label for="province" class="tfont-normal ttext-base tmb-2 ttext-black-100">Province/State</label>
+                        <input type="text" id="province" class="browser-default form-control" style="padding: 6px;" name="province" value="{{ auth()->user()->province }}">
+                    </div><!-- Province/State -->
+                    <div class="tw-1/5 tflex tflex-col tml-2">
+                        <label for="zip" class="tfont-normal ttext-base tmb-2 ttext-black-100">Zip</label>
+                        <input type="text" id="zip" class="browser-default form-control" style="padding: 6px;"  name="zip" value="{{ auth()->user()->zip }}">
+                    </div><!-- Zip -->
                 </div>
-            </div>
-            <div class="tflex tpx-5 tpt-5">
-                <div class="tw-3/5 tflex tflex-col tml-2">
-                    <label for="city" class="tfont-normal ttext-base tmb-2 ttext-black-100">City</label>
-                    <input type="text" id="city" class="browser-default form-control" style="padding: 6px;">
+                <div class="tw-full tpx-5 tpt-5 tmb-5">
+                    <div class="tw-2/2 tflex tflex-col tml-2">
+                        <label for="about_me" class="tfont-normal ttext-base tmb-2 ttext-black-100">About Me</label>
+                        <textarea class="browser-default form-control" id="about_me" rows="5" style="padding: 6px;"  name="about_me">{{ auth()->user()->about_me }}</textarea>
+                    </div><!-- About Me -->
                 </div>
-                <div class="tw-2/5 tflex tflex-col tml-2">
-                    <label for="state" class="tfont-normal ttext-base tmb-2 ttext-black-100">State</label>
-                    <input type="text" id="state" class="browser-default form-control" style="padding: 6px;">
+                <div class="tw-full tpx-5 tpt-5 tmb-5 ttext-right">
+                    <button type="submit" class="trounded tbg-primary focus:tbg-primary waves-effect tpx-5 tpt-2 tpb-3 ttext-white">Update</button>
                 </div>
-                <div class="tw-1/5 tflex tflex-col tml-2">
-                    <label for="zip" class="tfont-normal ttext-base tmb-2 ttext-black-100">Zip</label>
-                    <input type="text" id="zip" class="browser-default form-control" style="padding: 6px;">
-                </div>
-            </div>
-            <div class="tw-full tpx-5 tpt-5 tmb-5">
-                <div class="tw-2/2 tflex tflex-col tml-2">
-                    <label for="addr" class="tfont-normal ttext-base tmb-2 ttext-black-100">Address</label>
-                    <textarea class="browser-default form-control" id="" rows="5" style="padding: 6px;"></textarea>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

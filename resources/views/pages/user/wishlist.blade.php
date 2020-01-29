@@ -1,50 +1,52 @@
 <div id="wishlist" class="col s12">
-
-    <div class="ttext-2xl ttext-title tfont-medium tpb-4">Wishlist</div>
-
-    <div class="tbg-white tpx-8 tpb-8 tpt-5">
-        <div class="tflex">
-            <table class="sresponsive-table">
-                <thead>
-                    <tr>
-                        <th class="ttext-left">Item</th>
-                        <th class="ttext-center">Price</th>
-                        <th class="ttext-center">Qty</th>
-                        <th class="ttext-center">Action</th>
-                    </tr>
-                </thead>
-        
+    <div class="ttext-2xl ttext-title tfont-medium tpb-4">Wish List</div>
+    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
+        <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-4">
+            <span class="ttext-base ttext-title tfont-medium">Wish Lis</span>
+            <ul class="tflex">
+                <li class="ttext-center">
+                    <i class="material-icons grey-text">more_vert</i>
+                </li>
+            </ul>
+        </div>
+        <div class="tpx-3 tpy-4 tflex tjustify-center">
+            <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
-                    @for ($i = 0; $i < 5; $i++)
-                        <tr class="">
-                            <td class="tp-1 tp-3">
-                                <div class="md:tflex titems-center">
-                                    <img class="tblock lg:thidden tmr-3 th-12" src="http://www.portotheme.com/magento/porto/media/catalog/product/cache/7/thumbnail/80x80/9df78eab33525d08d6e5fb8d27136e95/2/_/2_14_2.jpg" alt="">
-                                    <img class="thidden lg:tblock tmr-3" src="http://www.portotheme.com/magento/porto/media/catalog/product/cache/7/thumbnail/80x80/9df78eab33525d08d6e5fb8d27136e95/2/_/2_14_2.jpg" alt="">
-                                    <a href="" class="ttext-primary hover:tunderline" style="text-align: left">Huawei Y6 Pro 2019 32GB — 3GB 6.09 inches HD+ Screen Smart Phone</a>
-                                </div>
+                    <tr class="tborder-0">
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Photo</th>
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Price</th>
+                    </tr>
+                    @foreach ($wishlists as $wishlist)
+                        {{-- {{ dd($wishlist) }} --}}
+                        <tr class="tborder-0 hover:tbg-gray-100">
+                            <td class="tp-3 tpx-5">
+                                <a href="{{ item_show_slug($wishlist['products']['title'], $wishlist['products']['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">
+                                    {{ $wishlist['products']['title'] }}
+                                </a>
                             </td>
-                            <td class="ttext-center">99</td>
-                            <td class="tp-1 ttext-center">
-                                3
+                            <td class="tp-3 tpx-5">
+                                <img src="{{ $wishlist['products']['images'][0]['img'] }}" class="" style="height: 50px;width: 50px;">
                             </td>
-                            <td class="ttext-black-100 ttext-center">
-                                <div class="tflex tjustify-around">
-                                    <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">clear</i></a>
-                                    <a class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons">shopping_cart</i></a>
-
-                                    {{-- <a href="javascript:void(0)" class="btn-floating"><i class="fas fa-times fa-xs ttext-red-500"></i></a>
-                                    <a href="javascript:void(0)"><i class="fas fa-cart-plus fa-lg ttext-green-500"></i></a> --}}
-                                </div>
+                            <td class="tp-3 tpx-5">₱{{ $wishlist['products']['price'] }}</td>
+                            <td class="ttext-center">
+                                <ul class="tflex tjustify-center">
+                                    <li>
+                                        <a href="javascript:void(0)" class="delete">
+                                            <i class="fas fa-trash-alt hover:ttext-red-500 tcursor-pointer tpx-1 icon_color delete_wishlist" product_id="{{ $wishlist['products']['id'] }}"></i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </td>
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>
-        
-        <div class="thidden md:tflex md:tjustify-end titems-center tpt-5 tmt-3">
-            <a href="javascript:void(0)" class="hover:tbg-primary hover:ttext-white tborder tpx-4 tpy-2 ttext-gray-700 ttext-sm waves-effect">Continue Shopping</a>
-        </div>
     </div>
 </div>
+
+{{-- @section('js')
+   
+
+@endsection --}}

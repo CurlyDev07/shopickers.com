@@ -17,7 +17,7 @@
                         orders in your account and more.
                     </p>
                 </div>
-                <a href="{{ route('signup') }}" class="tself-end tbg-primary focus:tbg-primary waves-effect tpx-5 tmt-6 md:tmt-0 tpy-3 ttext-white">Create an Account</a>
+                <a href="{{ route('register') }}" class="tself-end tbg-primary focus:tbg-primary waves-effect tpx-5 tmt-6 md:tmt-0 tpy-3 ttext-white">Create an Account</a>
             </div>
             <div class="md:tw-1/2 md:tml-5 tpy-2">
                 <div class="row tmb-3">
@@ -27,22 +27,29 @@
                     </div>
                 </div>
 
-                <form action="javascript:void(0)">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
                     <div class="row tmb-0">
                         <div class="input-field col s12">
-                            <input id="email" type="text" class="validate">
+                            <input id="email" type="text" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             <label for="email">Email</label>
+                            @error('email')
+                                <small class="ttext-error right">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
+                            <input id="password" type="password" name="password" value="{{ old('password') }}" required>
                             <label for="password">Password</label>
+                            @error('password')
+                                <small class="ttext-error right">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
-                    <div class="tflex tjustify-between tpx-2">
-                        <a href="" class="hover:tunderline ttext-primary">Forgot Your Password?</a>
-                        <button class="tbg-primary focus:tbg-primary waves-effect tpx-5 tpt-2 tpb-3 ttext-white">Login</button>
+                    <div class="tflex tjustify-end tpx-2">
+                        {{-- <a href="" class="hover:tunderline ttext-primary">Forgot Your Password?</a> --}}
+                        <button type="submit" class="tbg-primary focus:tbg-primary waves-effect tpx-5 tpt-2 tpb-3 ttext-white">Login</button>
                     </div>
                 </form>
             </div>

@@ -5,6 +5,7 @@ module.exports = {
       colors: {
         title: '#3d5170',
         primary: '#88b44e',
+        error: '#ff6347',
         black: {
           100: '#5a6169'
         }

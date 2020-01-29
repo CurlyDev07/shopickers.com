@@ -29,5 +29,15 @@
                 // swipeable: true
             });
         });
+
+          // REMOVE TO WISHLIST
+          $('.delete_wishlist').click(function (params) {
+            let product_id = $(this).attr('product_id');
+            $.get( "wishlist/add/" + product_id, function( data ) {
+            });
+
+            $(this).parent().parent().parent().parent().parent().remove();
+        }); 
     </script>
+    
 @endsection

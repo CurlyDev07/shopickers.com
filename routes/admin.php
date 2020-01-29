@@ -26,7 +26,6 @@ Route::namespace('Admin')->group(function () {
         Route::post('/generate_variant', 'ProductsCon@generate_variant');
     });
     
-
     /*
     |--------------------------------------------------------------------------
     | ORDERS Routes
@@ -37,8 +36,6 @@ Route::namespace('Admin')->group(function () {
         Route::get('/view/{transaction_id}', 'OrderCon@show');
     });
 
-
-    
     /*
     |--------------------------------------------------------------------------
     | CATEGORIES Routes
@@ -49,6 +46,16 @@ Route::namespace('Admin')->group(function () {
         Route::get('/add', 'CategoriesCon@add')->name('category.add');
         Route::post('/store', 'CategoriesCon@store')->name('category.store');
         Route::post('/delete', 'CategoriesCon@delete')->name('category.delete');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | BANNERS Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('banners')->group(function () {
+        Route::get('/', 'BannersCon@index')->name('banner.list');
+        Route::post('/store', 'BannersCon@store')->name('banner.store');
     });
 
 });

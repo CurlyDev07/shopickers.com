@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use Storage;
 use File;
+use Illuminate\Support\Arr;
 use App\ProductImage;
 use App\ProductVariantOption;
 use App\Http\Requests\Products\UploadProductsRequest;
@@ -29,41 +31,43 @@ class ProductsCon extends Controller
 
         $primary = 0;
         foreach ($request->images as $key => $value) {
+            $img = '/images/products/'.uuid().'.jpg';
+            s3_upload_image($img, $value['base64_image']);
             $product->images()->create([
-                'img' => url('/').'/'.base64ToImage($value['base64_image'], 'images/products/'),
+                'img' => $img,
                 'primary' => $value['primary']
             ]);
             $value['primary'] == 1 ? $primary++ : '';
-        }
+        }// Upload Images
 
         if ($primary == 0) {
             $product->images()->first()->update(['primary' => 1]);
-        }// Set Main image if user didnt choose primary img
+        }// Set Main image if user didn't choose primary img
 
-        if ($request->has_variant == false) {
-            foreach ($request->variant_types as $key => $value) {
-    
-                $product_variant_types = $product->product_variants()->create([
-                    'name' => $key,
-                ]);
-    
-                foreach ($value as $value) {
-                    $product_variant_types->product_variant_types()->create([
-                        'name' => $value,
-                    ]);
-                }
-            }
-    
-            foreach ($request->variant_options as $key => $value) {
-                $product->product_variant_options()->create([
-                    "name" => $value['name'],
-                    "price" => $value['price'],
-                    "qty" => $value['qty'],
-                    "sku" => $value['sku'],
-                    "barcode" => $value['barcode'],
-                ]);
-            }
-        }
+        // if ($request->has_variant == false) {
+            //     foreach ($request->variant_types as $key => $value) {
+        
+            //         $product_variant_types = $product->product_variants()->create([
+            //             'name' => $key,
+            //         ]);
+        
+            //         foreach ($value as $value) {
+            //             $product_variant_types->product_variant_types()->create([
+            //                 'name' => $value,
+            //             ]);
+            //         }
+            //     }
+        
+            //     foreach ($request->variant_options as $key => $value) {
+            //         $product->product_variant_options()->create([
+            //             "name" => $value['name'],
+            //             "price" => $value['price'],
+            //             "qty" => $value['qty'],
+            //             "sku" => $value['sku'],
+            //             "barcode" => $value['barcode'],
+            //         ]);
+            //     }
+        // }
 
         return response()->json(['code' => 200]);
     }
@@ -79,27 +83,39 @@ class ProductsCon extends Controller
         |--------------------------------------------------------------------------*/
         $product = Product::find($request->id);
         $update = $product->update($request->except(['id', 'images']));
-        
-        /*--------------------------------------------------------------------------
-        | DELETE IMAGES
-        |--------------------------------------------------------------------------*/
-        $siteURL = url('/');// get the current url
-        $delete_image = ProductImage::where('product_id', $request->id)->get();// delete images
-        foreach ($delete_image as $value) {
-            $value->delete();// delete  image db value
-            $trim_img_url = ltrim($value['img'], $siteURL);// generate the url to use on deleting image
-            File::delete($trim_img_url); // delete image
-        }
+        $old_imgs = ProductImage::where('product_id', $request->id)->pluck('img')->toArray();
 
         /*--------------------------------------------------------------------------
-        | CRATE NEW IMAGES
+        | CHECK IF NEW IMAGES IS EXIST IN DATABASE ELSE DELETE IMAGE
         |--------------------------------------------------------------------------*/
+        $get_image_names_from_req_img = Arr::pluck($request->images, 'base64_image');
+        foreach ($old_imgs as $old_img) {
+            if (!in_array($old_img, $get_image_names_from_req_img)) {
+                ProductImage::where('img', rm_cloudfront($old_img))->delete();
+                Storage::disk('s3')->delete(rm_cloudfront($old_img));
+            }
+        }
+
+       
         $primary = 0;
         foreach ($request->images as $key => $value) {
-            $product->images()->create([
-                'img' => url('/').'/'.base64ToImage($value['base64_image'], 'images/products/'),
-                'primary' => $value['primary']
-            ]);
+            /*--------------------------------------------------------------------------
+            | CRATE NEW IMAGES IF NOT EXIST IN DB
+            |--------------------------------------------------------------------------*/
+            if (!in_array($value['base64_image'], $old_imgs)) {
+                $img = '/images/products/'.uuid().'.jpg';
+                s3_upload_image($img, $value['base64_image']);
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'img' => $img,
+                    'primary' => $value['primary']
+                ]);
+            }
+
+            /*--------------------------------------------------------------------------
+            | UPDATE ALL IMAGE PRIMARY
+            |--------------------------------------------------------------------------*/
+            ProductImage::where('img', rm_cloudfront($value['base64_image']))->update(['primary' => $value['primary']]);
             $value['primary'] == 1 ? $primary++ : '';
         }
 
@@ -111,7 +127,6 @@ class ProductsCon extends Controller
         }
 
         return response()->json(['code' => 200]);
-    
     }
 
     public function status(Request $request){

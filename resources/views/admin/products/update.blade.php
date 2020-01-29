@@ -146,31 +146,33 @@
             let description = CKEDITOR.replace( 'description' );
             CKEDITOR.instances['description'].setData(`{!! $products['description'] !!}`);
         });
+
+        
     </script>
 
     @foreach ($products['images'] as $img)
         @if ($img['primary'])
             <script>// RENDER IMAGE MARK-UP FOR (PRIMARY) IMAGE
-                getBase64Image("{{ $img['img'] }}", function (base64image) {
+                // getBase64Image("{{ $img['img'] }}", function (base64image) {
                     $('#image_container').prepend(`
                         <div class="tw-1/5 tmb-3 tpr-1 trelative">
                             <img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">
                             <i class="delete_image fa-backspace fa-lg fas tabsolute tcursor-pointer" style="color: tomato;margin-top: 1px;right: 11px;"></i>
-                            <img src="${base64image}" class="image tborder" primary="1" style="height:148px; width: 164px;">
+                            <img src="{{ $img['img'] }}" class="image tborder" primary="1" style="height:148px; width: 164px;">
                         </div>
                     `);
-                });
+                // });
             </script>
         @else
             <script>// RENDER IMAGE MARK-UP FOR (NON PRIMARY) IMAGE
-                getBase64Image("{{ $img['img'] }}", function (base64image) {
+                // getBase64Image("{{ $img['img'] }}", function (base64image) {
                     $('#image_container').prepend(`
                         <div class="tw-1/5 tmb-3 tpr-1 trelative">
                             <i class="delete_image fa-backspace fa-lg fas tabsolute tcursor-pointer" style="color: tomato;margin-top: 1px;right: 11px;"></i>
-                            <img src="${base64image}" class="image tborder" primary="0" style="height:148px; width: 164px;">
+                            <img src="{{ $img['img'] }}" class="image tborder" primary="0" style="height:148px; width: 164px;">
                         </div>
                     `);
-                });
+                // });
             </script>
         @endif
     @endforeach
@@ -439,7 +441,7 @@
                     title: 'Awesome',
                     text: 'Update Successfuly',
                 });
-                // window.location.href = '/admin/products';
+                window.location.reload();
             });
         }
     </script>   

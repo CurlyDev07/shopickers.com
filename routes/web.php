@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,6 +12,9 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */  
+
+Auth::routes(['login' => false]);
+
 Route::get('/', function () {
     return view('pages.front.index');
 });
@@ -25,23 +29,13 @@ Route::get('/about-us', function () {
     
 
 Route::get('/', function () {
-    $page = 'Home';
-    return view('pages.front.index', compact('page'));
+    return view('pages.front.index');
 });
 
-Route::get('login', function () {
-    return view('pages.auth.login');
-})->name('login');
 
-Route::get('signup', function () {
-    return view('pages.auth.signup');
-})->name('signup');
-
-
-
-Route::get('dashboard', function () {
-    return view('pages.user.dashboard');
-})->name('dashboard');
+Route::get('dashboard', 'UserCon@dashboard')->name('dashboard');
+Route::get('dashboard/order/{transaction_id}', 'UserCon@order_view')->name('dashboard.order.view');
+Route::post('dashboard/profile/update', 'UserCon@profile_update')->name('dashboard.profile.update');
 
 
 Route::get('{slug}-i.{item_id}', 'ProductsCon@show')->where(['item_id' => '[0-9]+', 'slug' => '.*']);
@@ -53,6 +47,9 @@ Route::get('cart', 'CartCon@index')->name('cart');
 Route::get('cart/add/{id}', 'CartCon@add')->name('cart.add');
 Route::get('cart/clear/all', 'CartCon@clear_all')->name('cart.clear.all');
 Route::get('cart/count', 'CartCon@count')->name('cart.count');
+
+// WISHLIST
+Route::get('wishlist/add/{product_id}', 'WishListCon@create');
 
 
 // CHECKOUT
@@ -68,3 +65,6 @@ Route::get('payment', 'PaymentController@index');
 Route::post('charge', 'PaymentController@charge');
 Route::get('paymentsuccess', 'PaymentController@payment_success');
 Route::get('paymenterror', 'PaymentController@payment_error');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

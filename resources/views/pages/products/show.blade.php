@@ -80,9 +80,17 @@
                             <div class="tborder tpx-5 tpy-3 trounded tmr-4">
                                 <i class="fas fa-share-alt ttext-primary"></i>
                             </div>
-                            <div class="tborder tpx-5 tpy-3 trounded">
-                                <i class="fas fa-heart ttext-primary"></i>
-                            </div>
+
+                            @auth
+                                <div class="tborder tcursor-pointer tpx-5 tpy-3 trounded waves-effect waves-green" id="add_to_wishlist" product_id="{{ $product['id'] }}">
+                                    <i class="fas fa-heart ttext-primary"></i>
+                                </div>
+                            @else
+                                <a href="{{ route('login') }}" class="tborder tcursor-pointer tpx-5 tpy-3 trounded waves-effect waves-green">
+                                    <i class="fas fa-heart ttext-primary"></i>
+                                </a>
+                            @endauth
+
                         </div>
                         <a id="add_to_cart" data-id="{{ $product['id'] }}" class="focus:tbg-primary tbg-blue-100 tborder tborder-primary tpy-3 trounded-b trounded-t ttext-primary ttext-center tw-1/3 waves-effect waves-light">Add To Cart</a>
                         <a id="checkout" data-id="{{ $product['id'] }}" class="tborder tborder-primary focus:tbg-primary hover:tbg-primary tbg-primary tpy-3 trounded-b trounded-t ttext-center ttext-white tw-1/3 waves-effect waves-light">Buy Now</a>
@@ -282,6 +290,27 @@
             items = window.btoa(JSON.stringify(items)); // encode a string
             window.location.href = "checkout/"+items;
         });
+
+        //ADD TO WISHLIST
+        $('#add_to_wishlist').click(function () {
+            let product_id = $(this).attr('product_id');
+            $.get( "wishlist/add/" + product_id, function( data ) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'item has been added to your wish list',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    showClass: {
+                        popup: 'animated tada fast'
+                    },
+                    hideClass: {
+                        popup: 'animated fadeOut slow'
+                    }
+                })
+            });
+        });
+
+      
 
     </script>
 @endsection

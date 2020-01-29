@@ -12,8 +12,6 @@ class ProductsCon extends Controller
         ->where('id', $item_id)
         ->first()
         ->toArray();
-
-        
         return view('pages.products.show', compact('product'));
     }
 

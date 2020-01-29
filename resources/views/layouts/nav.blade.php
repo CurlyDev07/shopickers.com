@@ -6,9 +6,9 @@
                     <img src="{{ asset('images\logo\main.png') }}" class="tabsolute" style="height: 100px;margin-top: -1px;" alt="">
                 </a>
             </h1>
-            <ul class="tflex tfont-medium titems-center ttext-white">
+            <ul class="lg:tml-5 sm:tml-24 tflex tfont-medium titems-center ttext-white">
                 @foreach (\App\Category::categories() as $item)
-                    <li class="tborder-white tpx-3 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <li class="tborder-white tpx-2 hover:ttext-primary hover:tunderline tcursor-pointer">
                         <i class="fab fa-envira"></i>
                         <a href="{{ $item['link'] }}">{{ $item['title'] }}</a>
                     </li>
@@ -42,10 +42,18 @@
                 <li class="hover:tunderline tmr-8 tcursor-default">
                     <a href="{{ route('aboutus') }}">ABOUT US</a>
                 </li>
-                <li class="hover:tunderline tmr-8 tcursor-default">MY WISHLIST</li>
-                <li class="hover:tunderline tmr-8 tcursor-default"><a href="{{ route('dashboard') }}">MY ACCOUNT</a></li>
-                <li class="hover:tunderline tmr-8 tcursor-default"><a href="">SIGN UP</a></li>
-                <li class="hover:tunderline tcursor-default"><a href="{{ route('login') }}">LOGIN</a></li>
+                @auth
+                    <li class="hover:tunderline tmr-8 tcursor-default"><a href="{{ route('dashboard') }}">MY ACCOUNT</a></li>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <li >
+                            <button type="submit" class="hover:tunderline tcursor-default tfont-bold">LOGOUT</button>
+                        </li>
+                    </form>
+                @else
+                    <li class="hover:tunderline tmr-8 tcursor-default"><a href="{{ route('register') }}">SIGN UP</a></li>
+                    <li class="hover:tunderline tcursor-default"><a href="{{ route('login') }}">LOGIN</a></li>
+                @endauth
             </ul>
         </div>
     </div>
