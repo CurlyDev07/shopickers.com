@@ -31,4 +31,6 @@ class CreateBannersTable extends Migration
      */
     public function down()
     {
-   
+        Schema::dropIfExists('banners');
+    }
+}

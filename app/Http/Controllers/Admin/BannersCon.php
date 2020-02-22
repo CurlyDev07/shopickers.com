@@ -14,6 +14,10 @@ class BannersCon extends Controller
         return view('admin.banners.index');
     }
 
+    public function add(Request $request){
+        return view('admin.banners.add');
+    }
+
     public function store(Request $request){
         foreach ($request->banner as $sequence => $banner) {
             $img = '/images/banners/'.uuid().'.jpg';
@@ -22,6 +26,7 @@ class BannersCon extends Controller
                 "url" => $banner['url'],
                 "image" => $img,
                 "alt" => $banner['alt'],
+                "size" => $banner['size'],
                 "sequence" => $sequence,
             ]);
         }

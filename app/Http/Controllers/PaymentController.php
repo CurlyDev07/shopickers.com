@@ -9,6 +9,7 @@ use App\TransactionPayment;
 use App\TransactionProducts;
 use App\Product;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -38,7 +39,7 @@ class PaymentController extends Controller
                     'returnUrl' => url('paymentsuccess'),
                     'cancelUrl' => url('paymenterror'),
                 ))->send();// send the payload to paypal
-                    
+                // dd($response); 
                 
                 $markdown['payment_id'] = $response->getTransactionReference();
                 $markdown['payment_status'] = 'declined';// set payment status and update to approved when user paid the amount
@@ -106,9 +107,8 @@ class PaymentController extends Controller
         $shipping = 150;
         $subtotal = 0;
         $total = 0;
-
         $transaction = Transaction::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => Auth::check()? Auth::check() : 0,
             "first_name" => $request->first_name,
             "last_name" => $request->last_name, 
             "phone_number" => $request->phone_number,  

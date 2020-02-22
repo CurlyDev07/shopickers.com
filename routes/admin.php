@@ -55,6 +55,7 @@ Route::namespace('Admin')->group(function () {
     */
     Route::prefix('banners')->group(function () {
         Route::get('/', 'BannersCon@index')->name('banner.list');
+        Route::get('/add', 'BannersCon@add')->name('banner.add');
         Route::post('/store', 'BannersCon@store')->name('banner.store');
     });
 
