@@ -19,6 +19,8 @@
     @yield('head_js')
 </head>
 <body>
+
+    
     
 
  
