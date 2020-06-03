@@ -8,7 +8,7 @@
                 Order#: {{ $orders['order_number'] }}
             </div>
             <div class="">
-                @if ($orders['payments']['payment_status'] == 'approved')
+                @if ($orders['payments']['payment_status'] == 'completed')
                     <span class="chip green lighten-5">
                         <span class="green-text">{{ ucwords($orders['payments']['payment_status']) }}</span>
                     </span>

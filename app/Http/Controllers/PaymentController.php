@@ -27,34 +27,11 @@ class PaymentController extends Controller
     }
  
     public function charge(Request $request) {
-        
-
-        if($request->input('submit')){
-            try {
-                $markdown = $this->save_products($request);// save the transaction and get the markdown
-
-                $response = $this->gateway->purchase(array(
-                    'amount' => $markdown['total'],
-                    'currency' => env('PAYPAL_CURRENCY'),
-                    'returnUrl' => url('paymentsuccess'),
-                    'cancelUrl' => url('paymenterror'),
-                ))->send();// send the payload to paypal
-                // dd($response); 
-                
-                $markdown['payment_id'] = $response->getTransactionReference();
-                $markdown['payment_status'] = 'declined';// set payment status and update to approved when user paid the amount
-                TransactionPayment::create($markdown);
-
-                if ($response->isRedirect()) {
-                    $response->redirect(); // this will automatically forward the customer
-                } else {
-                    // not successful
-                    return $response->getMessage();
-                }
-            } catch(Exception $e) {
-                return $e->getMessage();
-            }
+        if ($request->payment_method == 'cod') {
+            return $this->cod($request);
         }
+
+       $this->paypal($request);
     }
  
     public function payment_success(Request $request){
@@ -79,7 +56,7 @@ class PaymentController extends Controller
                     'payer_email' => $arr_body['payer']['payer_info']['email'],
                     'total' => $arr_body['transactions'][0]['amount']['total'],
                     'currency' => env('PAYPAL_CURRENCY'),
-                    'payment_status' => $arr_body['state'],
+                    'payment_status' => "completed",
                 ]);
 
                 $order_number = Transaction::where('id', $payment['transaction_id'])->get(['order_number']);// get order number
@@ -119,8 +96,7 @@ class PaymentController extends Controller
             "province" => $request->province,  
             "zip_code" => $request->zip_code,  
         ]);
-        $transaction->update(['order_number' => 'T4U'.now()->format('ymd').$transaction['id']]);// Add transaction id
-
+        $transaction->update(['order_number' => 'SP'.now()->format('ymd').$transaction['id']]);// Add transaction id
         foreach ($items_decode as $item) {
             $products = Product::where('id', $item->id)->get()->toArray();
 
@@ -139,5 +115,49 @@ class PaymentController extends Controller
             "subtotal" => $subtotal,
             "total" => ($shipping + $subtotal)
         ];
+    }
+
+    public function cod($request){
+        $markdown = $this->save_products($request);// save the transaction and get the markdown
+        $markdown['payment_id'] = "COD-".strtoupper(Str::random(20));
+        $markdown['payer_id'] = "N/A";
+        $markdown['payer_email'] = $request->email;
+        $markdown['currency'] = "PHP";
+        $markdown['payment_status'] = 'completed';// set payment status and update to completed when user paid the amount
+        $transaction_payment = TransactionPayment::create($markdown);
+        $order_number = $transaction_payment->transaction()->first('order_number')['order_number'];
+
+        return view('pages\front\payment_success', [
+            'order_number' => $order_number,
+            'total_amount' => number_format($markdown['total'], 2)
+        ]);// redirect to success payment page
+    }
+
+    public function paypal($request){
+         if($request->input('submit')){
+            try {
+                $markdown = $this->save_products($request);// save the transaction and get the markdown
+
+                $response = $this->gateway->purchase(array(
+                    'amount' => $markdown['total'],
+                    'currency' => env('PAYPAL_CURRENCY'),
+                    'returnUrl' => url('paymentsuccess'),
+                    'cancelUrl' => url('paymenterror'),
+                ))->send();// send the payload to paypal
+                
+                $markdown['payment_id'] = $response->getTransactionReference();
+                $markdown['payment_status'] = 'declined';// set payment status and update to approved when user paid the amount
+                TransactionPayment::create($markdown);
+
+                if ($response->isRedirect()) {
+                    $response->redirect(); // this will automatically forward the customer
+                } else {
+                    // not successful
+                    return $response->getMessage();
+                }
+            } catch(Exception $e) {
+                return $e->getMessage();
+            }
+        }
     }
 }

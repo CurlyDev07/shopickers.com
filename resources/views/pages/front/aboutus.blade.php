@@ -51,37 +51,49 @@
 
 
     <div class="tcontainer tpy-12">
-            <h1 class="tfont-bold ttext-2xl tmb-5">WHY CHOOSE US</h1>
+        <h1 class="tfont-bold ttext-2xl tmb-5">WHY CHOOSE US</h1>
 
-            <div class="tflex">
-                <div class="tw-1/3 tbg-white trounded tp-10 tmr-16">
-                    <p class="ttext-center">
-                        <i class="fas fa-shipping-fast fa-3x ttext-blue-400 tmb-6"></i>
-                    </p>
-                    <p class="ttext-lg tfont-medium tmb-6">Free Shipping</p>
-                    <p class="ttext-gray-600 tleading-loose">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.
-                    </p>
-                </div>
-                <div class="tw-1/3 tbg-white trounded tp-10 tmr-16">
-                    <div class="ttext-center">
-                        <i class="fas fa-dollar-sign fa-3x ttext-blue-400 tmb-6"></i>
+        <div class="tflex tflex-wrap">
+            <div class="tw-full lg:tw-1/3  lg:tpr-4 tmb-8 lg:mb-0">
+                <div class="sm:tflex sm:titems-center lg:tblock tbg-white tp-8 lg:tp-10 trounded tw-full">
+                    <div class="lg:tw-full sm:tw-2/5">
+                        <p class="ttext-center tm-0">
+                            <i class="fas fa-shipping-fast fa-3x ttext-blue-400 tmb-6"></i>
+                        </p>
+                        <p class="ttext-base tm-0 leading-5 tfont-medium tmb-6 sm:tmb-0 lg:tmb-6 ttext-center">Free Shipping</p>
                     </div>
-                    <p class="ttext-lg tfont-medium tmb-6">Free Shipping</p>
-                    <p class="ttext-gray-600 tleading-loose">
+                    <p class="lg:tw-full tm-0 sm:tw-3/5 tleading-loose ttext-gray-600 ">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.
                     </p>
-                </div>
-                <div class="tw-1/3 tbg-white trounded tp-10">
-                    <div class="ttext-center">
-                        <i class="fas fa-headset fa-3x ttext-blue-400 tmb-6"></i>
-                    </div>
-                    <p class="ttext-lg tfont-medium tmb-6">Free Shipping</p>
-                    <p class="ttext-gray-600 tleading-loose">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.
-                    </p>    
                 </div>
             </div>
+            <div class="tw-full lg:tw-1/3  lg:tpx-2 tmb-8 lg:mb-0">
+                <div class="sm:tflex sm:titems-center lg:tblock tbg-white tp-8 lg:tp-10 trounded tw-full">
+                    <div class="lg:tw-full sm:tw-2/5">
+                        <p class="ttext-center tm-0">
+                            <i class="fas fa-dollar-sign fa-3x ttext-blue-400 tmb-6"></i>
+                        </p>
+                        <p class="ttext-base tm-0 leading-5 tfont-medium tmb-6 sm:tmb-0 lg:tmb-6 ttext-center">Free Shipping</p>
+                    </div>
+                    <p class="lg:tw-full tm-0 sm:tw-3/5 tleading-loose ttext-gray-600 ">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.
+                    </p>
+                </div>
+            </div>
+            <div class="tw-full lg:tw-1/3  lg:tpl-4 tmb-8 lg:mb-0">
+                <div class="sm:tflex sm:titems-center lg:tblock tbg-white tp-8 lg:tp-10 trounded tw-full">
+                    <div class="lg:tw-full sm:tw-2/5">
+                        <p class="ttext-center tm-0">
+                            <i class="fas fa-headset  fa-3x ttext-blue-400 tmb-6"></i>
+                        </p>
+                        <p class="ttext-base tm-0 leading-5 tfont-medium tmb-6 sm:tmb-0 lg:tmb-6 ttext-center">Free Shipping</p>
+                    </div>
+                    <p class="lg:tw-full tm-0 sm:tw-3/5 tleading-loose ttext-gray-600 ">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="tbg-white">

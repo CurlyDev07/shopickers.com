@@ -1,11 +1,15 @@
 let main_banner = $('.main-banner.owl-carousel').owlCarousel({
-    items: 1,
-    loop:true,
-    center: true,
+    items:1,
     margin:10,
-    autoplay: false,
+    loop:true,
+    // autoplay: true,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+        },
+    }
 });
-
 
 let testimonial_side = $('.testimonial_side.owl-carousel').owlCarousel({
     items: 1,

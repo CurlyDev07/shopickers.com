@@ -1,13 +1,12 @@
 
-
-    <div class="tbg-gray-900 tpt-16 tpb-8">
+    <div id="footer" class="tbg-gray-900 tpt-8 sm:tpt-16 tpb-20 sm:tpb-8">
         <div class="tcontainer">
-            <div class="tflex">
-                <div class="tw-1/3 ttext-white">
+            <div class="sm:tflex">
+                <div class="tw-full md:tw-1/2 lg:tw-1/3 ttext-white">
                    <div class="tblock">
-                        <h3 class="ttext-white tfont-medium ttext-base tmb-4">CONTACT INFORMATION</h3>
+                        <h3 class="ttext-center sm:ttext-left ttext-white tfont-medium ttext-base tmb-4">CONTACT INFORMATION</h3>
                    </div>
-                   <ul class="tmb-5">
+                   <ul class="tmb-5 ttext-center sm:ttext-left">
                        <li class="tmb-3">
                             <span class="ttext-sm">ADDRESS</span>
                             <p class="ttext-xs ttext-gray-500">123 Street Name, City, England</p>
@@ -26,7 +25,7 @@
                        </li>
                     </ul>
 
-                    <ul class="tflex">
+                    <ul class="tflex tjustify-center sm:tjustify-start tmb-8 sm:tmb-0">
                         <li class="tmr-4">
                             <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
                         </li>
@@ -38,9 +37,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="tw-full ttext-white">
+                <div class="tw-full md:tw-1/2 lg:tw-full ttext-white">
                     <div class="tw-full tflex tflex-wrap tmb-8">
-                        <div class="tw-1/2">
+                        <div class="w-full sm:tw-1/2">
                             <div class="tblock">
                                 <h3 class="ttext-white tfont-medium ttext-base tmb-4">CONTACT INFORMATION</h3>
                                 <p class="ttext-xs ttext-gray-500">
@@ -49,7 +48,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="tw-1/2 tflex titems-end">
+                        <div class="w-full sm:tw-1/2 tflex titems-end thidden lg:tflex">
                             <input type="email" class="browser-default tpx-4 tpy-3 tw-2/3 ttext-black">
                             <button type="button" class="tborder-0 focus:tbg-blue-600 waves-effect tpx-4 tpy-3 tw-1/4 tbg-primary hover:tbg-blue-600">SUBCRIBE</button>
                         </div>
@@ -78,19 +77,19 @@
                         </div><!-- MY ACCOUNT-->
                         <div class="tw-1/2">
                             <div class="tblock">
-                                <h3 class="ttext-white tont-medium ttext-base tmb-4">MAIN FEATURES</h3>
+                                <h3 class="ttext-white tont-medium ttext-base tmb-4">PRODUCTS</h3>
                                 <div class="tflex">
                                     <div class="tw-1/2">
                                         <ul>
-                                            <li class="ttext-xs ttext-gray-500 tmb-2">Super Fast Magento Theme</li>
-                                            <li class="ttext-xs ttext-gray-500 tmb-2">1st Fully working Ajax Theme</li>
-                                            <li class="ttext-xs ttext-gray-500 tmb-2">20 Unique Homepage Layouts</li>
+                                            <li class="ttext-xs ttext-gray-500 tmb-2">Gamepad</li>
+                                            <li class="ttext-xs ttext-gray-500 tmb-2">Phone Cases</li>
+                                            <li class="ttext-xs ttext-gray-500 tmb-2">Electric Guitar</li>
                                         </ul>
                                     </div>
                                     <div class="w-1/2">
                                         <ul>
-                                            <li class="ttext-xs ttext-gray-500 tmb-2">Powerful Admin Panel</li>
-                                            <li class="ttext-xs ttext-gray-500 tmb-2">Mobile & Retina Optimized</li>
+                                            <li class="ttext-xs ttext-gray-500 tmb-2">Dual Stand</li>
+                                            <li class="ttext-xs ttext-gray-500 tmb-2">IPhone</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -109,7 +108,7 @@
                     <img src="http://www.portotheme.com/magento/porto/media/wysiwyg/smartwave/footer/payment-icon.png" alt="">
                 </div>
             </div>
-        </div>b
+        </div>
     </div>
 
     <footer>
@@ -121,14 +120,38 @@
         
         <script>
             function addToCart(){
-                
                 $.get( "{{ route('cart.count') }}", function( count ) {
                     if (count > 0) {
-                        $('#cart_item_count').removeClass('thidden').html(count);
+                        $('.cart_item_count').removeClass('thidden').html(count);
                     }
                 });
             }
             addToCart();
+
+            
+            // ADD TO CART
+            $('.add_to_cart').click(function () {
+                let id = $(this).data('id');
+                $.get( "cart/add/" + id, function( data ) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'item has been added to your shopping cart',
+                        showConfirmButton: false,
+                        timer: 2500,
+                        showClass: {
+                            popup: 'animated tada fast'
+                        },
+                        hideClass: {
+                            popup: 'animated fadeOut slow'
+                        }
+                    })
+
+                    // ADD TO CART
+                    $('#cart').addClass('pulse'); // trigger pulse on added cart
+                    addToCart();// Update cart item count
+                });
+            });
+
 
             $.ajaxSetup({
                 headers: {

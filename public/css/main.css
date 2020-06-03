@@ -4,22 +4,22 @@
 }
 /* label focus color */
 .input-field input[type]:focus + label, textarea,textarea:focus + label {
-    color:  #88b44e;
+    color:  #2d7bbf;
 }
 /* label underline focus color */
 .input-field input[type]:focus, textarea:focus {
-    border-bottom: 1px solid #88b44e;
-    box-shadow: 0 1px 0 0 #88b44e;
+    border-bottom: 1px solid #2d7bbf;
+    box-shadow: 0 1px 0 0 #2d7bbf;
 }
 /* valid color */
 .input-field input[type].valid, textarea {
-    border-bottom: 1px solid #88b44e;
-    box-shadow: 0 1px 0 0 #88b44e;
+    border-bottom: 1px solid #2d7bbf;
+    box-shadow: 0 1px 0 0 #2d7bbf;
 }
 /* invalid color */
 .input-field input[type].invalid, textarea{
-    border-bottom: 1px solid #88b44e;
-    box-shadow: 0 1px 0 0 #88b44e;
+    border-bottom: 1px solid #2d7bbf;
+    box-shadow: 0 1px 0 0 #2d7bbf;
 }
 /* icon prefix focus color */
 .input-field .prefix.active, textarea {
@@ -27,16 +27,16 @@
 }
 
 input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #88b44e;
+    border-bottom: 1px solid #2d7bbf;
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    border-bottom-color: #88b44e;
-    -webkit-box-shadow: 0 1px 0 0 #88b44e;
-    box-shadow: 0 1px 0 0 #88b44e;
+    border-bottom-color: #2d7bbf;
+    -webkit-box-shadow: 0 1px 0 0 #2d7bbf;
+    box-shadow: 0 1px 0 0 #2d7bbf;
 }
 
 input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label, input[type=email]:not(.browser-default):focus:not([readonly])+label, input[type=url]:not(.browser-default):focus:not([readonly])+label, input[type=time]:not(.browser-default):focus:not([readonly])+label, input[type=date]:not(.browser-default):focus:not([readonly])+label, input[type=datetime]:not(.browser-default):focus:not([readonly])+label, input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, input[type=tel]:not(.browser-default):focus:not([readonly])+label, input[type=number]:not(.browser-default):focus:not([readonly])+label, input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
-    color: #88b44e;
+    color: #2d7bbf;
 }
 
 [type="checkbox"]:checked+span:not(.lever):before {
@@ -46,8 +46,8 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     height: 22px;
     border-top: 2px solid transparent;
     border-left: 2px solid transparent;
-    border-right: 2px solid #88b44e;
-    border-bottom: -1px solid #88b44e;
+    border-right: 2px solid #2d7bbf;
+    border-bottom: -1px solid #2d7bbf;
     -webkit-transform: rotate(40deg);
     transform: rotate(40deg);
     -webkit-backface-visibility: hidden;
@@ -57,29 +57,29 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 }
 
 .tabs .tab a {
-    color: #88b44e;
+    color: #2d7bbf;
     /*Custom Text Color*/
 }
 
 .tabs .tab a.active {
     background-color: transparent;
-    color: #88b44e!important;
+    color: #2d7bbf!important;
 }
 
 .tabs .tab a:hover {
-    color:#88b44e;
+    color:#2d7bbf;
     /*Custom Color On Hover*/
 }
 
 .tabs .tab a:focus.active {
     color: #ffffff!important;
     /*Custom Text Color While Active*/
-    background-color: #88b44e;
+    background-color: #2d7bbf;
     /*Custom Background Color While Active*/
 }
 
 .tabs .indicator {
-    background-color:#88b44e;
+    background-color:#2d7bbf;
     /*Custom Color Of Indicator*/
 }
 
@@ -122,9 +122,9 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 }
 
 .chips.focus {
-    border-bottom: 1px solid #88b44e;
-    -webkit-box-shadow: 0 1px 0 0 #88b44e;
-    box-shadow: 0 1px 0 0 #88b44e
+    border-bottom: 1px solid #2d7bbf;
+    -webkit-box-shadow: 0 1px 0 0 #2d7bbf;
+    box-shadow: 0 1px 0 0 #2d7bbf
 }
 
 .truncate {
@@ -136,3 +136,23 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     -webkit-box-orient: vertical;
 }
 
+.truncate-long {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+/* .product-hover:hover{
+    box-shadow: 0 0.0825rem 20px 0 rgba(0,0,0,.05);
+    -webkit-transform: translateY(-.0625rem);
+    transform: translateY(-.0625rem);
+    z-index: 1;
+} */
+
+.product:hover .product-image {
+    transform: translate(-0%, 5%) scale(1.1);
+    transition: all 0.3s ease-in-out;
+}

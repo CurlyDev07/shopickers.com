@@ -381,7 +381,8 @@ function base64ToImage($base64_string, $path) {
 
 function s3_upload_image($path_and_file_name, $base64_string){
     $base64decoded = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64_string));
-    $upload_success_md = Storage::disk('s3')->put($path_and_file_name, $base64decoded);
+    // $upload_success_md = Storage::disk('s3')->put($path_and_file_name, $base64decoded); // production
+    $upload_success_md = Storage::disk('public')->put($path_and_file_name, $base64decoded); // development
 }
 
 function rm_cloudfront($img){

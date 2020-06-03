@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Storage;
 
 Auth::routes(['login' => false]);
 
-Route::get('/', function () {
-    return view('pages.front.index');
-});
+Route::get('/', "HomeController@index");
 
 Route::get('/contact-us', function () {
     return view('pages.front.contactus');
@@ -26,12 +24,6 @@ Route::get('/contact-us', function () {
 Route::get('/about-us', function () {
     return view('pages.front.aboutus');
 })->name('aboutus');
-    
-
-Route::get('/', function () {
-    return view('pages.front.index');
-});
-
 
 Route::get('dashboard', 'UserCon@dashboard')->name('dashboard');
 Route::get('dashboard/order/{transaction_id}', 'UserCon@order_view')->name('dashboard.order.view');

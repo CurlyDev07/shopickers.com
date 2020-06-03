@@ -51,7 +51,7 @@
                             <td class="tp-3 tpx-5">{{ $order['payments']['total'] }}</td>
                             <td class="tp-3 tpx-5">{{ $order['payments']['created_at'] }}</td>
                             <td class="tp-3 tpx-5">
-                                @if ($order['payments']['payment_status'] == 'approved')
+                                @if ($order['payments']['payment_status'] == 'completed')
                                     <span class="chip green lighten-5">
                                         <span class="green-text">{{ ucwords($order['payments']['payment_status']) }}</span>
                                     </span>

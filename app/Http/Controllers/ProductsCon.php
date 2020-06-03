@@ -16,17 +16,22 @@ class ProductsCon extends Controller
     }
 
     public function all(Request $request){
-        $page = 'Products';
         $products = Product::with(array('images' => function($query){
                 $query->where('primary', 1);
             })
         )
-        ->where('status', 'active')
+        ->where('status', '!=','inactive')
         ->select('id', 'title', 'price', 'compare_price')
+        ->when($request->min, function ($query, $min) {
+            return $query->where('price', '>', $min);
+        })
+        ->when($request->max, function ($query, $max) {
+            return $query->where('price', '<', $max);
+        })
         ->when($request->price, function ($query, $price) {
             return $query->orderBy('price', $price);
         })
-        ->get()->toArray();
-        return view('pages.products.all', compact('products', 'page'));
+        ->paginate(10);
+        return view('pages.products.all', compact('products'));
     }
 }

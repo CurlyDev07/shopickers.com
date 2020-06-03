@@ -26,21 +26,21 @@
                 $(this).parent().parent().parent().find('#subtotal').html(subtotal);
             });
 
-            $('#total').html(total);// UPDATE THE TOTAL
-            $('#total_items').html(total_items);// UPDATE THE TOTAL ITEMS
+            $('.total').html(total);// UPDATE THE TOTAL
+            $('.total_items').html(total_items);// UPDATE THE TOTAL ITEMS
         }
     </script>
 
-    <div class="tcontainer tpy-8">
-        <div class="tflex tjustify-between titems-center tmb-5">
+    <div class="tmx-0 tpx-0 md:tmx-10 sm:tpx-8 tpt-4 md:tpt-8 sm:tpb-8 md:tpy-8">
+        <div class="tflex tjustify-center sm:tjustify-start titems-center tmb-5">
             <div class="ttext-2xl ttext-title tfont-medium">Shopping Cart</div>
         </div>
 
         {{-- FOR CART CONTAIN ITEMS --}}
         @if (count($products))
             <div class="lg:tflex">
-                <div class="tborder tp-8 tbg-white tw-full">
-                    <table class="responsive-table">
+                <div class="sm:tborder tborder-b-0 tp-2 sm:tp-8 tbg-white tw-full">
+                    <table class="">
                         <thead>
                             <tr>
                                 <th style="width: 1%;" class="tpt-0">
@@ -49,10 +49,10 @@
                                         <span class="ttext-title"><span class="thidden">All</span></span>
                                     </label>
                                 </th>
-                                <th class="lg:tw-1/2 ttext-right lg:ttext-left ttext-title tpt-0">Item</th>
+                                <th class="lg:tw-1/2 ttext-title tpt-0">Item</th>
                                 <th class="ttext-center ttext-title tpt-0">Price</th>
                                 <th class="ttext-center ttext-title tpt-0">Qty</th>
-                                <th class="ttext-center ttext-title tpt-0">Subtotal</th>
+                                <th class="thidden sm:ttable-cell ttext-center ttext-title tpt-0">Subtotal</th>
                             </tr>
                         </thead>
                 
@@ -67,9 +67,9 @@
                                     </td>
                                     <td class="tp-1 lg:tp-3">
                                         <div class="tflex titems-center">
-                                            <img class="tblock lg:thidden tmr-3 th-12" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt="">
+                                            <img class="thidden sm:tblock lg:thidden tmr-3 th-12" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt="">
                                             <img class="thidden lg:tblock tmr-3" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt="">
-                                            <a href="{{ item_show_slug($item['title'], $item['id']) }}" class="ttext-primary hover:tunderline" style="text-align: left">{{ $item['title'] }}</a>
+                                            <a href="{{ item_show_slug($item['title'], $item['id']) }}" class="truncate ttext-xs sm:ttext-base ttext-primary hover:tunderline" style="text-align: left">{{ $item['title'] }}</a>
                                         </div>
                                     </td>
                                     <td class="ttext-center" id="price">{{ $item['price'] }}</td>
@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="ttext-primary ttext-center">₱ <span id="subtotal">{{ $item['price'] }}</span> </td>
+                                    <td class="thidden sm:ttable-cell ttext-primary ttext-center">₱ <span id="subtotal">{{ $item['price'] }}</span> </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -96,34 +96,37 @@
                     
                     <div class="thidden md:tflex md:tjustify-between titems-center tpt-5 tmt-3">
                         <a href="javascript:void(0)" id="clear_all_cart" class="hover:tbg-primary hover:ttext-white tborder tpx-4 tpy-2 ttext-gray-700 ttext-sm waves-effect">Clear Shopping Cart</a>
-                        <a href="javascript:void(0)" class="hover:tbg-primary hover:ttext-white tborder tpx-4 tpy-2 ttext-gray-700 ttext-sm waves-effect">Continue Shopping</a>
+                        <a href="/products" class="hover:tbg-primary hover:ttext-white tborder tpx-4 tpy-2 ttext-gray-700 ttext-sm waves-effect">Continue Shopping</a>
                     </div>
 
                 </div>
             </div>
 
-            <div class="tborder tp-5 tbg-white tw-full tmt-5 tz-50 tbottom-0 tsticky">
-                <div class="tflex titems-center tjustify-between tpb-6">
+            <div class="sm:tborder tpx-5 sm:tpb-8 sm:tpt-6 sm:tpy-3 sm:tp-5 tbg-white tw-full sm:tmt-5 tz-50 lg:tbottom-0 lg:tsticky">
+                <div class="thidden sm:tflex titems-center tjustify-between tpb-6">
                     <h1 class="tfont-medium ttext-lg">Order Summary</h1>
-                    <div class="tflex titems-center">
+                    <div class=" titems-center ">
                         <label for="voucher" class="tfont-medium tmr-5 ttext-base ttext-title">Voucher</label>
                         <input type="text" id="voucher" class="browser-default tborder tborder-gray-400 tp-1 trounded tmr-8 ">
                         <button id="promo_code" style="padding: 6px 20px;" class="focus:tbg-primary focus:ttext-white tborder tborder-primary trounded ttext-primary ttext-sm waves waves-effect">Apply</button>
                     </div>
                 </div>
-                <div class="tborder-t tflex titems-center tjustify-between tpt-6">
-                    <div class="tw-1/2">
-                        <h1 class="tfont-medium ttext-lg tinvisible">TOTAL</h1>
-                    </div>
-                    <div class="tw-1/2">
-                        <div class="tflex tjustify-end titems-center">
-                            <div class="tfont-medium ttext-black-100 tmr-2">Total (<span id="total_items">0</span> items):</div>
-                            <div class="tfont-medium ttext-3xl ttext-primary tmr-5">₱ <span id="total">0</span></div>
-                            <button class="tbg-primary ttext-white focus:tbg-primary waves-effect" onclick="checkout()" style="padding: 10px 60px;">Checkout</button>
-                        </div>
-                    </div>
+                <div class="thidden sm:tflex tborder-t titems-center tjustify-end sm:tpt-6">
+                    <div class="tfont-medium ttext-black-100 tmr-2">Total (<span class="total_items">0</span> items):</div>
+                    <div class="tfont-medium ttext-3xl ttext-primary tmr-5">₱ <span class="total">0</span></div>
+                    <button class="tbg-primary ttext-white focus:tbg-primary waves-effect tpx-10 sm:tpx-16 tpy-3" onclick="checkout()">Checkout</button>
                 </div>
             </div>
+
+           <!-- FIXED BOTTOM NAVIGATION ON MOBILE DEVICES -->
+            <div class="tblock sm:thidden tbg-white tbottom-0 tfixed tflex titems-center tw-full" style="z-index: 999">
+                <div class="ttext-center tw-1/2">
+                    <div class="tfont-bold ttext-xs" style="color:rgba(0,0,0,.65);">Total (<span class="total_items">0</span> items)</div>
+                    <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">₱<span class="total">0</span></div>
+                </div>
+                <button onclick="checkout();" class="focus:tbg-primary tbg-primary tfont-medium tpy-4 ttext-white tw-1/2 waves-effect waves-light">Checkout</button>
+            </div>
+
         @else
         {{-- FOR EMPTY CART --}}
 
@@ -155,12 +158,13 @@
 
             $('.all-cart-item').click(function (e) {
                 if ($(this).prop('checked')) {
-                    $(".cart-item").attr('checked', true);
-                    compute_checked_items(); //compute checked items
-                    return;
+                    $(".cart-item").prop('checked', true);
+                }else{
+                    $(".cart-item").prop('checked', false);
                 }
-                $(".cart-item").attr('checked', false);
+                compute_checked_items(); //compute checked items
             });// check all cart item
+
 
             $('.decrement').click(function () {
                 let val = $(this).next().val();
@@ -195,12 +199,12 @@
                     title: 'Oops...',
                     text: 'You have not selected any items for checkout',
                     showConfirmButton: false,
-                    timer: 2500,
+                    timer: 2000,
                     showClass: {
                         popup: 'animated tada fast'
                     },
                     hideClass: {
-                        popup: 'animated fadeOut slow'
+                        popup: 'animated fadeOut fast'
                     }
                 })
             }

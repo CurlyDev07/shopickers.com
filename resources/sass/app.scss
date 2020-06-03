@@ -3,3 +3,15 @@
 @tailwind components;
 
 @tailwind utilities;
+
+ul.collapsible{
+    li.active{
+        .collapsible-header{
+            background-color: #2d7bbf!important;
+            color: #ffffff!important;
+            .fas{
+                color: #ffffff!important;
+            }
+        }
+    }
+}

@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       colors: {
         title: '#3d5170',
-        primary: '#88b44e',
+        primary: '#2d7bbf',
         error: '#ff6347',
         black: {
           100: '#5a6169'
@@ -12,13 +12,16 @@ module.exports = {
       }
     },
     backgroundColors: {
-      primary: '#88b44e',
+      primary: '#2d7bbf',
     },
     container: {
       center: true,
       padding: '2rem'
     }
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'hover', 'focus', 'active'],
+  },
   plugins: []
 }
+ 

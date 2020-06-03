@@ -6,14 +6,20 @@
         h2#swal2-title {
             font-size: 22px;
         }
+        .owl-nav{
+            display: none!important;
+        }
+        .owl-dots{
+            display: none!important;
+        }
     </style>
 @endsection
 
 @section('content')
 
-    <div class="tcontainer tpy-8">
-        <div class="tflex tw-full tbg-white tp-5">
-            <div class="tw-2/5">
+    <div class="tmx-0 tpx-0 md:tmx-10 md:tpx-8 sm:tpt-16 sm:tpb-8 md:tpy-8">
+        <div class="tflex tflex-wrap tw-full tbg-white md:tp-5">
+            <div class="tw-full sm:tw-2/5">
                 <div class="owl-main owl-carousel owl-theme">
                     @foreach ($product['images'] as $item)
                         <div class="item">
@@ -24,11 +30,12 @@
                 <div class="owl-small owl-carousel owl-theme tmt-3">
                     @foreach ($product['images'] as $item)
                         <a class="item" href="#{{ $item['id'] }}">
-                            <img src="{{ $item['img'] }}" data-hash="{{ $item['id'] }}" class="tinline" style="width: 396px;height: auto;">
+                            <img src="{{ $item['img'] }}" data-hash="{{ $item['id'] }}" class="tinline" style="height: 100px;
+                            width: 100%;">
                         </a>
                     @endforeach
                 </div><!-- SMALL IMAGE -->
-                <ul class="tflex tmt-8">
+                {{-- <ul class="thidden md:tflex tmt-8">
                     <li class="tmr-4">
                         <a href="#"><i class="fab fa-facebook fa-3x ttext-blue-600"></i></a>
                     </li>
@@ -41,12 +48,12 @@
                     <li class="">
                         <a href="#"><i class="fab fa-instagram fa-3x ttext-pink-500"></i></a>
                     </li>
-                </ul>
+                </ul><!-- SOCIAL MEDIA ICONS --> --}}
             </div><!-- IMAGES -->
-            <div class="tw-3/5">
-                <div class="tpl-10">
-                    <h2 class="tfont-medium tleading-tight ttext-gray-800 ttext-xl">{{ $product['title'] }}</h2>
-                    <div class="tflex tjustify-end tpy-3 ttext-md">
+            <div class="tw-full sm:tw-3/5">
+                <div class="md:tpl-10">
+                    <h2 class="tpt-3 sm:tpt-0 tpx-4 sm:tpx-0 tfont-medium tleading-tight ttext-gray-800 ttext-xl">{{ $product['title'] }}</h2>
+                    <div class="tpx-4 sm:tpx-0 tflex tjustify-end tpy-3 ttext-md">
                         <div class="tmr-5 ttext-primary">
                             <i class="fas fa-star"></i>
                             <span class="tunderline">4.8</span>
@@ -54,11 +61,11 @@
                         <div class="tborder-gray-400 tborder-l  tpx-5">182 Ratings</div>
                         <div class="tborder-gray-400 tborder-l  tpl-5">336 Sold</div>
                     </div><!-- RATINGS -->
-                    <div class="tleading-relaxed tpb-5 tborder-b">
+                    <div class="tpx-4 sm:tpx-0 tleading-relaxed truncate-long tmt-1">
                         {!! nl2br($product['short_description']) !!}
                     </div><!-- SHORT DESCRIPTION -->
-                    <div class="tpb-5 tborder-b">
-                        <div class="tflex tflex-col tmt-4">
+                    <div class="tpx-4 sm:tpx-0  tborder-b  tmt-2 tpb-5">
+                        <div class="tflex titems-center tjustify-center sm:tjustify-start sm:titems-start sm:tflex-col tmt-4">
                             <span class="tfont-extrabold ttext-2xl ttext-primary tmr-4" style="font-family: arial;" id="price" data-price="500">{{ (currency($product['price'])) }}</span>
                             @if ($product['compare_price'] != '')
                                 <div class="">
@@ -68,18 +75,18 @@
                             @endif
                         </div>
                     </div><!-- PRICE -->
-                    <div class="">
-                        <p class="tmb-3 tpt-3">Availability: In stock </p>
-                        <div class="tflex titems-center">
+                    <div class="tpx-4 sm:tpx-0">
+                        <p class="ttext-center sm:ttext-left tmb-3 tpt-3">Availability: In stock </p>
+                        <div class="tflex tflex-col sm:tflex-row titems-center tjustify-center sm:tjustify-start">
                             {!! number_spinner_markup() !!}
-                            <div class="ttext-sm ttext-gray-500 tml-4">Only 1 items left</div>
+                            <div class="ttext-sm ttext-gray-500 tml-4 tmt-2 sm:mt-0">Only 8 items left</div>
                         </div>
                     </div>
-                    <div class="tpy-8 tflex titems-center tjustify-between">
-                        <div class="tflex">
+                    <div class="tpy-5 sm:tpy-8 tflex titems-center tjustify-around sm:tjustify-between">
+                        <div class="thidden sm:tflex ">
                             <div class="tborder tpx-5 tpy-3 trounded tmr-4">
                                 <i class="fas fa-share-alt ttext-primary"></i>
-                            </div>
+                            </div><!-- SHARE BUTTON -->
 
                             @auth
                                 <div class="tborder tcursor-pointer tpx-5 tpy-3 trounded waves-effect waves-green" id="add_to_wishlist" product_id="{{ $product['id'] }}">
@@ -92,22 +99,22 @@
                             @endauth
 
                         </div>
-                        <a id="add_to_cart" data-id="{{ $product['id'] }}" class="focus:tbg-primary tbg-blue-100 tborder tborder-primary tpy-3 trounded-b trounded-t ttext-primary ttext-center tw-1/3 waves-effect waves-light">Add To Cart</a>
+                        <a data-id="{{ $product['id'] }}" class="add_to_cart focus:tbg-primary tbg-blue-100 tborder tborder-primary tpy-3 trounded-b trounded-t ttext-primary ttext-center tw-1/3 waves-effect waves-light">Add To Cart</a>
                         <a id="checkout" data-id="{{ $product['id'] }}" class="tborder tborder-primary focus:tbg-primary hover:tbg-primary tbg-primary tpy-3 trounded-b trounded-t ttext-center ttext-white tw-1/3 waves-effect waves-light">Buy Now</a>
                     </div>
                 </div>    
             </div><!-- DETAILS -->
         
         </div>
-        <div class="tflex tflex-col tmt-8">
+        <div class="tflex tflex-col tmt-2 sm:tmt-8">
             <div class="tw-full tbg-white">
                 <ul class="tabs">
-                    <li class="tab col s3 tfont-medium"><a href="#description">OVERVIEW</a></li>
-                    <li class="tab col s3 tfont-medium"><a href="#ratingsAndReviews">CUSTOMER REVIEWS</a></li>
+                    {{-- <li class="tab col s3 tfont-medium"><a href="#description">OVERVIEW</a></li>
+                    <li class="tab col s3 tfont-medium"><a href="#ratingsAndReviews">CUSTOMER REVIEWS</a></li> --}}
                     <li class="tab col s3 tfont-medium"><a href="#specifications" class="active">SPECIFICATIONS</a></li>
                 </ul>
             </div><!-- TABS -->
-            <div id="description" class="tbg-white tw-full tpy-5 tpx-4">
+            {{-- <div id="description" class="tbg-white tw-full tpy-5 tpx-4">
                 <div class="tflex tflex-wrap">
                     <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="">
                     <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="">
@@ -194,8 +201,8 @@
                         </div>
                     </div><!-- CUSTOMER REVIEWS PREVIEW-->
                 @endforeach
-            </div><!-- RATINGS & REVIEWS -->
-            <div id="specifications" class="tbg-white tw-full tpy-5 tpx-4">
+            </div><!-- RATINGS & REVIEWS --> --}}
+            <div id="specifications" class="tbg-white tw-full tpy-5 sm:tpx-4">
                 <div class="tcontainer">
                     {!! $product['description'] !!}
                 </div>
@@ -253,28 +260,6 @@
             items:5
         })
 
-        // ADD TO CART
-        $('#add_to_cart').click(function () {
-            let id = $(this).data('id');
-            $.get( "cart/add/" + id, function( data ) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'item has been added to your shopping cart',
-                    showConfirmButton: false,
-                    timer: 2500,
-                    showClass: {
-                        popup: 'animated tada fast'
-                    },
-                    hideClass: {
-                        popup: 'animated fadeOut slow'
-                    }
-                })
-
-                // ADD TO CART
-                $('#cart').addClass('pulse'); // trigger pulse on added cart
-                addToCart();// Update cart item count
-            });
-        });
 
         //CHECKOUT 
         $('#checkout').click(function () {

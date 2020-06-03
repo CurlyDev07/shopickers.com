@@ -4,7 +4,7 @@
 
     <div class="tcontainer tpy-12">
         <div class="tflex tjustify-center">
-            <div class="tw-2/5 tbg-white tp-8 trounded">
+            <div class=" md:tw-3/5 lg:tw-2/5 tbg-white tp-8 trounded">
                 <div class="ttext-center">
                     <i class="far fa-check-circle fa-5x" style="color:#1dc150;"></i>
                     <div class="tfont-medium ttext-3xl ttext-title">Payment Successful</div>

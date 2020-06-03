@@ -15,6 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->index()->default(0)->comment('0 = guest login');
             $table->string('order_number')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

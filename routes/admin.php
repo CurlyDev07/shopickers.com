@@ -3,6 +3,11 @@ use App\ProductImage;
 
 
 Route::namespace('Admin')->group(function () {
+
+    Route::get('/', function(){
+        return redirect('/admin/products');
+    });
+
     Route::get('dashboard', 'DashboardCon@index');
     
      
