@@ -19,6 +19,16 @@
     @yield('css')
     @yield('head_js')
 
+
+    <title>Shopickers | Computer component | Ram | Hard Drive | SSD | Mouse | keyboard | GPU | High Quality Products </title>
+    <meta name="title" property="og:title" content="Shopickers | Computer component | Ram | Hard Drive | SSD | Mouse | keyboard | GPU | High Quality Products">
+    <meta property="og:site_name " content="Shopickers | Computer component | Ram | Hard Drive | SSD | Mouse | keyboard | GPU | High Quality Products">
+    <meta name="description" property="og:description" content="Your trusted Computer parts provider in the Philippines, Shopicker PH.  Explore great products and find the best prices.">
+    <meta property="og:url" content="https://thawing-forest-70991.herokuapp.com/">
+    <meta property="og:type" content="RAM | SSD | GPU | PC CASE| Shopickers PH ">
+    <meta property="og:image" content="http://thawing-forest-70991.herokuapp.com/images\logo\main.png">
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168677509-1"></script>
     <script>
@@ -28,6 +38,8 @@
 
     gtag('config', 'UA-168677509-1');
     </script>
+
+
 </head>
 <body>
 
