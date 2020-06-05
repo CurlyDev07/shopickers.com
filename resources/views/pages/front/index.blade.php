@@ -87,13 +87,13 @@
             <div class="owl-stage-outer">
                 <div class="owl-stage">
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner1.jpg') }}" class="tw-16 md:tw-32 lg:tw-48">
+                        <img src="{{ asset('images/banners/banner1.jpg') }}" alt="banner" class="tw-16 md:tw-32 lg:tw-48">
                     </div>
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner2.jpg') }}" class="tw-16 md:tw-32 lg:tw-48">
+                        <img src="{{ asset('images/banners/banner2.jpg') }}" alt="banner" class="tw-16 md:tw-32 lg:tw-48">
                     </div>
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner3.jpg') }}" class="tw-16 md:tw-32 lg:tw-48">
+                        <img src="{{ asset('images/banners/banner3.jpg') }}" alt="banner" class="tw-16 md:tw-32 lg:tw-48">
                     </div>
                 </div>
             </div>
@@ -104,13 +104,13 @@
             <div class="owl-stage-outer">
                 <div class="owl-stage">
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-1.jpg') }}" style="height: 312px;"><!-- Remove Height if image is already 312px -->
+                        <img src="{{ asset('images/banners/banner-sm-1.jpg') }}" alt="banner" style="height: 312px;"><!-- Remove Height if image is already 312px -->
                     </div>
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-2.jpg') }}" style="height: 312px;"><!-- Remove Height if image is already 312px -->
+                        <img src="{{ asset('images/banners/banner-sm-2.jpg') }}" alt="banner" style="height: 312px;"><!-- Remove Height if image is already 312px -->
                     </div>
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-3.jpg') }}" style="height: 312px;"><!-- Remove Height if image is already 312px -->
+                        <img src="{{ asset('images/banners/banner-sm-3.jpg') }}"  alt="banner" style="height: 312px;"><!-- Remove Height if image is already 312px -->
                     </div>
                 </div>
             </div>
