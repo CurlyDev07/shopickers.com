@@ -72,3 +72,34 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Deployment to shared hosting
+
+- Clone 
+- Move all content of public folder in public_html
+- Add .env
+- goto "app\Http\Controllers\Admin\ProductsCon.php@store" Controller
+  + Replace the foreach statement with the code below
+    ```
+        foreach ($request->images as $key => $value) {
+            $img = uuid().'.jpg';
+            s3_upload_image($img, $value['base64_image']);
+            $product->images()->create([
+                'img' => '/images/products/'.$img,
+                'primary' => $value['primary']
+            ]);
+            $value['primary'] == 1 ? $primary++ : '';
+        }// Upload Images
+    ```
+- goto config/filesystems.php
+  + find the `disks` assoc array 
+  + replace the `public` assoc array with the `code` below
+    ```
+        'public' => [
+            'driver' => 'local',
+            'root' => "images/products",
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+    ```
