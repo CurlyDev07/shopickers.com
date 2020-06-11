@@ -31,7 +31,7 @@ class ProductsCon extends Controller
         ->when($request->price, function ($query, $price) {
             return $query->orderBy('price', $price);
         })
-        ->paginate(10);
+        ->paginate(24);
         return view('pages.products.all', compact('products'));
     }
 }

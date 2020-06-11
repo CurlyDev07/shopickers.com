@@ -31,7 +31,7 @@ class ProductsCon extends Controller
 
         $primary = 0;
         foreach ($request->images as $key => $value) {
-            $img = '/images/products/'.uuid().'.jpg';
+            $img = '/'.uuid().'.jpg';
             s3_upload_image($img, $value['base64_image']);
             $product->images()->create([
                 'img' => $img,

@@ -388,3 +388,7 @@ function s3_upload_image($path_and_file_name, $base64_string){
 function rm_cloudfront($img){
     return str_replace(config('app.cloudfront'), "", $img);
 }
+
+function carbon($data){
+    return Carbon::parse($data);
+}

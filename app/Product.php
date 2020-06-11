@@ -10,8 +10,8 @@ class Product extends Model
     use SoftDeletes;
     
     protected $fillable = ['title', 'description', 'price', 'compare_price', 'qty', 'sku', 'barcode', 'short_description', 'status'];
-
     protected $hidden = ['created_at', 'updated_at'];
+    protected $appends = ['primary_image'];
 
     public function images(){
         return $this->hasMany(ProductImage::class);
@@ -23,5 +23,9 @@ class Product extends Model
     
     public function product_variant_options(){
         return $this->hasMany(ProductVariantOption::class);
+    }
+
+    public function getPrimaryImageAttribute(){
+        return config('app.cloudfront').$this->images()->where('primary', true)->first()['img'];
     }
 }

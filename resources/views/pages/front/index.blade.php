@@ -140,7 +140,7 @@
                     <div 
                         class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tpy-2 tbg-primary">
                         <h1 class="ttext-gray-200 tfont-bold ttext-xl">₱{{$item['price']}}</h1>
-                        <button data-id="{{$item['id']}}" class="add_to_cart focus:tbg-blue-600 hover:ttext-gray-300 tborder tborder-gray-400 tfont-semibold tpx-3 tpy-1 ttext-white ttext-sm">Add to card</button>
+                        <button data-id="{{$item['id']}}" class="add_to_cart focus:tbg-blue-600 waves-effect waves-light hover:ttext-gray-300 tborder tborder-gray-400 tfont-semibold tpx-3 tpy-1 ttext-white ttext-sm">Add to card</button>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                     <div 
                         class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tpy-2 tbg-primary">
                         <h1 class="ttext-gray-200 tfont-bold ttext-xl">₱{{$item['price']}}</h1>
-                        <button data-id="{{$item['id']}}" class="add_to_cart focus:tbg-blue-600 hover:ttext-gray-300 tborder tborder-gray-400 tfont-semibold tpx-3 tpy-1 ttext-white ttext-sm">Add to card</button>
+                        <button data-id="{{$item['id']}}" class="add_to_cart focus:tbg-blue-600 waves-effect waves-light hover:ttext-gray-300 tborder tborder-gray-400 tfont-semibold tpx-3 tpy-1 ttext-white ttext-sm">Add to card</button>
                     </div>
                 </div>
             </div>

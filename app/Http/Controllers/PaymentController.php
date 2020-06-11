@@ -8,8 +8,11 @@ use App\Transaction;
 use App\TransactionPayment;
 use App\TransactionProducts;
 use App\Product;
+use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Transactions\OrderSuccess;
 
 class PaymentController extends Controller
 {
@@ -75,7 +78,7 @@ class PaymentController extends Controller
     }
  
     public function payment_error(){
-        return 'User is canceled the payment.';
+        return redirect('/');
     }
 
     public function save_products(Request $request){ // return total amount to charge
@@ -85,7 +88,7 @@ class PaymentController extends Controller
         $subtotal = 0;
         $total = 0;
         $transaction = Transaction::create([
-            'user_id' => Auth::check()? Auth::check() : 0,
+            'user_id' => Auth::check()? Auth::id() : 0,
             "first_name" => $request->first_name,
             "last_name" => $request->last_name, 
             "phone_number" => $request->phone_number,  
@@ -96,7 +99,13 @@ class PaymentController extends Controller
             "province" => $request->province,  
             "zip_code" => $request->zip_code,  
         ]);
-        $transaction->update(['order_number' => 'SP'.now()->format('ymd').$transaction['id']]);// Add transaction id
+        // dd($request->payment_method);
+
+
+        $transaction->update([
+            'order_number' => $this->order_number($request->payment_method ,$transaction['id'])
+        ]);// Add transaction id
+
         foreach ($items_decode as $item) {
             $products = Product::where('id', $item->id)->get()->toArray();
 
@@ -125,11 +134,18 @@ class PaymentController extends Controller
         $markdown['currency'] = "PHP";
         $markdown['payment_status'] = 'completed';// set payment status and update to completed when user paid the amount
         $transaction_payment = TransactionPayment::create($markdown);
-        $order_number = $transaction_payment->transaction()->first('order_number')['order_number'];
+
+        $transaction = Transaction::with([
+            "payments:id,transaction_id,shipping_fee,subtotal,total",
+            "products",
+            "products.product:id,title,price",
+        ])->find($transaction_payment->id)->toArray();
+
+        Mail::to($transaction_payment->payer_email)->send(new OrderSuccess($transaction));
 
         return view('pages\front\payment_success', [
-            'order_number' => $order_number,
-            'total_amount' => number_format($markdown['total'], 2)
+            'order_number' => $transaction['order_number'],
+            'total_amount' => number_format($transaction['payments']['total'], 2)
         ]);// redirect to success payment page
     }
 
@@ -144,7 +160,7 @@ class PaymentController extends Controller
                     'returnUrl' => url('paymentsuccess'),
                     'cancelUrl' => url('paymenterror'),
                 ))->send();// send the payload to paypal
-                
+
                 $markdown['payment_id'] = $response->getTransactionReference();
                 $markdown['payment_status'] = 'declined';// set payment status and update to approved when user paid the amount
                 TransactionPayment::create($markdown);
@@ -159,5 +175,13 @@ class PaymentController extends Controller
                 return $e->getMessage();
             }
         }
+    }
+
+    public function order_number($payment_method, $transaction_id){
+        $payment_method_code = [
+            "cod" => "C",
+            "paypal" => "P",
+        ];
+        return "SP{$payment_method_code[$payment_method]}".now()->format('ymd').$transaction_id;
     }
 }

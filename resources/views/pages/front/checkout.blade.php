@@ -65,9 +65,9 @@
                                                             </a>
                                                         </div>
                                                     </td>
-                                                    <td class="thidden sm:ttable-cell tpy-0">₱{{ $item['price'] }}</td>
-                                                    <td class="thidden sm:ttable-cell tpy-0">{{ $item['qty'] }}</td>
-                                                    <td class="thidden sm:ttable-cell tpy-0">₱{{ $item['subtotal'] }}</td>
+                                                    <td class="thidden sm:ttable-cell tpy-0 ttext-center">₱{{ $item['price'] }}</td>
+                                                    <td class="thidden sm:ttable-cell tpy-0 ttext-center">{{ $item['qty'] }}</td>
+                                                    <td class="thidden sm:ttable-cell tpy-0 ttext-center">₱{{ $item['subtotal'] }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -122,17 +122,17 @@
                                             <label for="phone_number">Phone number</label>
                                         </div><!-- Phone number -->
                                         <div class="input-field col s6">
-                                            <input id="email" type="email" name="email">
+                                            <input id="email" type="email" name="email" required>
                                             <label for="email">Email</label>
                                         </div><!-- Last Name -->
                                     </div><!-- EMAIL AND PHONE NUMBER -->
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <textarea id="address" name="address" class="materialize-textarea" ></textarea>
+                                            <textarea id="address" name="address" class="materialize-textarea" required></textarea>
                                             <label for="address">Address</label>
                                         </div><!-- Address -->
                                         <div class="input-field col s12">
-                                            <textarea id="barangay" name="barangay" class="materialize-textarea" ></textarea>
+                                            <textarea id="barangay" name="barangay" class="materialize-textarea" required></textarea>
                                             <label for="barangay">Barangay / District</label>
                                         </div><!-- Barangay / District -->
                                         <div class="input-field col s6">
@@ -166,40 +166,29 @@
                                 <i class="fas fa-credit-card fa-2x ttext-primary tml-auto"></i>
                             </div>
                             <div class="collapsible-body tpy-5 tbg-white">
-                                <div class="tflex titems-center tjustify-between">
+                                {{-- <div class="tflex titems-center tjustify-between"> --}}
                                     <div class="tflex titems-center">
-                                        <img src="{{ asset('images/payments/cash_on_delivery.png') }}" class="tmr-6" style="height:45px" alt="">
                                         <label>
-                                            <input type="checkbox" checked="checked" disabled/>
+                                            <input type="checkbox" checked id="cod"/>
                                             <span>Cash on Delivery</span>
                                         </label>
+                                        <img src="{{ asset('images/payments/cash_on_delivery.png') }}" class="tml-6" style="height:45px" alt="">
                                     </div><!-- Cash on Delivery-->
-    
+
+                                    {{-- <div class="tflex titems-center tmt-8">
+                                        <label>
+                                            <input type="checkbox" id="credit_debit"/>
+                                            <span>Credit/Debit Card</span>
+                                        </label>
+                                        <img src="{{ asset('images/payments/credit_debit.png') }}" class="tml-5" style="height:45px" alt="paypal.png">
+                                    </div><!-- PAYPAL --> --}}
+                                    
+                                {{-- </div> --}}
+                                <div class="tflex tjustify-end tmt-8">
                                     <button onclick="checkout();" class="thidden sm:tblock tbg-primary focus:tbg-primary hover:tbg-primary waves-effect waves-light tpy-3 tpx-8 trounded-b trounded-t ttext-white">
                                         Place Order
                                     </button>
                                 </div>
-
-                                @if (1==0)
-                                    <!-- REMOVE THIS IF, if to display the other payment method -->
-
-                                    <div class="tflex titems-center tmt-5">
-                                        <img src="{{ asset('images/payments/credit_debit.png') }}" class="tmr-6" style="height:45px" alt="">
-                                        <label>
-                                            <input type="checkbox" checked="checked" disabled/>
-                                            <span>Credit/Debit Card</span>
-                                        </label>
-                                    </div><!-- Credit/Debit Card -->
-
-                                    <div class="tflex titems-center tmt-5">
-                                        <img src="{{ asset('images/payments/paypal.png') }}" class="t-ml-6" style="height:45px" alt="paypal.png">
-                                        <label>
-                                            <input type="checkbox" checked="checked" disabled/>
-                                            <span>Paypal</span>
-                                        </label>
-                                    </div><!-- PAYPAL -->
-                                @endif
-                                
                             </div>
                         </li><!-- Payment Method -->
                     </ul>
@@ -274,6 +263,21 @@
             }
 
             $('#submit').trigger('click');
+        }
+
+        $('#cod').change(function () {
+            $("#credit_debit").prop('checked', false);
+            change_payment_method('cod');
+        });
+
+        $('#credit_debit').change(function () {
+            $("#cod").prop('checked', false);
+            change_payment_method('paypal');
+        });
+
+        function change_payment_method(payment_method) {
+            let pm = $('input[name="payment_method"]').val(payment_method);
+            console.log(pm.val());
         }
 
     </script>
