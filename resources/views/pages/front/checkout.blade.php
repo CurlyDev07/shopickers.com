@@ -129,7 +129,7 @@
                                     </div><!-- FIRST AND LAST NAME -->
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input id="phone_number" type="text" name="phone_number" required
+                                            <input id="phone_number" type="text" name="phone_number" onkeypress="allnumeric(this)" required
                                                 @if (auth()->check())
                                                     value="{{ auth()->user()->phone_number }}"
                                                 @endif

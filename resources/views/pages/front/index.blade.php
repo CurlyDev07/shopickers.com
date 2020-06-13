@@ -107,13 +107,9 @@
             <div class="owl-stage-outer">
                 <div class="owl-stage">
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-1.jpg') }}" alt="banner1" style="height: 312px;"><!-- Remove Height if image is already 312px -->
-                    </div>
-                    <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-2.jpg') }}" alt="banner2" style="height: 312px;"><!-- Remove Height if image is already 312px -->
-                    </div>
-                    <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-3.jpg') }}"  alt="banner2" style="height: 312px;"><!-- Remove Height if image is already 312px -->
+                        <div class="md:flex-shrink-0">
+                            <img src="{{ asset('images/banners/banner-sm-1.jpg') }}" class="md:w-56"  alt="banner1">
+                        </div>
                     </div>
                 </div>
             </div>

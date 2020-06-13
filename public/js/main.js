@@ -1,7 +1,7 @@
 let main_banner = $('.main-banner.owl-carousel').owlCarousel({
     items:1,
     margin:10,
-    loop:true,
+    loop:false,
     // autoplay: true,
     responsiveClass:true,
     responsive:{
