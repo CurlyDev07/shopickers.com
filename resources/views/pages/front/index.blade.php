@@ -87,13 +87,16 @@
             <div class="owl-stage-outer">
                 <div class="owl-stage">
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner1.jpg') }}" alt="banner" class="tw-16 md:tw-32 lg:tw-48">
+                        <img src="{{ asset('images/banners/banner1.jpg') }}" alt="banner1" class="tw-16 md:tw-32 lg:tw-48">
                     </div>
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner2.jpg') }}" alt="banner" class="tw-16 md:tw-32 lg:tw-48">
+                        <img src="{{ asset('images/banners/banner2.jpg') }}" alt="banner2" class="tw-16 md:tw-32 lg:tw-48">
                     </div>
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner3.jpg') }}" alt="banner" class="tw-16 md:tw-32 lg:tw-48">
+                        <img src="{{ asset('images/banners/banner3.jpg') }}" alt="banner3" class="tw-16 md:tw-32 lg:tw-48">
+                    </div>
+                    <div class="owl-item">
+                        <img src="{{ asset('images/banners/banner4.jpg') }}" alt="banner4" class="tw-16 md:tw-32 lg:tw-48">
                     </div>
                 </div>
             </div>
@@ -104,13 +107,13 @@
             <div class="owl-stage-outer">
                 <div class="owl-stage">
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-1.jpg') }}" alt="banner" style="height: 312px;"><!-- Remove Height if image is already 312px -->
+                        <img src="{{ asset('images/banners/banner-sm-1.jpg') }}" alt="banner1" style="height: 312px;"><!-- Remove Height if image is already 312px -->
                     </div>
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-2.jpg') }}" alt="banner" style="height: 312px;"><!-- Remove Height if image is already 312px -->
+                        <img src="{{ asset('images/banners/banner-sm-2.jpg') }}" alt="banner2" style="height: 312px;"><!-- Remove Height if image is already 312px -->
                     </div>
                     <div class="owl-item">
-                        <img src="{{ asset('images/banners/banner-sm-3.jpg') }}"  alt="banner" style="height: 312px;"><!-- Remove Height if image is already 312px -->
+                        <img src="{{ asset('images/banners/banner-sm-3.jpg') }}"  alt="banner2" style="height: 312px;"><!-- Remove Height if image is already 312px -->
                     </div>
                 </div>
             </div>
@@ -160,7 +163,7 @@
                         <span class="tfont-medium ttext-4xl">$2499</span>
                         <span class="tline-through tfont-medium" style="color: #afadad">$2750</span>
                     </div>
-                    <a href="" class="tbg-purple-800 tfont-medium tpx-6 tpy-3 trounded tml-5">Shop Now</a>
+                    <a href="/products" class="tbg-purple-800 tfont-medium tpx-6 tpy-3 trounded tml-5">Shop Now</a>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@
         <div class="tcontainer">
             <h1 class="tfont-bold ttext-lg ttext-xl">ABOUT US</h1>
             <h2 class="tfont-bold ttext-4xl ttext-xl tmt-1">OUR COMPANY</h2>
-            <button class="tbg-black tmt-6 tpx-5 tpy-3 trounded ttext-white focus:tbg-black waves-light">CONCTACT</button>
+            {{-- <button class="tbg-black tmt-6 tpx-5 tpy-3 trounded ttext-white focus:tbg-black waves-light">CONCTACT</button> --}}
         </div>
     </div>
 @endsection

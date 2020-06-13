@@ -3,8 +3,6 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('input_counter/style.css') }}">
-    <style>
-    </style>
 @endsection
 @section('content')
 

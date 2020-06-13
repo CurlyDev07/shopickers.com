@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="tcontainer tpy-12">
+    <div class="tmx-0 tpx-0 md:tmx-10 md:tpx-8 sm:tpt-16 sm:tpb-8 md:tpy-8">
         <div class="tflex tjustify-center">
             <div class=" md:tw-3/5 lg:tw-2/5 tbg-white tp-8 trounded">
                 <div class="ttext-center">

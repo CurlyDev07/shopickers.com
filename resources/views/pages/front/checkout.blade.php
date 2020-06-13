@@ -256,7 +256,7 @@
     <div class="tblock sm:thidden tbg-white tbottom-0 tfixed tflex titems-center tw-full" style="z-index: 999">
         <div class="ttext-center tw-1/2">
             <div class="tfont-bold ttext-xs" style="color:rgba(0,0,0,.65);">Total Payment</div>
-            <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">₱222</div>
+            <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">₱{{ $total }}</div>
         </div>
         <button onclick="checkout();" class="focus:tbg-primary tbg-primary tfont-medium tpy-4 ttext-white tw-1/2 waves-effect waves-light">Place Order</button>
     </div>
@@ -317,6 +317,6 @@
 
 
         $('#mobile-nav').removeClass("tz-40");// remove bottom nav
-
+        $('#body').removeClass("tsticky");// remove sticky nav
     </script>
 @endsection

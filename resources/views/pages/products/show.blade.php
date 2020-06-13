@@ -27,7 +27,7 @@
 
     <div class="tmx-0 tpx-0 md:tmx-10 md:tpx-8 sm:tpt-16 sm:tpb-8 md:tpy-8">
         <div class="tflex tflex-wrap tw-full">
-            <div class="tw-full sm:tw-2/5 tpb-3">
+            <div class="tw-full sm:tw-2/5 tpb-3 tbg-white">
                 <div class="owl-main owl-carousel owl-theme">
                     @foreach ($product['images'] as $item)
                    
@@ -100,7 +100,7 @@
                             <div class="ttext-sm ttext-gray-500 tml-4 tmt-2 sm:mt-0">Only 8 items left</div>
                         </div>
                     </div>
-                    <div class="tpy-5 sm:tpy-8 tflex titems-center tjustify-around sm:tjustify-between">
+                    <div class="tpy-5 sm:tpy-8 thidden sm:tflex titems-center tjustify-around sm:tjustify-between">
                         <div class="thidden sm:tflex ">
                             <div class="tborder tpx-5 tpy-3 trounded tmr-4">
                                 <a href="{{url()->current()}}" target="_blank" onclick="fb_share()" class="d-flex flex-column text-light mx-2" style="color: red!important;">
@@ -119,8 +119,9 @@
                             @endauth
 
                         </div>
-                        <a data-id="{{ $product['id'] }}" class="add_to_cart focus:tbg-primary tbg-blue-100 tborder tborder-primary tpy-3 trounded-b trounded-t ttext-primary ttext-center tw-1/3 waves-effect waves-light">Add To Cart</a>
-                        <a id="checkout" data-id="{{ $product['id'] }}" class="tborder tborder-primary focus:tbg-primary hover:tbg-primary tbg-primary tpy-3 trounded-b trounded-t ttext-center ttext-white tw-1/3 waves-effect waves-light">Buy Now</a>
+                        <a data-id="{{ $product['id'] }}" class="add_to_cart sm:tblock focus:tbg-primary tbg-blue-100 tborder tborder-primary tpy-3 trounded-b trounded-t ttext-primary ttext-center tw-1/3 waves-effect waves-light">Add To Cart</a>
+                        <a data-id="{{ $product['id'] }}" class="checkout tborder tborder-primary focus:tbg-primary hover:tbg-primary tbg-primary tpy-3 trounded-b trounded-t ttext-center ttext-white tw-1/3 waves-effect waves-light">Buy Now</a>
+
                     </div>
                 </div>    
             </div><!-- DETAILS -->
@@ -242,6 +243,15 @@
         </div><!-- TABS -->
     </div>
 
+    <!-- FIXED BOTTOM NAVIGATION ON MOBILE DEVICES -->
+    <div class="sm:thidden tbg-white tblock tbottom-0 tfixed tflex titems-center tw-full tz-40">
+        <button data-id="{{ $product['id'] }}" class="add_to_cart focus:tbg-primary focus:ttext-white tw-1/2 tcursor-pointer tpy-4 ttext-center ttext-primary waves-effect waves-light fa-cart-plus fas" style="font-size: 21px;">
+            {{-- <i class="" ></i> --}}
+        </button>
+        {{-- <span data-id="{{ $product['id'] }}" class="add_to_cart tw-1/2 fa-cart-plus fas tcursor-pointer tpy-4 ttext-center ttext-primary waves-effect waves-light" style="font-size: 21px;"></span> --}}
+        <button data-id="{{ $product['id'] }}" class="checkout focus:tbg-primary tbg-primary tfont-medium tpy-4 ttext-white tw-1/2 waves-effect waves-light">Checkout</button>
+    </div>
+
 @endsection
 
 @section('js')
@@ -308,7 +318,7 @@
             //     window.location.href = "checkout/"+items;
         // });
 
-        $('#checkout').click(function () {
+        $('.checkout').click(function () {
             let id = $(this).data('id');
             $.get( "cart/add/" + id, function( data ) {
                 window.location.href = "/cart";
@@ -333,6 +343,10 @@
                 })
             });
         });
+
+        $('#mobile-nav').removeClass("tz-40");// remove bottom nav
+        $('#body').removeClass("tsticky");// remove sticky nav
+
 
     </script>
 @endsection

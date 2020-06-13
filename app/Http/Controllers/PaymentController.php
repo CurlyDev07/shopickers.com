@@ -88,12 +88,13 @@ class PaymentController extends Controller
         return redirect('/');
     }
 
-    public function save_products(Request $request){ // return total amount to charge
+    public function save_products($request){ // return total amount to charge
         $items_decode = json_decode(base64_decode($request->base64_item_details));
+
         $items = [];
         $shipping = 150;
         $subtotal = 0;
-        $total = 0;
+
         $transaction = Transaction::create([
             'user_id' => Auth::check()? Auth::id() : 0,
             "first_name" => $request->first_name,
@@ -106,8 +107,6 @@ class PaymentController extends Controller
             "province" => $request->province,  
             "zip_code" => $request->zip_code,  
         ]);
-        // dd($request->payment_method);
-
 
         $transaction->update([
             'order_number' => $this->order_number($request->payment_method ,$transaction['id'])
@@ -147,7 +146,6 @@ class PaymentController extends Controller
             "products",
             "products.product:id,title,price",
         ])->find($transaction_payment->id)->toArray();
-
         Mail::to($transaction_payment->payer_email)->send(new OrderSuccess($transaction));
 
         $seo = [
