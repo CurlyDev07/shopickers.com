@@ -26,7 +26,14 @@ class PaymentController extends Controller
     }
  
     public function index(){
-        return view('payment');
+        $seo = [
+            'title' => "Checkout",
+            'image' => "",
+            'description' => "",
+            'robots' => 'none',
+        ];
+
+        return view('payment', compact('seo'));
     }
  
     public function charge(Request $request) {
@@ -64,7 +71,7 @@ class PaymentController extends Controller
 
                 $order_number = Transaction::where('id', $payment['transaction_id'])->get(['order_number']);// get order number
 
-                return view('pages\front\payment_success', [
+                return view('pages.front.payment_success', [
                     'order_number' => $order_number[0]['order_number'],
                     'total_amount' => number_format($payment['total'], 2)
                 ]);// redirect to success payment page
@@ -143,9 +150,17 @@ class PaymentController extends Controller
 
         Mail::to($transaction_payment->payer_email)->send(new OrderSuccess($transaction));
 
-        return view('pages\front\payment_success', [
+        $seo = [
+            'title' => "Order Success",
+            'image' => "",
+            'description' => "",
+            'robots' => 'none',
+        ];
+            
+        return view('pages.front.payment_success', [
             'order_number' => $transaction['order_number'],
-            'total_amount' => number_format($transaction['payments']['total'], 2)
+            'total_amount' => number_format($transaction['payments']['total'], 2),
+            'seo' => $seo
         ]);// redirect to success payment page
     }
 

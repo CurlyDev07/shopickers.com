@@ -13,14 +13,25 @@ class CartCon extends Controller
         $product_ids = json_decode($request->cookie('product_ids')); // get all product ids from cart
         $products = [];
         if ($product_ids) {
-            $products = Product::whereIn('id', $product_ids)
-            ->with(['images' => function($query){
-                    $query->where('primary', 1);
-                }]
-            )->get()->toArray();
+            $reverse_ids = array_reverse($product_ids, true);
+            
+            foreach ($reverse_ids as $id) {
+                $products[] = Product::where('id', $id)
+                ->with(['images' => function($query){
+                        $query->where('primary', 1);
+                    }]
+                )->first()->toArray();
+            }
         }
 
-        return view('pages.front.cart', compact('products'));
+        $seo = [
+            'title' => "Cart",
+            'image' => "",
+            'description' => "",
+            'robots' => 'none',
+        ];
+
+        return view('pages.front.cart', compact('products', 'seo'));
     }
 
     public function add($id, Request $request){

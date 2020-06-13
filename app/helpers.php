@@ -351,7 +351,7 @@ function number_spinner_js($max = ''){
 }// ECHO THIS SCRIPT TO FOOTER
 
 function currency($value){
-    return '$'.$value;
+    return '₱'.$value;
 }
 
 function get_variations($arrays) {
@@ -391,4 +391,39 @@ function rm_cloudfront($img){
 
 function carbon($data){
     return Carbon::parse($data);
+}
+
+
+// SEO HELPERS
+
+function seo_title($title=""){
+    if ($title == "") {
+        return "Online Shopping in the Phillipines with Great prices" ." - ".site_name();
+    }
+    return $title." - ".site_name();
+}
+
+function seo_image($image=""){
+    if ($image == "") {
+        return url("images/logo/main.png");
+    }
+    return $image;
+}
+
+function seo_description($description=""){
+    if ($description == "") {
+        return "Widest Range of Mobile &amp;amp; Tablets, Home Appliances, Tv, Audio, Home &amp;amp; Living At Shopickers | Best Prices ? Fast DELIVERY | Cash on Delivery ? Effortless Shopping ? Best Customer Care!";
+    }
+    return $description;
+}
+
+function seo_robots($robots=""){
+    if ($robots == "") {
+        return "none";
+    }
+    return $robots;
+}
+
+function site_name(){
+    return "shopickers.com";
 }

@@ -31,7 +31,14 @@ class UserCon extends Controller
             }
         ])->get()->toArray();
 
-        return view('pages.user.dashboard', compact('orders', 'wishlists'));
+        $seo = [
+            'title' => "",
+            'image' => "",
+            'description' => "",
+            'robots' => 'none',
+        ];
+
+        return view('pages.user.dashboard', compact('orders', 'wishlists', 'seo'));
     }
 
     public function profile_update(Request $request){
@@ -50,6 +57,13 @@ class UserCon extends Controller
         ])
         ->get()->toArray()[0];
 
-        return view('pages.user.order_view', compact('orders'));
+        $seo = [
+            'title' => "",
+            'image' => "",
+            'description' => "",
+            'robots' => 'none',
+        ];
+
+        return view('pages.user.order_view', compact('orders', 'seo'));
     }
 }

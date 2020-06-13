@@ -41,7 +41,13 @@ class RegisterController extends Controller
     }
 
     public function showRegistrationForm(){
-        return view('pages.auth.signup');
+        $seo = [
+            'title' => "Register",
+            'image' => "",
+            'description' => "Register now with Shopickers PH and shop your desire product with great prices.",
+            'robots' => 'index, follow',
+        ];
+        return view('pages.auth.signup', compact('seo'));
     }
 
     /**
@@ -55,9 +61,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'contact_number' => ['required'],
+            'phone_number' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
         ]);
     }
 
@@ -72,7 +78,7 @@ class RegisterController extends Controller
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'contact_number' => $data['contact_number'],
+            'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

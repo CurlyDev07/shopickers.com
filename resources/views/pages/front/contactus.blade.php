@@ -46,8 +46,8 @@
                         <i class="fas fa-mobile-alt ttext-white fa-lg"></i>
                     </div>
                     <div class="tflex tflex-col ttext-gray-600">
-                      <span>0201 203 2032</span>
-                      <span>0201 203 2032</span>
+                      <span>(02) 913 1111</span>
+                      <span>(02) 913 2145</span>
                     </div>
                 </div>
                 <div class="tflex titems-center tmb-4">
@@ -55,8 +55,8 @@
                         <i class="fas fa-phone ttext-white fa-lg"></i>
                     </div>
                     <div class="tflex tflex-col ttext-gray-600">
-                      <span>0201 203 2032</span>
-                      <span>0201 203 2032</span>
+                      <span>0927 898 6797</span>
+                      <span>0955 009 0156</span>
                     </div>
                 </div>
                 <div class="tflex titems-center tmb-4">
@@ -64,8 +64,8 @@
                         <i class="fas fa-at ttext-white fa-lg"></i>
                     </div>
                     <div class="tflex tflex-col ttext-gray-600">
-                        <span>shopshippers@gmail.com</span>
-                        <span>support@shopshippers.com</span>
+                        <span>admin@shopickers.com</span>
+                        <span>shopickers007@gmail.com</span>
                     </div>
                 </div>
                 <div class="tflex titems-center tmb-4">
@@ -73,8 +73,8 @@
                         <i class="fab fa-facebook ttext-white fa-lg"></i>
                     </div>
                     <div class="tflex tflex-col">
-                        <a href="https://web.facebook.com/shopshippers/" class="hover:tunderline ttext-primary">https://facebook.com/shopshippers</a>
-                        <a href="https://web.facebook.com/shopshippers/" class="hover:tunderline ttext-primary">@shopshippers</a>
+                        <a href="https://facebook.com/shopickers/" class="hover:tunderline ttext-primary">https://facebook.com/shopickers/</a>
+                        <a href="https://facebook.com/shopickers/" class="hover:tunderline ttext-primary">@shopickers</a>
                     </div>
                 </div>
             </div><!-- RIGHT -->

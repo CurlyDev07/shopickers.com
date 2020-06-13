@@ -5,29 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  --}}
 
-    <title>Shopicker</title>
-    
+    {{-- SEO --}}
+    <title>{{ seo_title($seo['title']) }}</title>
+    <meta property="og:title" content="{{ seo_title($seo['title']) }}" name="title" >
+    <meta property="og:site_name " content="shopickers.com" name="site_name">
+    <meta property="og:description" content="{{ seo_description($seo['description']) }}" name="description">
+    <meta property="og:url" content="{{ url()->current() }}" name="url">
+    <meta property="og:type" content="RAM | SSD | GPU | PC | CASE | POWER SUPPLY | MOUSE | KEYBOARD | Shopickers PH " name="type">
+    <meta property="og:image" content="{{ seo_image($seo['image']) }}" name="image">
+    <meta name="robots" content="{{seo_robots($seo['robots'])}}">
+    <link href="{{ url()->current() }}" rel="canonical">
+    <link rel="alternate" href="{{ url()->current() }}" hreflang="en-us" />
+
+    {{-- STYLE SHEETS --}}
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    @yield('css')
-    @yield('head_js')
-
-
-    <title>Shopickers | Computer component | Ram | Hard Drive | SSD | Mouse | keyboard | GPU | High Quality Products </title>
-    <meta name="title" property="og:title" content="Shopickers | Computer component | Ram | Hard Drive | SSD | Mouse | keyboard | GPU | High Quality Products">
-    <meta property="og:site_name " content="Shopickers | Computer component | Ram | Hard Drive | SSD | Mouse | keyboard | GPU | High Quality Products">
-    <meta name="description" property="og:description" content="Your trusted Computer parts provider in the Philippines, Shopicker PH.  Explore great products and find the best prices.">
-    <meta property="og:url" content="https://thawing-forest-70991.herokuapp.com/">
-    <meta property="og:type" content="RAM | SSD | GPU | PC CASE| Shopickers PH ">
-    <meta property="og:image" content="http://thawing-forest-70991.herokuapp.com/images\logo\main.png">
-
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168677509-1"></script>
@@ -56,8 +55,11 @@
         src="https://www.facebook.com/tr?id=1393765810823713&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Facebook Pixel Code -->
+
+    @yield('css')
+    @yield('head_js')
 </head>
-<body>
+<body class="trelative">
 
     
     

@@ -30,7 +30,7 @@
                                     <table class="">
                                         <thead>
                                             <tr>
-                                                <th class="thidden sm:ttable-cell ttext-left ttext-title tpt-0">Item</th>
+                                                <th class="thidden sm:ttable-cell ttext-left ttext-title tpt-0">Item(s)</th>
                                                 <th class="thidden sm:ttable-cell ttext-center ttext-title tpt-0">Price</th>
                                                 <th class="thidden sm:ttable-cell ttext-center ttext-title tpt-0">Quantity</th>
                                                 <th class="thidden sm:ttable-cell ttext-center ttext-title tpt-0">Subtotal</th>
@@ -40,7 +40,7 @@
                                         <tbody>
                                             @foreach ($items as $item)
                                                 <tr>
-                                                    <td class="tpy-0">
+                                                    <td class="tpy-0 trelative">
                                                         <div class="tflex-col sm:tflex-row tflex titems-center">
                                                             <img src="{{ $item['image'] }}" class="thidden sm:tblock sm:th-20 sm:tw-20 th-16 tw-16">
                                                             <div class="tblock sm:thidden tw-full tflex tjustify-center titems-center">
@@ -64,6 +64,9 @@
                                                                 {{ $item['title'] }}
                                                             </a>
                                                         </div>
+                                                        <a href="/cart" class="tabsolute tcursor-pointer tflex tmr-2 tright-0 ttext-blue-500" style="line-height: 16px;top: 20%;">
+                                                            <i class="far fa-edit"></i>
+                                                        </a>
                                                     </td>
                                                     <td class="thidden sm:ttable-cell tpy-0 ttext-center">₱{{ $item['price'] }}</td>
                                                     <td class="thidden sm:ttable-cell tpy-0 ttext-center">{{ $item['qty'] }}</td>
@@ -108,41 +111,65 @@
 
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input id="first_name" name="first_name" type="text" required>
+                                            <input id="first_name" name="first_name" type="text" required
+                                                @if (auth()->check())
+                                                    value="{{ auth()->user()->first_name }}"
+                                                @endif
+                                            >
                                             <label for="first_name">First Name</label>
                                         </div><!-- First Name -->
                                         <div class="input-field col s6">
-                                            <input id="last_name" type="text" name="last_name" required>
+                                            <input id="last_name" type="text" name="last_name" required
+                                                @if (auth()->check())
+                                                    value="{{ auth()->user()->last_name }}"
+                                                @endif
+                                            >
                                             <label for="last_name">Last Name</label>
                                         </div><!-- Last Name -->
                                     </div><!-- FIRST AND LAST NAME -->
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input id="phone_number" type="text" name="phone_number" required>
+                                            <input id="phone_number" type="text" name="phone_number" required
+                                                @if (auth()->check())
+                                                    value="{{ auth()->user()->phone_number }}"
+                                                @endif
+                                            >
                                             <label for="phone_number">Phone number</label>
                                         </div><!-- Phone number -->
                                         <div class="input-field col s6">
-                                            <input id="email" type="email" name="email" required>
+                                            <input id="email" type="email" name="email" required
+                                                @if (auth()->check())
+                                                    value="{{ auth()->user()->email }}"
+                                                @endif
+                                            >
                                             <label for="email">Email</label>
                                         </div><!-- Last Name -->
                                     </div><!-- EMAIL AND PHONE NUMBER -->
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <textarea id="address" name="address" class="materialize-textarea" required></textarea>
+                                            <textarea id="address" name="address" class="materialize-textarea" required>@if(auth()->check()){{ auth()->user()->address }}@endif</textarea>
                                             <label for="address">Address</label>
                                         </div><!-- Address -->
                                         <div class="input-field col s12">
-                                            <textarea id="barangay" name="barangay" class="materialize-textarea" required></textarea>
+                                            <textarea id="barangay" name="barangay" class="materialize-textarea" required>@if(auth()->check()){{ auth()->user()->barangay }}@endif</textarea>
                                             <label for="barangay">Barangay / District</label>
                                         </div><!-- Barangay / District -->
                                         <div class="input-field col s6">
-                                            <input id="city" type="text" name="city" required>
+                                            <input id="city" type="text" name="city" required
+                                                @if (auth()->check())
+                                                    value="{{ auth()->user()->city }}"
+                                                @endif
+                                            >
                                             <label for="city">City / Municipality</label>
                                         </div><!-- CITY -->
                                         <div class="input-field col s6">
-                                            <input id="province" type="text" name="province" required>
+                                            <input id="province" type="text" name="province" required
+                                                @if (auth()->check())
+                                                    value="{{ auth()->user()->province }}"
+                                                @endif
+                                            >
                                             <label for="province">Province</label>
-                                        </div><!-- State -->
+                                        </div><!-- province -->
                                         @if (1==0)
                                             <!-- TEMPORARILY HIDE BECAUSE WE ARE GOING TO SELL IN PH -->
                                             <!--       MANY PH PEOPLE DONT KNOW THIER ZIP CODE       -->
@@ -169,7 +196,7 @@
                                 {{-- <div class="tflex titems-center tjustify-between"> --}}
                                     <div class="tflex titems-center">
                                         <label>
-                                            <input type="checkbox" checked id="cod"/>
+                                            <input type="checkbox" checked id="cod" disabled/>
                                             <span>Cash on Delivery</span>
                                         </label>
                                         <img src="{{ asset('images/payments/cash_on_delivery.png') }}" class="tml-6" style="height:45px" alt="">
@@ -256,12 +283,20 @@
         });
 
         function checkout() {
-            if (!$('form')[0].checkValidity()) {
-                instances[0].open(1);// Open shipping information
-                $('#submit').trigger('click');
-                return;
-            }
+            var form = true;
 
+            $('form').serializeArray().forEach(field => {
+                if (!field.value) {
+                    form = false;
+                }// if form field has no value return false
+            });
+
+            if (!form) {
+                instances[0].open(1);// Open shipping information
+                return $('#submit').trigger('click');
+            }// if form error | prevent submit form
+
+            loader(true);    
             $('#submit').trigger('click');
         }
 
@@ -279,6 +314,9 @@
             let pm = $('input[name="payment_method"]').val(payment_method);
             console.log(pm.val());
         }
+
+
+        $('#mobile-nav').removeClass("tz-40");// remove bottom nav
 
     </script>
 @endsection

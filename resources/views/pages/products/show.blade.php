@@ -12,26 +12,44 @@
         .owl-dots{
             display: none!important;
         }
+
+        ol, ul {
+            list-style: inside;
+            margin: 0;
+            padding: 0;
+        }
+
+        
     </style>
 @endsection
 
 @section('content')
 
     <div class="tmx-0 tpx-0 md:tmx-10 md:tpx-8 sm:tpt-16 sm:tpb-8 md:tpy-8">
-        <div class="tflex tflex-wrap tw-full tbg-white md:tp-5">
-            <div class="tw-full sm:tw-2/5">
+        <div class="tflex tflex-wrap tw-full">
+            <div class="tw-full sm:tw-2/5 tpb-3">
                 <div class="owl-main owl-carousel owl-theme">
                     @foreach ($product['images'] as $item)
-                        <div class="item">
-                            <img src="{{ $item['img'] }}" data-hash="{{ $item['id'] }}" class="tblock tmx-auto" style="width: 396px;height: 292px;">
+                   
+                        {{-- <div class="img-thumb-lg" style="background-image: url('{{$item['img']}}');" data-hash="{{ $item['id'] }}"></div> --}}
+                        <div class="item"  data-hash="{{ $item['id'] }}">
+                            <div class="md:flex-shrink-0">
+                                <img class="rounded-lg md:w-56" src="{{$item['img']}}" alt="shopickers.com {{ ($product['title']) }}">
+                            </div>
                         </div>
                     @endforeach
                 </div><!-- MAIN IMAGE -->
                 <div class="owl-small owl-carousel owl-theme tmt-3">
                     @foreach ($product['images'] as $item)
-                        <a class="item" href="#{{ $item['id'] }}">
-                            <img src="{{ $item['img'] }}" data-hash="{{ $item['id'] }}" class="tinline" style="height: 100px;
-                            width: 100%;">
+                        <a class="item" href="#{{ $item['id'] }}" data-hash="{{ $item['id'] }}">
+                            <div style="
+                                width: 100%;
+                                height: 50px;
+                                background-image: url('{{$item['img']}}');
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                background-position: center;
+                            "></div>
                         </a>
                     @endforeach
                 </div><!-- SMALL IMAGE -->
@@ -50,9 +68,9 @@
                     </li>
                 </ul><!-- SOCIAL MEDIA ICONS --> --}}
             </div><!-- IMAGES -->
-            <div class="tw-full sm:tw-3/5">
-                <div class="md:tpl-10">
-                    <h2 class="tpt-3 sm:tpt-0 tpx-4 sm:tpx-0 tfont-medium tleading-tight ttext-gray-800 ttext-xl">{{ $product['title'] }}</h2>
+            <div class="tw-full sm:tw-3/5 ">
+                <div class="sm:tpx-5 md:tml-8 tbg-white th-full">
+                    <h2 class="tpt-4 sm:tpt-4 tpx-4 sm:tpx-0 tfont-medium tleading-tight ttext-gray-800 ttext-xl">{{ $product['title'] }}</h2>
                     <div class="tpx-4 sm:tpx-0 tflex tjustify-end tpy-3 ttext-md">
                         <div class="tmr-5 ttext-primary">
                             <i class="fas fa-star"></i>
@@ -66,10 +84,10 @@
                     </div><!-- SHORT DESCRIPTION -->
                     <div class="tpx-4 sm:tpx-0  tborder-b  tmt-2 tpb-5">
                         <div class="tflex titems-center tjustify-center sm:tjustify-start sm:titems-start sm:tflex-col tmt-4">
-                            <span class="tfont-extrabold ttext-2xl ttext-primary tmr-4" style="font-family: arial;" id="price" data-price="500">{{ (currency($product['price'])) }}</span>
+                            <span class="tfont-extrabold ttext-2xl ttext-primary tmr-4" style="font-family: arial;" id="price" data-price="500"><span class="ttext-base tfont-normal tmr-1">₱</span>{{ $product['price'] }}</span>
                             @if ($product['compare_price'] != '')
                                 <div class="">
-                                    <span class="tline-through ttext-gray-500">{{ currency($product['compare_price']) }}</span>
+                                    <span class="tline-through ttext-gray-500"><span class="ttext-base tfont-normal tmr-1">₱</span>{{ $product['compare_price'] }}</span>
                                     <span class="tbg-primary tfont-medium tpx-2 ttext-white">-{{ percentage_discount($product['compare_price'], $product['price']) }}% OFF</span>
                                 </div>
                             @endif
@@ -85,7 +103,9 @@
                     <div class="tpy-5 sm:tpy-8 tflex titems-center tjustify-around sm:tjustify-between">
                         <div class="thidden sm:tflex ">
                             <div class="tborder tpx-5 tpy-3 trounded tmr-4">
-                                <i class="fas fa-share-alt ttext-primary"></i>
+                                <a href="{{url()->current()}}" target="_blank" onclick="fb_share()" class="d-flex flex-column text-light mx-2" style="color: red!important;">
+                                    <i class="fas fa-share-alt ttext-primary"></i>
+                                </a>
                             </div><!-- SHARE BUTTON -->
 
                             @auth
@@ -111,15 +131,15 @@
                 <ul class="tabs">
                     {{-- <li class="tab col s3 tfont-medium"><a href="#description">OVERVIEW</a></li>
                     <li class="tab col s3 tfont-medium"><a href="#ratingsAndReviews">CUSTOMER REVIEWS</a></li> --}}
-                    <li class="tab col s3 tfont-medium"><a href="#specifications" class="active">SPECIFICATIONS</a></li>
+                    <li class="tab col s3 tfont-medium"><a href="#specifications" class="active">Descriptions</a></li>
                 </ul>
             </div><!-- TABS -->
             {{-- <div id="description" class="tbg-white tw-full tpy-5 tpx-4">
                 <div class="tflex tflex-wrap">
-                    <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="">
-                    <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="">
-                    <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="">
-                    <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="">
+                    <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="asd">
+                    <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="asd">
+                    <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="asd">
+                    <img src="http://ae01.alicdn.com/kf/HTB1Sv0NaRr0gK0jSZFnq6zRRXXaM.jpg" alt="asd">
                 </div>
             </div><!-- OVERVIEW -->
             <div id="ratingsAndReviews" class="tbg-white tw-full tpy-5 tpx-4">
@@ -202,8 +222,20 @@
                     </div><!-- CUSTOMER REVIEWS PREVIEW-->
                 @endforeach
             </div><!-- RATINGS & REVIEWS --> --}}
-            <div id="specifications" class="tbg-white tw-full tpy-5 sm:tpx-4">
-                <div class="tcontainer">
+            <div class="sm:tpb-5 sm:tpx-4 tbg-white tpb-12 tw-full">
+                <style>
+                    /*TABLE */
+                    td, th {
+                        padding: 0px 0px 0px 10px;
+                        display: table-cell;
+                        text-align: left;
+                        vertical-align: middle;
+                    }
+                    table, th, td {
+                        border-style: double;
+                    }
+                </style>
+                <div class="tcontainer toverflow-x-auto tpy-5">
                     {!! $product['description'] !!}
                 </div>
             </div><!-- SPECIFICATIONS -->
@@ -254,26 +286,33 @@
         }); // MAIN IMAGE
 
         var small_image = $('.owl-small').owlCarousel({
-            loop:true,
+            loop:false,
             margin:10,
             nav:true,
             items:5
         })
 
 
-        //CHECKOUT 
+        //CHECKOUT OLD - go to checkout
+        // $('#checkout').click(function () {
+            //     let items = [];
+            //     let id = $(this).data('id');
+            //     let qty = $('.number_spinner').val();
+
+            //     items.push({
+            //         id:id,
+            //         qty:qty
+            //     });
+
+            //     items = window.btoa(JSON.stringify(items)); // encode a string
+            //     window.location.href = "checkout/"+items;
+        // });
+
         $('#checkout').click(function () {
-            let items = [];
             let id = $(this).data('id');
-            let qty = $('.number_spinner').val();
-
-            items.push({
-                id:id,
-                qty:qty
+            $.get( "cart/add/" + id, function( data ) {
+                window.location.href = "/cart";
             });
-
-            items = window.btoa(JSON.stringify(items)); // encode a string
-            window.location.href = "checkout/"+items;
         });
 
         //ADD TO WISHLIST
@@ -294,8 +333,6 @@
                 })
             });
         });
-
-      
 
     </script>
 @endsection

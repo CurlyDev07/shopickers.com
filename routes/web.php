@@ -15,21 +15,26 @@ use Illuminate\Support\Facades\Storage;
 
 Auth::routes(['login' => false]);
 
+//Home
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', "HomeController@index");
 
-Route::get('/contact-us', function () {
-    return view('pages.front.contactus');
-})->name('contactus');
+Route::get('/contact-us', "HomeController@contactus")->name('contactus');
 
-Route::get('/about-us', function () {
-    return view('pages.front.aboutus');
-})->name('aboutus');
-
-Route::get('dashboard', 'UserCon@dashboard')->name('dashboard');
-Route::get('dashboard/order/{transaction_id}', 'UserCon@order_view')->name('dashboard.order.view');
-Route::post('dashboard/profile/update', 'UserCon@profile_update')->name('dashboard.profile.update');
+Route::get('/about-us', "HomeController@aboutus")->name('aboutus');
 
 
+Route::group(['middleware' => ['auth']], function () {
+    // User dashboard
+    Route::get('dashboard', 'UserCon@dashboard')->name('dashboard');
+    Route::get('dashboard/order/{transaction_id}', 'UserCon@order_view')->name('dashboard.order.view');
+    Route::post('dashboard/profile/update', 'UserCon@profile_update')->name('dashboard.profile.update');
+
+});// authenticated User's only
+
+
+//Products
 Route::get('{slug}-i.{item_id}', 'ProductsCon@show')->where(['item_id' => '[0-9]+', 'slug' => '.*']);
 Route::get('products', 'ProductsCon@all')->name('products.all');
 
@@ -49,14 +54,9 @@ Route::get('checkout/{base64_item_details}', 'CheckoutCon@index')->name('checkou
 
 
 // PAYMENT 
-Route::get('test', function(){
-    return view('pages\front\payment_success');
-});
-
 Route::get('payment', 'PaymentController@index');
 Route::post('charge', 'PaymentController@charge');
 Route::get('paymentsuccess', 'PaymentController@payment_success');
 Route::get('paymenterror', 'PaymentController@payment_error');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

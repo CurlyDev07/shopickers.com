@@ -138,9 +138,9 @@
                         <img class="product-image th-40 md:th-56 tw-full tobject-cover tmt-2" src="{{ asset($item['images'][0]['img']) }}" alt="NIKE AIR">
                     </div>
                     <div 
-                        class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tpy-2 tbg-primary">
-                        <h1 class="ttext-gray-200 tfont-bold ttext-xl">₱{{$item['price']}}</h1>
-                        <button data-id="{{$item['id']}}" class="add_to_cart focus:tbg-blue-600 waves-effect waves-light hover:ttext-gray-300 tborder tborder-gray-400 tfont-semibold tpx-3 tpy-1 ttext-white ttext-sm">Add to card</button>
+                        class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tbg-primary">
+                        <h1 class="ttext-gray-200 tfont-bold ttext-xl"><span class="ttext-md tfont-normal">₱</span>{{$item['price']}}</h1>
+                        <span data-id="{{$item['id']}}" class="add_to_cart  fa-cart-plus fas tcursor-pointer tp-2 trounded-full ttext-white waves-effect waves-light" style="font-size: 21px;"></span>
                     </div>
                 </div>
             </div>
@@ -187,9 +187,9 @@
                         <img class="product-image th-40 md:th-56 tw-full tobject-cover tmt-2" src="{{ asset($item['images'][0]['img']) }}" alt="NIKE AIR">
                     </div>
                     <div 
-                        class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tpy-2 tbg-primary">
-                        <h1 class="ttext-gray-200 tfont-bold ttext-xl">₱{{$item['price']}}</h1>
-                        <button data-id="{{$item['id']}}" class="add_to_cart focus:tbg-blue-600 waves-effect waves-light hover:ttext-gray-300 tborder tborder-gray-400 tfont-semibold tpx-3 tpy-1 ttext-white ttext-sm">Add to card</button>
+                        class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tbg-primary">
+                        <h1 class="ttext-gray-200 tfont-bold ttext-xl"><span class="ttext-md tfont-normal">₱</span>{{$item['price']}}</h1>
+                        <span data-id="{{$item['id']}}" class="add_to_cart  fa-cart-plus fas tcursor-pointer tp-2 trounded-full ttext-white waves-effect waves-light" style="font-size: 21px;"></span>
                     </div>
                 </div>
             </div>

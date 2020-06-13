@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="tmx-0 tpx-0 md:tmx-10 md:tpx-8 tpb-5">
-        <div class="tflex tjustify-between titems-center tpt-5">
+        <div class="tflex tjustify-between titems-center sm:tpt-5">
             <div class="thidden xl:tblock tw-1/5 ttext-2xl ttext-title tfont-medium">Products</div>
-            <div class="tw-full tmx-1 xl:tw-4/5 tflex titems-center tjustify-between sm:tjustify-center tbg-white tpx-5 tpy-3 trounded">
+            <div class="tw-full sm:tmx-1 xl:tw-4/5 tflex titems-center tjustify-between sm:tjustify-center tbg-white tpx-5 tpy-2 sm:tpy-3 trounded">
 
                 <span class="thidden sm:tblock tmr-3 ttext-gray-600 ttext-sm">Sort by</span>
 
@@ -93,9 +93,9 @@
                                 <img class="product-image th-40 md:th-56 tw-full tobject-cover tmt-2" src="{{ asset($product['images'][0]['img']) }}" alt="NIKE AIR">
                             </div>
                             <div 
-                                class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tpy-2 tbg-primary">
-                                <h1 class="ttext-gray-200 tfont-bold ttext-xl">${{ number_format($product['price'],2) }}</h1>
-                                <button data-id="{{$product['id']}}" class="add_to_cart focus:tbg-blue-600 hover:ttext-gray-300 tborder tborder-gray-400 tfont-semibold tpx-3 tpy-1 ttext-white ttext-sm">Add to card</button>
+                                class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tbg-primary">
+                                <h1 class="ttext-gray-200 tfont-medium ttext-xl"><span class="ttext-md tfont-normal">₱</span> {{ number_format($product['price'],2) }}</h1>
+                                <span data-id="{{$product['id']}}" class="add_to_cart  fa-cart-plus fas tcursor-pointer tp-2 trounded-full ttext-white waves-effect waves-light" style="font-size: 21px;"></span>
                             </div>
                         </div>
                     </div>
@@ -121,9 +121,11 @@
             </div><!-- Right Products -->
         </div>
 
-        <div class="tbg-white tflex tjustify-end tpb-1 tpt-5">
-            {{ $products->onEachSide(1)->appends(request()->except('page'))->links() }}
-        </div>
+        @if ($products->hasMorePages())
+            <div class="tbg-white tflex tjustify-end tpb-1 tpt-5">
+                {{ $products->onEachSide(1)->appends(request()->except('page'))->links() }}
+            </div>
+        @endif
         
 
     </div>

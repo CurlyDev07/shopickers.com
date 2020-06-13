@@ -9,11 +9,11 @@
   <body style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;background-color:#f5f5f5;">
     <div class="email-container" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;font-size:14px;line-height:1.45;font-family:'Arial', 'Helvetica', 'sans-serif', '-apple-system';color:black;padding:30px;width:100%;max-width:800px;margin-left:auto;margin-right:auto;background-color:white;border:1px solid #eeeeee;">
       <div class="logo-container" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;text-align:center;margin-bottom:15px;">
-        <img src="https://www.shopickers.com/images/logo/main.png" alt="Shopickers" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;max-width:146px;height:auto;"/>
+        <img src="{{url("images/logo/main.png")}}" alt="Shopickers" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;max-width:146px;height:auto;"/>
     </div>
       <h1 style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;font-size:24px;font-weight:bold;text-align:center;color:grey;margin-bottom:15px;">Your order is being processed</h1>
       <div class="delivery-truck" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;width:100%;max-width:64px;margin-left:auto;margin-right:auto;margin-bottom:15px;">
-        <img src="https://www.shopickers.com/images/etc/truck.png" alt="Truck" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;max-width:100%;height:auto;"/>
+        <img src="{{url("images/etc/truck.png")}}" alt="Truck" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;max-width:100%;height:auto;"/>
     </div>
       <!-- <div class="view-order" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;text-align:center;margin-bottom:30px;">
         <a href="#" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;display:inline-block;background-color:#2d7bbf;padding:8px 15px;color:white;text-decoration:none;border-radius:3px;">View Order</a>
@@ -54,7 +54,7 @@
                 <td style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;padding:10px;border-bottom:1px solid #eeeeee;color:grey;">
                   <div class="item-image" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;width:100%;max-width:90px;display:inline-block;vertical-align:middle;padding-right:15px;">
                     <a href="{{ item_show_slug($product['product']['title'], $product['product']['id']) }}">
-                      <img src="{{ $product['product']['primary_image'] }}" alt="{{ $product['product']['title'] }}" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;max-width:100%;height:auto;"/>
+                      <img src="{{ url($product['product']['primary_image']) }}" alt="{{ $product['product']['title'] }}" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;max-width:100%;height:auto;"/>
                     </a>
                 </div>
                   <div class="item-name" style="margin:0;padding:0;border:0;outline:none;box-sizing:border-box;display:inline-block;width:75%;vertical-align:middle;">{{ $product['product']['title'] }}</div>

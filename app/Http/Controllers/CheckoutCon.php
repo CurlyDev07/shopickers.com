@@ -34,16 +34,22 @@ class CheckoutCon extends Controller
 
             $subtotal += ($products[0]['price'] * $item->qty);// add subtotal
         }
-        
+
+        $seo = [
+            'title' => "Checkout",
+            'image' => "",
+            'description' => "",
+            'robots' => 'none',
+        ];
+
         $data = [
             "items" => $items,
             "shipping" => $shipping,
             "subtotal" => $subtotal,
             "total" => ($shipping + $subtotal),
+            "seo" => $seo
         ];
 
         return view('pages.front.checkout', $data);
     }
-
-    
 }

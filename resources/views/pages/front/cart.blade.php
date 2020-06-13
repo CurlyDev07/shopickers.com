@@ -3,6 +3,8 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('input_counter/style.css') }}">
+    <style>
+    </style>
 @endsection
 @section('content')
 
@@ -39,7 +41,7 @@
         {{-- FOR CART CONTAIN ITEMS --}}
         @if (count($products))
             <div class="lg:tflex">
-                <div class="sm:tborder tborder-b-0 tp-2 sm:tp-8 tbg-white tw-full">
+                <div class="sm:tborder tborder-b-0 tp-2 tmb-10 sm:tmb-0  sm:tp-8 tbg-white tw-full">
                     <table class="">
                         <thead>
                             <tr>
@@ -119,7 +121,7 @@
             </div>
 
            <!-- FIXED BOTTOM NAVIGATION ON MOBILE DEVICES -->
-            <div class="tblock sm:thidden tbg-white tbottom-0 tfixed tflex titems-center tw-full" style="z-index: 999">
+            <div class=" tz-40 tblock sm:thidden tbg-white tbottom-0 tfixed tflex titems-center tw-full">
                 <div class="ttext-center tw-1/2">
                     <div class="tfont-bold ttext-xs" style="color:rgba(0,0,0,.65);">Total (<span class="total_items">0</span> items)</div>
                     <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">₱<span class="total">0</span></div>
@@ -199,7 +201,7 @@
                     title: 'Oops...',
                     text: 'You have not selected any items for checkout',
                     showConfirmButton: false,
-                    timer: 2000,
+                    timer: 1000,
                     showClass: {
                         popup: 'animated tada fast'
                     },
@@ -213,5 +215,7 @@
             window.location.href = "checkout/"+items;
         }
 
+
+        $('#mobile-nav').removeClass("tz-40");// remove bottom nav
     </script>
 @endsection

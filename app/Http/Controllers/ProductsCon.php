@@ -9,10 +9,18 @@ class ProductsCon extends Controller
 {
     public function show($slug, $item_id){
         $product = Product::with(['images'])
-        ->where('id', $item_id)
-        ->first()
-        ->toArray();
-        return view('pages.products.show', compact('product'));
+        ->findOrFail($item_id)->toArray();
+
+        // dd($product);
+
+        $seo = [
+            'title' => $product['title'],
+            'image' => url($product['primary_image']),
+            'description' => $product['short_description'],
+            'robots' => 'none',
+        ];
+
+        return view('pages.products.show', compact('product', 'seo'));
     }
 
     public function all(Request $request){
@@ -32,6 +40,14 @@ class ProductsCon extends Controller
             return $query->orderBy('price', $price);
         })
         ->paginate(24);
-        return view('pages.products.all', compact('products'));
+        
+        $seo = [
+            'title' => "Products",
+            'image' => "",
+            'description' => "",
+            'robots' => 'index, follow',
+        ];
+
+        return view('pages.products.all', compact('products', 'seo'));
     }
 }

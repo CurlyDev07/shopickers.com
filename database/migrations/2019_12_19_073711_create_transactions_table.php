@@ -26,6 +26,7 @@ class CreateTransactionsTable extends Migration
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->string('zip_code')->nullable();
+            $table->string('status')->default('processing')->comment('processing | to_ship | to_receive | completed');
             $table->timestamps();
         });
     }

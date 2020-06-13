@@ -39,7 +39,14 @@ class LoginController extends Controller
     }
 
     public function showLoginForm(){
-        return view('pages.auth.login');
+        $seo = [
+            'title' => "Login",
+            'image' => "",
+            'description' => "Login | Your Trusted Online Shopping Philippines",
+            'robots' => 'index, follow',
+        ];
+
+        return view('pages.auth.login', compact('seo'));
     }
     
     public function logout() {
