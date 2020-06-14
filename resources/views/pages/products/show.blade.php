@@ -345,8 +345,5 @@
         });
 
         $('#mobile-nav').removeClass("tz-40");// remove bottom nav
-        $('#body').removeClass("tsticky");// remove sticky nav
-
-
     </script>
 @endsection
