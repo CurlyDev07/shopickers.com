@@ -76,21 +76,25 @@
                                         </tbody>
                                     </table>
         
-                                    <div class="tborder-b tflex">
+                                    <div class="thidden sm:tflex tborder-b">
                                         <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Subtotal</div>
                                         <div class="tw-1/5 ttext-center tp-4">₱{{ $subtotal }}</div>
                                     </div>  
-                                    <div class="tborder-b tflex">
+                                    <div class="thidden sm:tflex tborder-b">
                                         <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Shipping Fee</div>
                                         <div class="tw-1/5 ttext-center tp-4">₱{{ $shipping }}</div>
                                     </div>  
-                                    <div class="tborder-b tflex">
+                                    <div class="thidden sm:tflex tborder-b">
                                         <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tfont-medium tborder-gray-400 tbg-gray-200">Order Total</div>
                                         <div class="tw-1/5 ttext-center tpx-4 tpy-3 tfont-medium tbg-gray-200 ttext-xl">₱{{ $total }}</div>
                                     </div>  
-                                    <div class="tflex tjustify-end">
-                                        <a id="order_review" class="tmr-4 sm:tmr-0 focus:tbg-primary hover:tbg-primary tbg-primary tmt-3 tpy-3 trounded-b trounded-t ttext-center ttext-white tpx-8 waves-effect waves-light">
-                                            Continue
+                                    <div class="tflex tjustify-end tmt-2 tpr-5">
+                                        <a id="order_review" class="trelative tcursor-pointer ttext-blue-500 tmr-5">
+                                            <u>
+                                                Next
+                                                <span class="material-icons tabsolute">navigate_next</span>
+                                                <span class="material-icons tabsolute" style="margin-left: 6px;">navigate_next</span>
+                                            </u>
                                         </a>
                                     </div>  
                                 </div>
@@ -145,7 +149,7 @@
                                             <label for="email">Email</label>
                                         </div><!-- Last Name -->
                                     </div><!-- EMAIL AND PHONE NUMBER -->
-                                    <div class="row">
+                                    <div class="row tmb-0">
                                         <div class="input-field col s12">
                                             <textarea id="address" name="address" class="materialize-textarea" required>@if(auth()->check()){{ auth()->user()->address }}@endif</textarea>
                                             <label for="address">Address</label>
@@ -179,8 +183,13 @@
                                             </div><!-- ZIP Code -->
                                         @endif
 
-                                        <a id="shipping_info" class="focus:tbg-primary hover:tbg-primary right tbg-primary tmt-3 tpy-3 tpx-8 trounded-b trounded-t ttext-center ttext-white waves-effect waves-light">
-                                            Continue
+
+                                        <a id="shipping_info" class="tcursor-pointer tfloat-right tmr-8 trelative ttext-blue-500">
+                                            <u>
+                                                Next
+                                                <span class="material-icons tabsolute">navigate_next</span>
+                                                <span class="material-icons tabsolute" style="margin-left: 6px;">navigate_next</span>
+                                            </u>
                                         </a>
                                     </div><!-- ADDRESS -->
                                 </form>
@@ -192,7 +201,7 @@
                                     Payment Method
                                 <i class="fas fa-credit-card fa-2x ttext-primary tml-auto"></i>
                             </div>
-                            <div class="collapsible-body tpy-5 tbg-white">
+                            <div class="collapsible-body tpy-2 sm:tpy-5 tbg-white">
                                 {{-- <div class="tflex titems-center tjustify-between"> --}}
                                     <div class="tflex titems-center">
                                         <label>
@@ -211,11 +220,6 @@
                                     </div><!-- PAYPAL --> --}}
                                     
                                 {{-- </div> --}}
-                                <div class="tflex tjustify-end tmt-8">
-                                    <button onclick="checkout();" class="thidden sm:tblock tbg-primary focus:tbg-primary hover:tbg-primary waves-effect waves-light tpy-3 tpx-8 trounded-b trounded-t ttext-white">
-                                        Place Order
-                                    </button>
-                                </div>
                             </div>
                         </li><!-- Payment Method -->
                     </ul>
@@ -250,6 +254,22 @@
                 </div>            
             </div>
         </div>
+
+         <!-- Order Review For Mobile -->
+         <div class="tmb-12">
+             <div class="tflex sm:thidden tborder-b  tbg-white">
+                <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Subtotal</div>
+                <div class="tw-1/5 ttext-center tp-4">₱{{ $subtotal }}</div>
+            </div>  
+            <div class="tflex sm:thidden tborder-b  tbg-white">
+                <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Shipping Fee</div>
+                <div class="tw-1/5 ttext-center tp-4">₱{{ $shipping }}</div>
+            </div>  
+            <div class="tflex sm:thidden tborder-b">
+                <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tfont-medium tborder-gray-400 tbg-gray-200">Total</div>
+                <div class="tw-1/5 ttext-center tpx-4 tpy-3 tfont-medium tbg-gray-200 ttext-xl">₱{{ $total }}</div>
+            </div>  
+         </div>
     </div>
 
     <!-- FIXED BOTTOM NAVIGATION ON MOBILE DEVICES -->
@@ -260,8 +280,6 @@
         </div>
         <button onclick="checkout();" class="focus:tbg-primary tbg-primary tfont-medium tpy-4 ttext-white tw-1/2 waves-effect waves-light">Place Order</button>
     </div>
-
-
 
 @endsection
 @section('js')

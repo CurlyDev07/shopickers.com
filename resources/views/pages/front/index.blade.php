@@ -134,7 +134,7 @@
                         </a>
                     </div>
                     <div class="toverflow-hidden tcursor-pointer" onclick="item_show('{{ item_show_slug($item['title'], $item['id']) }}')">
-                        <img class="product-image th-40 md:th-56 tw-full tobject-cover tmt-2" src="{{ asset($item['images'][0]['img']) }}" alt="NIKE AIR">
+                        <img class="product-image th-40 md:th-56 tw-full tobject-cover tmt-2" src="{{ asset($item['images'][0]['img']) }}" alt="{{$item['title']}}">
                     </div>
                     <div 
                         class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tbg-primary">
@@ -156,8 +156,8 @@
                 <p class="md:tw-1/2 text-lg ttracking-wider tmb-5">CORSAIR ONE i145 redefines what you can expect from a high-performance gaming PC. Incredibly fast, amazingly compact, quiet and stunningly designed.</p>
                 <div class="tflex titems-center">
                     <div class="">
-                        <span class="tfont-medium ttext-4xl">$2499</span>
-                        <span class="tline-through tfont-medium" style="color: #afadad">$2750</span>
+                        <span class="tfont-medium ttext-4xl">₱2499</span>
+                        <span class="tline-through tfont-medium" style="color: #afadad">₱2750</span>
                     </div>
                     <a href="/products" class="tbg-purple-800 tfont-medium tpx-6 tpy-3 trounded tml-5">Shop Now</a>
                 </div>
@@ -183,7 +183,7 @@
                         </a>
                     </div>
                     <div class="toverflow-hidden tcursor-pointer" onclick="item_show('{{ item_show_slug($item['title'], $item['id']) }}')">
-                        <img class="product-image th-40 md:th-56 tw-full tobject-cover tmt-2" src="{{ asset($item['images'][0]['img']) }}" alt="NIKE AIR">
+                        <img class="product-image th-40 md:th-56 tw-full tobject-cover tmt-2" src="{{ asset($item['images'][0]['img']) }}" alt="{{$item['title']}}">
                     </div>
                     <div 
                         class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tbg-primary">

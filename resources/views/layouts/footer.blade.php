@@ -1,5 +1,10 @@
 
-    <div id="footer" class="tbg-gray-900 tpt-8 sm:tpt-16 tpb-20 sm:tpb-8">
+    <div id="footer" class="tbg-gray-900 tpt-8 sm:tpt-16 tpb-20 sm:tpb-8
+        @if (url_has('checkout'))
+            thidden sm:tblock
+        @endif
+    ">
+
         <div class="tcontainer">
             <div class="sm:tflex">
                 <div class="tw-full md:tw-1/2 lg:tw-1/3 ttext-white">

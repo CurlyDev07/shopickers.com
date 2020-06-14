@@ -427,3 +427,7 @@ function seo_robots($robots=""){
 function site_name(){
     return "shopickers.com";
 }
+
+function url_has($hasStringofParams) {
+    return count(explode($hasStringofParams, url()->current())) == 2? true:false;
+}
