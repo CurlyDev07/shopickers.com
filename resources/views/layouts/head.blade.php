@@ -56,6 +56,21 @@
     /></noscript>
     <!-- End Facebook Pixel Code -->
 
+    <style>
+        .fb_dialog{
+            background: none;
+            border-radius: 50%;
+            bottom: 35pt!important;
+            display: inline;
+            height: 45pt;
+            padding: 0px;
+            position: fixed;
+            right: 18pt;
+            top: auto;
+            width: 45pt;
+            z-index: 2147483646;
+        }
+    </style>
     @yield('css')
     @yield('head_js')
 </head>

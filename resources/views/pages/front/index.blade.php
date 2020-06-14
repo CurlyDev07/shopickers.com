@@ -346,4 +346,7 @@
         });
 
     </script>
+
+    @include('plugins.fb_messenger')
+
 @endsection
