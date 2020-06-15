@@ -56,8 +56,9 @@ Route::get('checkout/{base64_item_details}', 'CheckoutCon@index')->name('checkou
 
 // PAYMENT 
 Route::get('payment', 'PaymentController@index');
-Route::post('charge', 'PaymentController@charge');
-Route::get('paymentsuccess', 'PaymentController@payment_success');
-Route::get('paymenterror', 'PaymentController@payment_error');
+Route::post('charge', 'PaymentController@charge')->name('charge');
+Route::get('payment-success', 'PaymentController@payment_success');// for cash on delivery
+Route::get('payment-success-paypal', 'PaymentController@payment_success_paypal');// for paypal not used
+Route::get('payment-error', 'PaymentController@payment_error');
 Auth::routes();
 

@@ -20,6 +20,6 @@ class OrderSuccess extends Mailable
 
     public function build()
     {
-        return $this->view('emails.transactions.order_success', ['order'=> $this->orders]);
+        return $this->subject("Order Success #{$this->orders['order_number']}")->view('emails.transactions.order_success', ['order'=> $this->orders]);
     }
 }

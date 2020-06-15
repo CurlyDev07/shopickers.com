@@ -107,7 +107,7 @@
                                 <i class="fas fa-shipping-fast fa-2x ttext-primary tml-auto"></i>
                             </div>
                             <div class="collapsible-body tpb-3 tbg-white">
-                                <form class="col s12" action="{{ url('charge') }}" method="post">
+                                <form class="col s12" action="{{ route('charge') }}" method="post">
                                     {{ csrf_field() }}
                                     <input type="submit" id="submit" name="submit" class="thidden">
                                     <input type="hidden" name="base64_item_details" value="{{ request()->base64_item_details }}">

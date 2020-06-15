@@ -6,7 +6,7 @@
 
         <h1 class="tfont-medium ttext-center md:ttext-left tmb-4 tmt-2 ttext-primary ttext-xl">Create a New Account</h1>
 
-        <div class="tbg-white md:tp-8 tpx-5 tpy-8  tmb-10 tborder-primary tborder-t-4">
+        <div class="tbg-white md:tp-8 tpx-5 tpy-8  sm:tmb-10 tborder-primary tborder-t-4">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 

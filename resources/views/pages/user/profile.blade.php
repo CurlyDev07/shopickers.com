@@ -60,8 +60,8 @@
                         <input type="text" id="address" class="browser-default form-control" style="padding: 6px;" name="address" value="{{ auth()->user()->address }}">
                     </div><!-- Address -->
                     <div class="tw-2/5 tflex tflex-col tml-2">
-                        <label for="address" class="tfont-normal ttext-base tmb-2 ttext-black-100">Barangay / District</label>
-                        <input type="text" id="address" class="browser-default form-control" style="padding: 6px;" name="address" value="{{ auth()->user()->address }}">
+                        <label for="barangay" class="tfont-normal ttext-base tmb-2 ttext-black-100">Barangay / District</label>
+                        <input type="text" id="barangay" class="browser-default form-control" style="padding: 6px;" name="barangay" value="{{ auth()->user()->address }}">
                     </div><!-- Barangay -->
                 </div>
                 <div class="tflex tpx-5 tpt-5">

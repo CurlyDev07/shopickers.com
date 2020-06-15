@@ -181,8 +181,9 @@
                 compute_checked_items();// check item if value > 0
             });
         });
-
         function checkout() {
+            let auth = "{{ auth()->check() }}"? true:false;
+
             let items = [];
             $('.cart-item:checked').each(function () {
                 let id = $(this).val();
@@ -208,11 +209,14 @@
                     }
                 })
             }
-      
+            
+            if (!auth) {
+                return mobile_login(true);
+            }// show login form if user not logged-in
+
             items = window.btoa(JSON.stringify(items)); // encode a string
             window.location.href = "checkout/"+items;
         }
-
 
         $('#mobile-nav').removeClass("tz-40");// remove bottom nav
     </script>

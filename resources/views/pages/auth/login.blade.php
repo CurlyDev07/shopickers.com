@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <div class="tcontainer tpy-8">
+    <div class="tmx-0 tpx-0 md:tmx-10 md:tpx-8  tpt-5 sm:tpb-8 md:tpy-8">
 
-        <h1 class="tfont-medium tmb-4  ttext-primary ttext-xl">LOGIN OR CREATE AN ACCOUNT</h1>
+        <h1 class="tfont-medium tmb-4  ttext-primary ttext-xl ttext-center sm:ttext-left">LOGIN OR CREATE AN ACCOUNT</h1>
 
-        <div class="md:tflex-row md:tp-8 tbg-white tborder-primary tborder-t-4 tflex tflex-col tmb-10 tpx-5 tpy-8">
+        <div class="md:tflex-row md:tp-8 tbg-white tborder-primary tborder-t-4 tflex tflex-col sm:tmb-10 tpx-5 tpy-8">
             <div class="md:tw-1/2 torder-last md:torder-first tflex tflex-wrap tjustify-end md:tmr-5 md:tpx-8 md:tpx-4 tpx-3 tpy-2">
                 <div class="">
                     <h2 class="ttext-gray-700 ttext-xl tmb-4">New Customers</h2>
