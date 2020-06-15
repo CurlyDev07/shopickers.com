@@ -107,7 +107,7 @@
                                 <i class="fas fa-shipping-fast fa-2x ttext-primary tml-auto"></i>
                             </div>
                             <div class="collapsible-body tpb-3 tbg-white">
-                                <form class="col s12" action="{{ route('charge') }}" method="post">
+                                <form id="checkoutForm" class="col s12" action="{{ route('charge') }}" method="post">
                                     {{ csrf_field() }}
                                     <input type="submit" id="submit" name="submit" class="thidden">
                                     <input type="hidden" name="base64_item_details" value="{{ request()->base64_item_details }}">
@@ -303,7 +303,8 @@
         function checkout() {
             var form = true;
 
-            $('form').serializeArray().forEach(field => {
+            $('#checkoutForm').serializeArray().forEach(field => {
+                console.log('name: '+field.name +' - '+ 'value: '+field.value);
                 if (!field.value) {
                     form = false;
                 }// if form field has no value return false
@@ -332,7 +333,6 @@
             let pm = $('input[name="payment_method"]').val(payment_method);
             console.log(pm.val());
         }
-
 
         $('#mobile-nav').removeClass("tz-40");// remove bottom nav
     </script>
