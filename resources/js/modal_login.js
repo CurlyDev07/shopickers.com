@@ -8,8 +8,6 @@
 }
 
 
-
-
 $('#mobile_login_form').submit(function (e) {
     e.preventDefault();
     let email = $(this).find('#mobile_login_email').val();

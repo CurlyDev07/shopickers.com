@@ -163,8 +163,6 @@
                 return  $('#loader').hide();
             }
 
-           
-
             function fb_share(url) {
                 window.open('https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}','popup','width=600,height=600');
                 return false;

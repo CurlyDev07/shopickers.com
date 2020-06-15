@@ -1,4 +1,5 @@
 @extends('layouts.app')
+{{-- @extends('pages.includes.mobile_login') --}}
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
@@ -210,9 +211,9 @@
                 })
             }
             
-            if (!auth) {
-                return mobile_login(true);
-            }// show login form if user not logged-in
+            // if (!auth) {
+            //     return mobile_login(true);
+            // }// show login form if user not logged-in
 
             items = window.btoa(JSON.stringify(items)); // encode a string
             window.location.href = "checkout/"+items;
