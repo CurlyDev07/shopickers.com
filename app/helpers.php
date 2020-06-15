@@ -412,7 +412,7 @@ function seo_image($image=""){
 
 function seo_description($description=""){
     if ($description == "") {
-        return "Widest Range of Mobile &amp;amp; Tablets, Home Appliances, Tv, Audio, Home &amp;amp; Living At Shopickers | Best Prices ? Fast DELIVERY | Cash on Delivery ? Effortless Shopping ? Best Customer Care!";
+        return "Online Shopping in the Phillipines with Great prices and Provides High Quality Products | Fast Delivery | Cash on Delivery";
     }
     return $description;
 }

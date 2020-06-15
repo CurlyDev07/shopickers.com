@@ -19,7 +19,7 @@ class HomeController extends Controller
         })->limit(10)->get()->toArray();
 
         $seo = [
-            'title' => "Home",
+            'title' => "Shop & Enjoy Our Featured and Best Selling Products",
             'image' => "",
             'description' => "",
             'robots' => 'index, follow',
@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function contactus(){
         $seo = [
-            'title' => "Contact Us",
+            'title' => "Contact Us - We are very happy to help you",
             'image' => "",
             'description' => "If you have any questions and concerns please contact us at helpdesk@becase.ph. We are very happy to help you.",
             'robots' => 'index, follow',
@@ -40,7 +40,7 @@ class HomeController extends Controller
 
     public function aboutus(){
         $seo = [
-            'title' => "About Us",
+            'title' => "About Us | Your Trusted Online Shopping Philippines | About Shopickers PH",
             'image' => "",
             'description' => "Your Trusted Online Shopping Philippines | About Shopickers PH",
             'robots' => 'index, follow',
