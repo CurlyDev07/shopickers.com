@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Storage;
 |
 */  
 
+// AUTH
 Auth::routes(['login' => false]);
+Route::get('/auth/facebook', 'Auth\SocialiteCon@facebook_redirect')->name('auth.fb');
+Route::get('/auth/facebook/callback', 'Auth\SocialiteCon@facebook_callback');
 
 //Home
 Route::get('/home', 'HomeController@index')->name('home');
@@ -24,6 +27,10 @@ Route::get('/', "HomeController@index");
 Route::get('/contact-us', "HomeController@contactus")->name('contactus');
 
 Route::get('/about-us', "HomeController@aboutus")->name('aboutus');
+
+Route::get('/policy', "HomeController@policy")->name('policy');
+
+Route::get('/terms', "HomeController@terms")->name('terms');
 
 
 Route::group(['middleware' => ['auth']], function () {

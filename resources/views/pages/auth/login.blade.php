@@ -17,7 +17,7 @@
                         orders in your account and more.
                     </p>
                 </div>
-                <a href="{{ route('register') }}" class="tself-end tbg-primary focus:tbg-primary waves-effect tpx-5 tmt-6 md:tmt-0 tpy-3 ttext-white">Create an Account</a>
+                <a href="{{ route('register') }}" class="focus:tbg-primary md:tmt-0 tbg-primary tmt-6 tpx-5 tpy-2 trounded tself-end ttext-white waves-effect">Create an Account</a>
             </div>
             <div class="md:tw-1/2 md:tml-5 tpy-2">
                 <div class="row tmb-3">
@@ -47,9 +47,20 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="tflex tjustify-end tpx-2">
+                    <div class="tflex tflex-col sm:tflex-row  tjustify-between">
+                        <div class="sm:tmt-0 tflex titems-center tjustify-center tmt-8">
+                            <a href="{{ route('auth.fb') }}" class="focus:tbg-gray-300 focus:tbg-white hover:tshadow-xl tbg-gray-300 tflex tpx-4 tpy-2 trounded waves-effect waves-light tmr-2">
+                              <img src="https://accounts.google.com/favicon.ico" class="tmr-2" alt="google icon" width="24" height="24">
+                              Google
+                            </a>
+                            <a href="{{ route('auth.fb') }}" class="focus:tbg-gray-300 hover:tshadow-xl focus:tbg-white t-mr-1 tbg-gray-300 tflex tml-2 tpx-4 tpy-2 trounded waves-effect waves-light">
+                              <img src="https://facebookbrand.com/wp-content/uploads/2016/05/flogo_rgb_hex-brc-site-250.png" class="tmr-2" alt="google icon" width="24" height="24">
+                              Facebook
+                            </a>
+                          </div>
+
                         {{-- <a href="" class="hover:tunderline ttext-primary">Forgot Your Password?</a> --}}
-                        <button type="submit" class="tbg-primary focus:tbg-primary waves-effect tpx-5 tpt-2 tpb-3 ttext-white">Login</button>
+                        <button type="submit" class="torder-first sm:torder-last tpy-2 tw-full sm:tw-auto focus:tbg-primary hover:tshadow-xl tbg-primary tpx-10 trounded ttext-white waves-effect waves-light">Login</button>
                     </div>
                 </form>
             </div>

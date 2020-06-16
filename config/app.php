@@ -3,6 +3,13 @@
 return [
 
     'cloudfront' => env('CLOUDFRONT'),
+    //*****************************
+    // FACEBOOK CREDENTIALS
+    //*****************************
+    'fb_client_id' => env('fb_client_id'),
+    'fb_client_secret' => env('fb_client_secret'),
+    'fb_callback_url' =>  env('fb_callback_url'),
+
 
     /*
     |--------------------------------------------------------------------------

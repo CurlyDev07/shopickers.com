@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_SES_DEFAULT_REGION', 'us-west-2'),
     ],
 
+    'facebook' => [
+        'client_id' => config('app.fb_client_id'),
+        'client_secret' => config('app.fb_client_secret'),
+        'redirect' => config('app.fb_callback_url'),
+    ],
 ];

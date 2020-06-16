@@ -48,4 +48,26 @@ class HomeController extends Controller
         return view('pages.front.aboutus', compact('seo'));
     }
 
+    public function policy(){
+        $seo = [
+            'title' => "Contact Us - We are very happy to help you",
+            'image' => "",
+            'description' => "If you have any questions and concerns please contact us at helpdesk@becase.ph. We are very happy to help you.",
+            'robots' => 'index, follow',
+        ];
+        return view('pages.front.contactus', compact('seo'));
+    }
+
+    public function terms(){
+        $seo = [
+            'title' => "Contact Us - We are very happy to help you",
+            'image' => "",
+            'description' => "If you have any questions and concerns please contact us at helpdesk@becase.ph. We are very happy to help you.",
+            'robots' => 'index, follow',
+        ];
+        return view('pages.front.contactus', compact('seo'));
+    }
+
+
+
 }
