@@ -65,7 +65,7 @@
                     </div>
                     <div class="tflex tflex-col ttext-gray-600">
                         <span>admin@shopickers.com</span>
-                        <span>shopickers007@gmail.com</span>
+                        <span>shopickers@gmail.com</span>
                     </div>
                 </div>
                 <div class="tflex titems-center tmb-4">
