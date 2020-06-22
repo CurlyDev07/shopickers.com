@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
 
             $table->string('about_me')->nullable();
             $table->string('picture')->nullable();
+            $table->string('role')->default('user');
 
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();

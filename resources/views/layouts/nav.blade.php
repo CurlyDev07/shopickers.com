@@ -8,11 +8,19 @@
             </h1>
             <ul class="lg:tml-5 sm:tml-24 tflex tfont-medium titems-center ttext-white tlist-none">
                 @foreach (\App\Category::categories() as $item)
-                    <li class="tborder-white tpx-2 hover:ttext-primary hover:tunderline tcursor-pointer">
+                    <li class="tborder-white tpx-2 hover:tunderline tcursor-pointer">
                         <i class="fab fa-envira"></i>
                         <a href="{{ $item['link'] }}">{{ $item['title'] }}</a>
                     </li>
                 @endforeach
+                @auth
+                    @if (auth()->user()->role == 'admin')
+                        <li class="tborder-white tpx-2 hover:tunderline tcursor-pointer">
+                            <i class="fab fa-envira"></i>
+                            <a href="/admin/products">ADMIN</a>
+                        </li>
+                    @endif
+                @endauth
             </ul>
             <div class="tself-center trelative thidden sm:tblock">
                 <a href="{{ route('cart') }}" id="cart" class="btn-floating hover:tbg-white tbg-white waves-effect waves-light">
