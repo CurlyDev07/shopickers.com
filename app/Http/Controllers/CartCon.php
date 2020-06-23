@@ -17,6 +17,7 @@ class CartCon extends Controller
             
             foreach ($reverse_ids as $id) {
                 $products[] = Product::where('id', $id)
+                ->where('status', 'active')
                 ->with(['images' => function($query){
                         $query->where('primary', 1);
                     }]
