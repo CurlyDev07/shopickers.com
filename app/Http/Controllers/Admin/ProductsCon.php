@@ -103,11 +103,11 @@ class ProductsCon extends Controller
             | CRATE NEW IMAGES IF NOT EXIST IN DB
             |--------------------------------------------------------------------------*/
             if (!in_array($value['base64_image'], $old_imgs)) {
-                $img = '/images/products/'.uuid().'.jpg';
+                $img = uuid().'.jpg';
                 s3_upload_image($img, $value['base64_image']);
                 ProductImage::create([
                     'product_id' => $product->id,
-                    'img' => $img,
+                    'img' => '/images/products/'.$img,
                     'primary' => $value['primary']
                 ]);
             }

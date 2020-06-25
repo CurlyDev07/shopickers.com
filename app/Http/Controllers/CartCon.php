@@ -11,17 +11,26 @@ class CartCon extends Controller
 {
     public function index(Request $request){
         $product_ids = json_decode($request->cookie('product_ids')); // get all product ids from cart
+
         $products = [];
         if ($product_ids) {
             $reverse_ids = array_reverse($product_ids, true);
             
-            foreach ($reverse_ids as $id) {
-                $products[] = Product::where('id', $id)
+            foreach ($reverse_ids as $index => $id) {
+                $product = Product::where('id', $id)
                 ->where('status', 'active')
                 ->with(['images' => function($query){
                         $query->where('primary', 1);
                     }]
-                )->first()->toArray();
+                );
+
+                if (!$product->exists()) {
+                    unset($product_ids[1]);// remove item in cart if items is not exists anymore
+                    cookie()->forever('product_ids', json_encode(array_unique($product_ids)));// resave cart cookie
+                    continue;// skip loop if items does not exists
+                }
+
+                $products[] = $product->first()->toArray();
             }
         }
 
