@@ -350,8 +350,12 @@ function number_spinner_js($max = ''){
     ';
 }// ECHO THIS SCRIPT TO FOOTER
 
-function currency($value){
-    return '₱'.$value;
+function currency(){
+    $php = ['localhost', '127.0.0.1', "shopickers.com"];
+    $domain = $_SERVER['SERVER_NAME'];
+    $currency = in_array($domain, $php) ? '₱' : '$';
+
+    return $currency;
 }
 
 function get_variations($arrays) {

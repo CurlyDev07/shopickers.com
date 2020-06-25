@@ -89,7 +89,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="thidden sm:ttable-cell ttext-primary ttext-center">₱ <span id="subtotal">{{ $item['price'] }}</span> </td>
+                                    <td class="thidden sm:ttable-cell ttext-primary ttext-center">{{ currency() }} <span id="subtotal">{{ $item['price'] }}</span> </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="thidden sm:tflex tborder-t titems-center tjustify-end sm:tpt-6">
                     <div class="tfont-medium ttext-black-100 tmr-2">Total (<span class="total_items">0</span> items):</div>
-                    <div class="tfont-medium ttext-3xl ttext-primary tmr-5">₱ <span class="total">0</span></div>
+                    <div class="tfont-medium ttext-3xl ttext-primary tmr-5">{{ currency() }} <span class="total">0</span></div>
                     <button class="tbg-primary ttext-white focus:tbg-primary waves-effect tpx-10 sm:tpx-16 tpy-3" onclick="checkout()">Checkout</button>
                 </div>
             </div>
@@ -123,7 +123,7 @@
             <div class=" tz-40 tblock sm:thidden tbg-white tbottom-0 tfixed tflex titems-center tw-full">
                 <div class="ttext-center tw-1/2">
                     <div class="tfont-bold ttext-xs" style="color:rgba(0,0,0,.65);">Total (<span class="total_items">0</span> items)</div>
-                    <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">₱<span class="total">0</span></div>
+                    <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">{{ currency() }}<span class="total">0</span></div>
                 </div>
                 <button onclick="checkout();" class="focus:tbg-primary tbg-primary tfont-medium tpy-4 ttext-white tw-1/2 waves-effect waves-light">Checkout</button>
             </div>

@@ -18,6 +18,7 @@ class OrderCon extends Controller
             return $q->where('order_number', 'like', request()->search.'%');
         })// search
         ->select('id', 'order_number', 'first_name', 'last_name')
+        ->OrderBy('id', 'desc')
         ->paginate(10);
        
         return view('admin.orders.index', compact('orders'));

@@ -12,7 +12,7 @@ class CheckoutCon extends Controller
     public function index($base64_item_details){
         $items_decode = json_decode(base64_decode($base64_item_details));
         $items = [];
-        $shipping = 150;
+        $shipping = 0;
         $subtotal = 0;
         $total = 0;
 

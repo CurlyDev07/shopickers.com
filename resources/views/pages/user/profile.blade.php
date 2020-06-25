@@ -10,7 +10,7 @@
                     <span class="ttext-2xl ttext-title tmx-auto tfont-semibold">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
                 </div>
                 <div class="ttext-center">
-                    <span class="tfont-semibold tmx-auto ttext-gray-600">{{ auth()->user()->created_at->format('M d, Y') }}</span>
+                    <span class="tfont-semibold tmx-auto ttext-gray-600">{{ auth()->user()->created_at? auth()->user()->created_at->format('M d, Y') : '' }}</span>
                 </div>
                 
             </div>

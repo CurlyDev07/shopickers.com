@@ -74,9 +74,9 @@
                                     </a>
                                 </div>
                             </td>
-                            <td style="width: 15%;!important">₱{{ number_format($item['price'], 2) }}</td>
+                            <td style="width: 15%;!important">{{ currency() }}{{ number_format($item['price'], 2) }}</td>
                             <td style="width: 15%;!important">{{ $item['qty'] }}</td>
-                            <td style="width: 15%;!important">₱{{ number_format($item['subtotal'], 2) }}</td>
+                            <td style="width: 15%;!important">{{ currency() }}{{ number_format($item['subtotal'], 2) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -84,16 +84,16 @@
             
             <div class="tborder-b tflex">
                 <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Subtotal</div>
-                <div class="tw-1/5 ttext-center tp-4">₱{{ number_format($orders['payments']['subtotal'], 2) }}</div>
+                <div class="tw-1/5 ttext-center tp-4">{{ currency() }}{{ number_format($orders['payments']['subtotal'], 2) }}</div>
             </div>  
             <div class="tborder-b tflex">
                 <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Shipping Fee</div>
-                <div class="tw-1/5 ttext-center tp-4">₱{{ number_format($orders['payments']['shipping_fee'], 2) }}</div>
+                <div class="tw-1/5 ttext-center tp-4">{{ currency() }}{{ number_format($orders['payments']['shipping_fee'], 2) }}</div>
             </div>  
             <div class="tborder-b tflex">
                 <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tfont-medium tborder-gray-400 tbg-gray-200">Order Total</div>
                 <div class="tw-1/5 ttext-center tpx-4 tpy-3 tfont-medium tbg-gray-200 ttext-xl">
-                    ₱{{ number_format($orders['payments']['total'], 2) }}
+                    {{ currency() }}{{ number_format($orders['payments']['total'], 2) }}
                 </div>
             </div>  
         </div>

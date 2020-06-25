@@ -138,7 +138,7 @@
                     </div>
                     <div 
                         class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tbg-primary">
-                        <h1 class="ttext-gray-200 tfont-bold ttext-xl"><span class="ttext-md tfont-normal">₱</span>{{$item['price']}}</h1>
+                        <h1 class="ttext-gray-200 tfont-bold ttext-xl"><span class="ttext-md tfont-normal">{{ currency() }}</span>{{$item['price']}}</h1>
                         <span data-id="{{$item['id']}}" class="add_to_cart  fa-cart-plus fas tcursor-pointer tp-2 trounded-full ttext-white waves-effect waves-light" style="font-size: 21px;"></span>
                     </div>
                 </div>
@@ -156,8 +156,8 @@
                 <p class="md:tw-1/2 text-lg ttracking-wider tmb-5">CORSAIR ONE i145 redefines what you can expect from a high-performance gaming PC. Incredibly fast, amazingly compact, quiet and stunningly designed.</p>
                 <div class="tflex titems-center">
                     <div class="">
-                        <span class="tfont-medium ttext-4xl">₱2499</span>
-                        <span class="tline-through tfont-medium" style="color: #afadad">₱2750</span>
+                        <span class="tfont-medium ttext-4xl">{{ currency() }}2499</span>
+                        <span class="tline-through tfont-medium" style="color: #afadad">{{ currency() }}2750</span>
                     </div>
                     <a href="/products" class="tbg-purple-800 tfont-medium tpx-6 tpy-3 trounded tml-5">Shop Now</a>
                 </div>
@@ -187,7 +187,7 @@
                     </div>
                     <div 
                         class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tbg-primary">
-                        <h1 class="ttext-gray-200 tfont-bold ttext-xl"><span class="ttext-md tfont-normal">₱</span>{{$item['price']}}</h1>
+                        <h1 class="ttext-gray-200 tfont-bold ttext-xl"><span class="ttext-md tfont-normal">{{ currency() }}</span>{{$item['price']}}</h1>
                         <span data-id="{{$item['id']}}" class="add_to_cart  fa-cart-plus fas tcursor-pointer tp-2 trounded-full ttext-white waves-effect waves-light" style="font-size: 21px;"></span>
                     </div>
                 </div>

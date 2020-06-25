@@ -28,7 +28,7 @@
                             <td class="tp-3 tpx-5">
                                 <img src="{{ $wishlist['products']['images'][0]['img'] }}" class="" style="height: 50px;width: 50px;">
                             </td>
-                            <td class="tp-3 tpx-5">₱{{ $wishlist['products']['price'] }}</td>
+                            <td class="tp-3 tpx-5">{{ currency() }}{{ $wishlist['products']['price'] }}</td>
                             <td class="ttext-center">
                                 <ul class="tflex tjustify-center">
                                     <li>

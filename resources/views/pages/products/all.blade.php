@@ -69,9 +69,9 @@
                         <p class="tmb-3 ttext-base ttext-title tfont-medium">Price Range</p>
                         <form method="GET">
                             <div class="tflex titems-center tjustify-between">
-                                <input value="{{request()->min}}" name="min" type="number" placeholder="₱ MIN" class="browser-default focus:toutline-none tborder tborder-gray-400 tleading-5 tpx-2 tpy-1 trounded ttext-sm tw-20">
+                                <input value="{{request()->min}}" name="min" type="number" placeholder="{{ currency() }} MIN" class="browser-default focus:toutline-none tborder tborder-gray-400 tleading-5 tpx-2 tpy-1 trounded ttext-sm tw-20">
                                 <span class="tleading-5 ttext-sm">to</span>
-                                <input value="{{request()->max}}" name="max" type="number" placeholder="₱ MAX" class="browser-default focus:toutline-none tborder tborder-gray-400 tleading-5 tpx-2 tpy-1 trounded ttext-sm tw-20">
+                                <input value="{{request()->max}}" name="max" type="number" placeholder="{{ currency() }} MAX" class="browser-default focus:toutline-none tborder tborder-gray-400 tleading-5 tpx-2 tpy-1 trounded ttext-sm tw-20">
                             </div>
                             <button type="submit" class="focus:tbg-primary focus:toutline-none tbg-primary tmt-5 tpy-1 trounded ttext-sm ttext-white tw-full waves-effect waves-light">APPLY</button>
                         </form>
@@ -94,7 +94,7 @@
                             </div>
                             <div 
                                 class="tcursor-pointer tflex titems-center tjustify-between tpx-4 tbg-primary">
-                                <h1 class="ttext-gray-200 tfont-medium ttext-xl"><span class="ttext-md tfont-normal">₱</span> {{ number_format($product['price'],2) }}</h1>
+                                <h1 class="ttext-gray-200 tfont-medium ttext-xl"><span class="ttext-md tfont-normal">{{ currency() }}</span> {{ number_format($product['price'],2) }}</h1>
                                 <span data-id="{{$product['id']}}" class="add_to_cart  fa-cart-plus fas tcursor-pointer tp-2 trounded-full ttext-white waves-effect waves-light" style="font-size: 21px;"></span>
                             </div>
                         </div>
@@ -108,10 +108,10 @@
                                 </div>
                                 <div class="tflex titems-center tmt-1 tcursor-pointer">
                                     <div class="tfont-medium ttext-primary ttext-lg">
-                                        ₱{{ number_format($product['price']) }}
+                                        {{ currency() }}{{ number_format($product['price']) }}
                                     </div>
                                     <strike class="ttext-gray-500 ttext-sm tml-2">
-                                        {{ $product['compare_price'] != '' ? '₱'.number_format($product['compare_price']) : '' }}
+                                        {{ $product['compare_price'] != '' ? '{{ currency() }}'.number_format($product['compare_price']) : '' }}
                                     </strike>
                                 </div>
                             </div>

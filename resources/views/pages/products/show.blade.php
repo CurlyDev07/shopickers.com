@@ -29,9 +29,16 @@
         <div class="tflex tflex-wrap tw-full">
             <div class="tw-full sm:tw-2/5 tpb-3 tbg-white">
                 <div class="owl-main owl-carousel owl-theme">
+                    <div class="item"  data-hash="1">
+                        <div class="md:flex-shrink-0">
+                            <img class="rounded-lg md:w-56" src="{{$product['primary_image']}}" alt="shopickers.com {{ ($product['title']) }}">
+                        </div>
+                    </div>
+                    
                     @foreach ($product['images'] as $item)
-                   
-                        {{-- <div class="img-thumb-lg" style="background-image: url('{{$item['img']}}');" data-hash="{{ $item['id'] }}"></div> --}}
+                        @if ($item['primary'])
+                            @continue
+                        @endif
                         <div class="item"  data-hash="{{ $item['id'] }}">
                             <div class="md:flex-shrink-0">
                                 <img class="rounded-lg md:w-56" src="{{$item['img']}}" alt="shopickers.com {{ ($product['title']) }}">
@@ -40,7 +47,20 @@
                     @endforeach
                 </div><!-- MAIN IMAGE -->
                 <div class="owl-small owl-carousel owl-theme tmt-3">
+                    <a class="item" href="#1" data-hash="1">
+                        <div style="
+                            width: 100%;
+                            height: 50px;
+                            background-image: url('{{$product['primary_image']}}');
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center;
+                        "></div>
+                    </a>
                     @foreach ($product['images'] as $item)
+                        @if ($item['primary'])
+                            @continue
+                        @endif
                         <a class="item" href="#{{ $item['id'] }}" data-hash="{{ $item['id'] }}">
                             <div style="
                                 width: 100%;
@@ -84,10 +104,10 @@
                     </div><!-- SHORT DESCRIPTION -->
                     <div class="tpx-4 sm:tpx-0  tborder-b  tmt-2 tpb-5">
                         <div class="tflex titems-center tjustify-center sm:tjustify-start sm:titems-start sm:tflex-col tmt-4">
-                            <span class="tfont-extrabold ttext-2xl ttext-primary tmr-4" style="font-family: arial;" id="price" data-price="500"><span class="ttext-base tfont-normal tmr-1">₱</span>{{ $product['price'] }}</span>
+                            <span class="tfont-extrabold ttext-2xl ttext-primary tmr-4" style="font-family: arial;" id="price" data-price="500"><span class="ttext-base tfont-normal tmr-1">{{ currency() }}</span>{{ $product['price'] }}</span>
                             @if ($product['compare_price'] != '')
                                 <div class="">
-                                    <span class="tline-through ttext-gray-500"><span class="ttext-base tfont-normal tmr-1">₱</span>{{ $product['compare_price'] }}</span>
+                                    <span class="tline-through ttext-gray-500"><span class="ttext-base tfont-normal tmr-1">{{ currency() }}</span>{{ $product['compare_price'] }}</span>
                                     <span class="tbg-primary tfont-medium tpx-2 ttext-white">-{{ percentage_discount($product['compare_price'], $product['price']) }}% OFF</span>
                                 </div>
                             @endif

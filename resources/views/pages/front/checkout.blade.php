@@ -49,7 +49,7 @@
                                                                 </div>
                                                                 <div class="tborder-r tpx-3">
                                                                     <span class="ttext-sm ttext-gray-600">Price:</span> 
-                                                                    <span class="ttext-md tfont-medium">₱{{ $item['price'] }}</span>
+                                                                    <span class="ttext-md tfont-medium">{{ currency() }}{{ $item['price'] }}</span>
                                                                 </div>
                                                                 <div class="tborder-r tpx-3">
                                                                     <span class="ttext-sm ttext-gray-600">Qty:</span>
@@ -57,7 +57,7 @@
                                                                 </div>
                                                                 <div class="tpx-3">
                                                                     <span class="ttext-sm ttext-gray-600">SubTotal:</span>
-                                                                    <span class="ttext-md tfont-medium">₱{{ $item['subtotal'] }}</span>
+                                                                    <span class="ttext-md tfont-medium">{{ currency() }}{{ $item['subtotal'] }}</span>
                                                                 </div>
                                                             </div>
                                                             <a href="{{ item_show_slug($item['title'], $item['id']) }}" class="tmb-4 sm:tmb-2 ttext-center sm:ttext-left ttext-sm hover:tunderline tmax-w-sm tml-3 ttext-primary truncate">
@@ -68,9 +68,9 @@
                                                             <i class="far fa-edit"></i>
                                                         </a>
                                                     </td>
-                                                    <td class="thidden sm:ttable-cell tpy-0 ttext-center">₱{{ $item['price'] }}</td>
+                                                    <td class="thidden sm:ttable-cell tpy-0 ttext-center">{{ currency() }}{{ $item['price'] }}</td>
                                                     <td class="thidden sm:ttable-cell tpy-0 ttext-center">{{ $item['qty'] }}</td>
-                                                    <td class="thidden sm:ttable-cell tpy-0 ttext-center">₱{{ $item['subtotal'] }}</td>
+                                                    <td class="thidden sm:ttable-cell tpy-0 ttext-center">{{ currency() }}{{ $item['subtotal'] }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -78,15 +78,15 @@
         
                                     <div class="thidden sm:tflex tborder-b">
                                         <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Subtotal</div>
-                                        <div class="tw-1/5 ttext-center tp-4">₱{{ $subtotal }}</div>
+                                        <div class="tw-1/5 ttext-center tp-4">{{ currency() }}{{ $subtotal }}</div>
                                     </div>  
                                     <div class="thidden sm:tflex tborder-b">
                                         <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Shipping Fee</div>
-                                        <div class="tw-1/5 ttext-center tp-4">₱{{ $shipping }}</div>
+                                        <div class="tw-1/5 ttext-center tp-4">{{ currency() }}{{ $shipping }}</div>
                                     </div>  
                                     <div class="thidden sm:tflex tborder-b">
                                         <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tfont-medium tborder-gray-400 tbg-gray-200">Order Total</div>
-                                        <div class="tw-1/5 ttext-center tpx-4 tpy-3 tfont-medium tbg-gray-200 ttext-xl">₱{{ $total }}</div>
+                                        <div class="tw-1/5 ttext-center tpx-4 tpy-3 tfont-medium tbg-gray-200 ttext-xl">{{ currency() }}{{ $total }}</div>
                                     </div>  
                                     <div class="tflex tjustify-end tmt-2 tpr-5">
                                         <a id="order_review" class="trelative tcursor-pointer ttext-blue-500 tmr-5">
@@ -154,35 +154,34 @@
                                             <textarea id="address" name="address" class="materialize-textarea" required>@if(auth()->check()){{ auth()->user()->address }}@endif</textarea>
                                             <label for="address">Address</label>
                                         </div><!-- Address -->
-                                        <div class="input-field col s12">
-                                            <textarea id="barangay" name="barangay" class="materialize-textarea" required>@if(auth()->check()){{ auth()->user()->barangay }}@endif</textarea>
-                                            <label for="barangay">Barangay / District</label>
-                                        </div><!-- Barangay / District -->
-                                        <div class="input-field col s6">
+
+                                        @if (currency() == '₱')
+                                            <div class="input-field col s12">
+                                                <textarea id="barangay" name="barangay" class="materialize-textarea" required>@if(auth()->check()){{ auth()->user()->barangay }}@endif</textarea>
+                                                <label for="barangay">Barangay / District</label>
+                                            </div><!-- Barangay / District -->
+                                        @endif
+
+                                        <div class="input-field col s12 m5">
                                             <input id="city" type="text" name="city" required
                                                 @if (auth()->check())
                                                     value="{{ auth()->user()->city }}"
                                                 @endif
                                             >
-                                            <label for="city">City / Municipality</label>
+                                            <label for="city">City</label>
                                         </div><!-- CITY -->
-                                        <div class="input-field col s6">
+                                        <div class="input-field col s6 m5">
                                             <input id="province" type="text" name="province" required
                                                 @if (auth()->check())
                                                     value="{{ auth()->user()->province }}"
                                                 @endif
                                             >
-                                            <label for="province">Province</label>
+                                            <label for="province">State/Province/Region: </label>
                                         </div><!-- province -->
-                                        @if (1==0)
-                                            <!-- TEMPORARILY HIDE BECAUSE WE ARE GOING TO SELL IN PH -->
-                                            <!--       MANY PH PEOPLE DONT KNOW THIER ZIP CODE       -->
-                                            <div class="input-field col s2">
-                                                <input id="zip_code" type="text" name="zip_code">
-                                                <label for="zip_code">ZIP Code</label>
-                                            </div><!-- ZIP Code -->
-                                        @endif
-
+                                        <div class="input-field col s6 m2">
+                                            <input id="zip_code" type="text" name="zip_code">
+                                            <label for="zip_code">ZIP</label>
+                                        </div><!-- ZIP Code -->
 
                                         <a id="shipping_info" class="tcursor-pointer tfloat-right tmr-8 trelative ttext-blue-500">
                                             <u>
@@ -205,19 +204,19 @@
                                 {{-- <div class="tflex titems-center tjustify-between"> --}}
                                     <div class="tflex titems-center">
                                         <label>
-                                            <input type="checkbox" checked id="cod" disabled/>
+                                            <input type="checkbox" checked id="cod"/>
                                             <span>Cash on Delivery</span>
                                         </label>
                                         <img src="{{ asset('images/payments/cash_on_delivery.png') }}" class="tml-6" style="height:45px" alt="">
                                     </div><!-- Cash on Delivery-->
 
-                                    {{-- <div class="tflex titems-center tmt-8">
+                                    <div class="tflex titems-center tmt-8">
                                         <label>
                                             <input type="checkbox" id="credit_debit"/>
                                             <span>Credit/Debit Card</span>
                                         </label>
                                         <img src="{{ asset('images/payments/credit_debit.png') }}" class="tml-5" style="height:45px" alt="paypal.png">
-                                    </div><!-- PAYPAL --> --}}
+                                    </div><!-- PAYPAL -->
                                     
                                 {{-- </div> --}}
                             </div>
@@ -230,11 +229,11 @@
                 <div class="tbg-white tmt-5 tp-5 tshadow-md tsticky ttop-0">
                     <div class="tflex tjustify-between">
                         <span class="ttext-sm">Subtotal ({{ count($items) }} items)</span>
-                        <span class="tfont-semibold">₱{{ number_format($subtotal) }}</span>
+                        <span class="tfont-semibold">{{ currency() }}{{ number_format($subtotal) }}</span>
                     </div>
                     <div class="tflex tjustify-between tmt-4">
                         <span class="ttext-sm">Shipping Fee</span>
-                        <span class="tfont-semibold">₱{{ number_format($shipping) }}</span>
+                        <span class="tfont-semibold">{{ currency() }}{{ number_format($shipping) }}</span>
                     </div>
                     <div class="thidden xl:tblock tmy-4">
                         <label for="promo_code">Promo Code</label>
@@ -246,7 +245,7 @@
                     <hr>
                     <div class="tflex tjustify-between tmy-4 titems-center">
                         <span class="tfont-bold">Total</span>
-                        <span class="tfont-bold ttext-lg">₱{{ number_format($total) }}</span>
+                        <span class="tfont-bold ttext-lg">{{ currency() }}{{ number_format($total) }}</span>
                     </div>
                     <div class="tflex tjustify-between tmt-6 titems-center">
                         <button onclick="checkout();" class="tbg-primary focus:tbg-primary waves-effect tpy-3 tpx-5 ttext-white tw-full trounded">Place Order</button>
@@ -259,15 +258,15 @@
          <div class="tmb-12">
              <div class="tflex sm:thidden tborder-b  tbg-white">
                 <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Subtotal</div>
-                <div class="tw-1/5 ttext-center tp-4">₱{{ $subtotal }}</div>
+                <div class="tw-1/5 ttext-center tp-4">{{ currency() }}{{ $subtotal }}</div>
             </div>  
             <div class="tflex sm:thidden tborder-b  tbg-white">
                 <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Shipping Fee</div>
-                <div class="tw-1/5 ttext-center tp-4">₱{{ $shipping }}</div>
+                <div class="tw-1/5 ttext-center tp-4">{{ currency() }}{{ $shipping }}</div>
             </div>  
             <div class="tflex sm:thidden tborder-b">
                 <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tfont-medium tborder-gray-400 tbg-gray-200">Total</div>
-                <div class="tw-1/5 ttext-center tpx-4 tpy-3 tfont-medium tbg-gray-200 ttext-xl">₱{{ $total }}</div>
+                <div class="tw-1/5 ttext-center tpx-4 tpy-3 tfont-medium tbg-gray-200 ttext-xl">{{ currency() }}{{ $total }}</div>
             </div>  
          </div>
     </div>
@@ -276,7 +275,7 @@
     <div class="tblock sm:thidden tbg-white tbottom-0 tfixed tflex titems-center tw-full" style="z-index: 999">
         <div class="ttext-center tw-1/2">
             <div class="tfont-bold ttext-xs" style="color:rgba(0,0,0,.65);">Total Payment</div>
-            <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">₱{{ $total }}</div>
+            <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">{{ currency() }}{{ $total }}</div>
         </div>
         <button onclick="checkout();" class="focus:tbg-primary tbg-primary tfont-medium tpy-4 ttext-white tw-1/2 waves-effect waves-light">Place Order</button>
     </div>

@@ -11,8 +11,6 @@ class ProductsCon extends Controller
         $product = Product::with(['images'])
         ->findOrFail($item_id)->toArray();
 
-        // dd($product);
-
         $seo = [
             'title' => $product['title'],
             'image' => url($product['primary_image']),

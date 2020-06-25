@@ -21,7 +21,7 @@
                     </div>
                     <div class="">
                         <div class="">Total Amount</div>
-                        <div class="tfont-medium">₱{{ $total_amount }}</div>
+                        <div class="tfont-medium">{{ currency() }}{{ $total_amount }}</div>
                     </div>
                 </div>
             </div>

@@ -79,7 +79,7 @@ class PaymentController extends Controller
         $items_decode = json_decode(base64_decode($request->base64_item_details));
 
         $items = [];
-        $shipping = 150;
+        $shipping = 0;
         $subtotal = 0;
 
         $transaction = Transaction::create([
@@ -139,7 +139,7 @@ class PaymentController extends Controller
                $response = $this->gateway->purchase(array(
                    'amount' => $markdown['total'],
                    'currency' => env('PAYPAL_CURRENCY'),
-                   'returnUrl' => url('payment-success'),
+                   'returnUrl' => url('payment-success-paypal'),
                    'cancelUrl' => url('payment-error'),
                ))->send();// send the payload to paypal
 

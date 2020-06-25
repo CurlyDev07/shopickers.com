@@ -31,10 +31,10 @@ class ProductsCon extends Controller
 
         $primary = 0;
         foreach ($request->images as $key => $value) {
-            $img = uuid().'.jpg';
+            $img = '/'.uuid().'.jpg';
             s3_upload_image($img, $value['base64_image']);
             $product->images()->create([
-                'img' => '/images/products/'.$img,
+                'img' => $img,
                 'primary' => $value['primary']
             ]);
             $value['primary'] == 1 ? $primary++ : '';

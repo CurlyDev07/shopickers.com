@@ -45,7 +45,7 @@
                             <td class="tp-3 tpx-5">
                                 <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">{{ $product['title'] }}</a>
                             </td>
-                            <td class="tp-3 tpx-5">₱{{ number_format($product['price']) }}</td>
+                            <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($product['price']) }}</td>
                             <td class="tp-3 tpx-5">{{ $product['qty'] ?? 'N/A'  }}</td>
                             <td class="tp-3 tpx-5">
                                 @if ($product['status'] == 'active')
