@@ -358,6 +358,10 @@ function currency(){
     return $currency;
 }
 
+function currency_text(){
+    return currency() == '$' ? 'USD' : 'PHP';
+}
+
 function get_variations($arrays) {
     $result = array(array());
 

@@ -138,12 +138,12 @@ class PaymentController extends Controller
 
                $response = $this->gateway->purchase(array(
                    'amount' => $markdown['total'],
-                   'currency' => env('PAYPAL_CURRENCY'),
+                   'currency' => currency_text(),
                    'returnUrl' => url('payment-success-paypal'),
                    'cancelUrl' => url('payment-error'),
                ))->send();// send the payload to paypal
 
-               $markdown['payment_id'] = $response->getTransactionReference();
+               $markdown['payment_id'] = $response->getTransactionReference()?? '';
                $markdown['payment_status'] = 'declined';// set payment status and update to approved when user paid the amount
                TransactionPayment::create($markdown);
 
@@ -180,15 +180,29 @@ class PaymentController extends Controller
                     'payer_id' => $arr_body['payer']['payer_info']['payer_id'],
                     'payer_email' => $arr_body['payer']['payer_info']['email'],
                     'total' => $arr_body['transactions'][0]['amount']['total'],
-                    'currency' => env('PAYPAL_CURRENCY'),
+                    'currency' => currency_text(),
                     'payment_status' => "completed",
                 ]);
+                
+                $transaction = Transaction::with([
+                    "payments:id,transaction_id,shipping_fee,subtotal,total",
+                    "products",
+                    "products.product:id,title,price",
+                ])->find($payment->id)->toArray();
+                
+                Mail::to([$transaction['email'], 'shopickers007@gmail.com'])->send(new OrderSuccess($transaction));
 
-                $order_number = Transaction::where('id', $payment['transaction_id'])->get(['order_number']);// get order number
-
+                $seo = [
+                    'title' => "Order Success",
+                    'image' => "",
+                    'description' => "",
+                    'robots' => 'none',
+                ];
+                    
                 return view('pages.front.payment_success', [
-                    'order_number' => $order_number[0]['order_number'],
-                    'total_amount' => number_format($payment['total'], 2)
+                    'order_number' => $transaction['order_number'],
+                    'total_amount' => number_format($transaction['payments']['total'], 2),
+                    'seo' => $seo
                 ]);// redirect to success payment page
                 
             } else {

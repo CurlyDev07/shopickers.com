@@ -201,7 +201,7 @@
                                 <i class="fas fa-credit-card fa-2x ttext-primary tml-auto"></i>
                             </div>
                             <div class="collapsible-body tpy-2 sm:tpy-5 tbg-white">
-                                {{-- <div class="tflex titems-center tjustify-between"> --}}
+                                @if (currency() == '₱')
                                     <div class="tflex titems-center">
                                         <label>
                                             <input type="checkbox" checked id="cod"/>
@@ -209,16 +209,15 @@
                                         </label>
                                         <img src="{{ asset('images/payments/cash_on_delivery.png') }}" class="tml-6" style="height:45px" alt="">
                                     </div><!-- Cash on Delivery-->
+                                @endif
 
-                                    <div class="tflex titems-center tmt-8">
-                                        <label>
-                                            <input type="checkbox" id="credit_debit"/>
-                                            <span>Credit/Debit Card</span>
-                                        </label>
-                                        <img src="{{ asset('images/payments/credit_debit.png') }}" class="tml-5" style="height:45px" alt="paypal.png">
-                                    </div><!-- PAYPAL -->
-                                    
-                                {{-- </div> --}}
+                                <div class="tflex titems-center tmt-8">
+                                    <label>
+                                        <input type="checkbox" id="credit_debit"/>
+                                        <span>Credit/Debit Card</span>
+                                    </label>
+                                    <img src="{{ asset('images/payments/credit_debit.png') }}" class="tml-5" style="height:45px" alt="paypal.png">
+                                </div><!-- PAYPAL -->
                             </div>
                         </li><!-- Payment Method -->
                     </ul>
@@ -335,4 +334,13 @@
 
         $('#mobile-nav').removeClass("tz-40");// remove bottom nav
     </script>
+
+    {{-- CHANGE CURRENCY ON LOAD --}}
+    @if (currency() == '$')
+        <script>
+            let pm = $('input[name="payment_method"]').val('paypal'); // set payment option to paypal
+            $('#credit_debit').click();
+            console.log(pm.val());
+        </script>
+    @endif
 @endsection

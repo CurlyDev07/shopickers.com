@@ -19,7 +19,7 @@ class HomeController extends Controller
         })->limit(10)->get()->toArray();
 
         $seo = [
-            'title' => "Shop & Enjoy Our Featured and Best Selling Products",
+            'title' => "Shop & Pick Our Featured and Best Selling Products in Shopickers",
             'image' => "",
             'description' => "",
             'robots' => 'index, follow',
