@@ -104,7 +104,7 @@
                     </div><!-- SHORT DESCRIPTION -->
                     <div class="tpx-4 sm:tpx-0  tborder-b  tmt-2 tpb-5">
                         <div class="tflex titems-center tjustify-center sm:tjustify-start sm:titems-start sm:tflex-col tmt-4">
-                            <span class="tfont-extrabold ttext-2xl ttext-primary tmr-4" style="font-family: arial;" id="price" data-price="500"><span class="ttext-base tfont-normal tmr-1">{{ currency() }}</span>{{ $product['price'] }}</span>
+                            <span class="tfont-extrabold ttext-2xl ttext-primary tmr-4" style="font-family: arial;" id="price" data-price="{{ $product['price'] }}"><span class="ttext-base tfont-normal tmr-1">{{ currency() }}</span>{{ $product['price'] }}</span>
                             @if ($product['compare_price'] != '')
                                 <div class="">
                                     <span class="tline-through ttext-gray-500"><span class="ttext-base tfont-normal tmr-1">{{ currency() }}</span>{{ $product['compare_price'] }}</span>
@@ -291,7 +291,7 @@
             var base_price = parseInt($('#price').data('price'));
             var static_price = $('#price').text();
             var total = parseInt(base_price * qty);
-            $('#price').html('$'+total);
+            $('#price').html('{{currency()}}'+total);
         });
 
         $('.qty_add').click(function(){
@@ -300,7 +300,7 @@
             var qty = parseInt($(this).prev().val()) + 1;
             var total = parseInt(base_price * qty);
 
-            $('#price').html('$'+total);
+            $('#price').html('{{currency()}}'+total);
         });
 
         var main_image = $('.owl-main').owlCarousel({
