@@ -94,7 +94,7 @@ The Laravel framework is open-source software licensed under the [MIT license](h
     ```
  
  - goto "app\Http\Controllers\Admin\ProductsCon.php@patch" Controller
-  + Replace the "CRATE NEW IMAGES IF NOT EXIST IN DB" Comment with the code below
+   + Replace the "CRATE NEW IMAGES IF NOT EXIST IN DB" Comment with the code below
     ```
        /*--------------------------------------------------------------------------
       | CRATE NEW IMAGES IF NOT EXIST IN DB
