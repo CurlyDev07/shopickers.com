@@ -92,6 +92,25 @@ The Laravel framework is open-source software licensed under the [MIT license](h
             $value['primary'] == 1 ? $primary++ : '';
         }// Upload Images
     ```
+ 
+ - goto "app\Http\Controllers\Admin\ProductsCon.php@patch" Controller
+   + Replace the "CRATE NEW IMAGES IF NOT EXIST IN DB" Comment with the code below
+    ```
+       /*--------------------------------------------------------------------------
+      | CRATE NEW IMAGES IF NOT EXIST IN DB
+      |--------------------------------------------------------------------------*/
+      if (!in_array($value['base64_image'], $old_imgs)) {
+          $img = uuid().'.jpg';
+          s3_upload_image($img, $value['base64_image']);
+          ProductImage::create([
+              'product_id' => $product->id,
+              'img' => '/images/products/'.$img,
+              'primary' => $value['primary']
+          ]);
+      }
+    ```
+ 
+    
 - goto config/filesystems.php
   + find the `disks` assoc array 
   + replace the `public` assoc array with the `code` below
