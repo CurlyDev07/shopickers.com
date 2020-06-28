@@ -136,6 +136,15 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     -webkit-box-orient: vertical;
 }
 
+.truncate-3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
 .truncate-long {
     overflow: hidden;
     text-overflow: ellipsis;

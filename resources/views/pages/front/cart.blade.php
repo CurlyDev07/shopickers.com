@@ -40,7 +40,7 @@
         {{-- FOR CART CONTAIN ITEMS --}}
         @if (count($products))
             <div class="lg:tflex">
-                <div class="sm:tborder tborder-b-0 tp-2 tmb-10 sm:tmb-0  sm:tp-8 tbg-white tw-full">
+                <div class="sm:tborder tborder-b-0 tp-2 sm:tmb-0  sm:tp-8 tbg-white tw-full">
                     <table class="">
                         <thead>
                             <tr>
@@ -67,10 +67,10 @@
                                         </label>
                                     </td>
                                     <td class="tp-1 lg:tp-3">
-                                        <div class="tflex titems-center">
-                                            <img class="thidden sm:tblock lg:thidden tmr-3 th-12" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt="">
-                                            <img class="thidden lg:tblock tmr-3" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt="">
-                                            <a href="{{ item_show_slug($item['title'], $item['id']) }}" class="truncate ttext-xs sm:ttext-base ttext-primary hover:tunderline" style="text-align: left">{{ $item['title'] }}</a>
+                                        <div class="sm:tflex-row tflex tflex-col titems-center">
+                                            <img class="tmr-3 th-12" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt="">
+                                            <!-- <img class="thidden lg:tblock tmr-3" style="height: 80px;width: 80px;" src="{{ $item['images'][0]['img'] }}" alt=""> -->
+                                            <a href="{{ item_show_slug($item['title'], $item['id']) }}" class="truncate-3 ttext-xs sm:ttext-base ttext-primary hover:tunderline" style="text-align: left">{{ $item['title'] }}</a>
                                         </div>
                                     </td>
                                     <td class="ttext-center" id="price">{{ $item['price'] }}</td>
@@ -120,7 +120,7 @@
             </div>
 
            <!-- FIXED BOTTOM NAVIGATION ON MOBILE DEVICES -->
-            <div class=" tz-40 tblock sm:thidden tbg-white tbottom-0 tfixed tflex titems-center tw-full">
+            <div class=" tz-40 tblock sm:thidden tbg-white tbottom-0 tflex titems-center tw-full">
                 <div class="ttext-center tw-1/2">
                     <div class="tfont-bold ttext-xs" style="color:rgba(0,0,0,.65);">Total (<span class="total_items">0</span> items)</div>
                     <div class="tfont-bold tleading-none ttext-2xl ttext-lg ttext-primary">{{ currency() }}<span class="total">0</span></div>
