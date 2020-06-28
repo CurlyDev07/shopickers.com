@@ -16,7 +16,7 @@ class HomeController extends Controller
         ->select('id', 'title', 'price', 'compare_price')
         ->when($request->price, function ($query, $price) {
             return $query->orderBy('price', $price);
-        })->limit(10)->get()->toArray();
+        })->inRandomOrder()->limit(10)->get()->toArray();
 
         $seo = [
             'title' => "Shop & Pick Our Featured and Best Selling Products in Shopickers",
