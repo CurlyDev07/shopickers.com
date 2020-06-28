@@ -84,7 +84,7 @@
                 
                     <div class="product tpx-1 tw-1/2 sm:tw-1/3 lg:tw-1/4 tmb-8">
                         <div class="product-hover hover:tshadow-xl tbg-white tshadow-md trounded-lg toverflow-hidden">
-                            <div class="tpx-4 tpy-2">
+                            <div class="tpx-4 tpy-2"  style="min-height: 60.75px;">
                                 <a href="{{ item_show_slug($product['title'], $product['id']) }}" style="font-size: 14px; height: 43px;" class="product-title hover:ttext-primary hover:tunderline tmt-1 truncate ttext-gray-600 ttext-sm">
                                     {{ $product['title'] }}
                                 </a>
