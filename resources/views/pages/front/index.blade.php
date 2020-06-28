@@ -129,7 +129,7 @@
             <div class="product tw-1/2 sm:tw-1/3 lg:tw-1/4 xl:tw-1/5 tmb-8" style="padding-right: 5px !important; padding-left: 5px !important;">
                 <div class="product-hover hover:tshadow-xl tbg-white tshadow-md trounded-lg toverflow-hidden">
                     <div class="tpx-4 tpy-2" style="min-height: 60.75px;">
-                        <a href="{{ item_show_slug($item['title'], $item['id']) }}" style="font-size: 14px; height: 43px;" class="product-title hover:ttext-primary hover:tunderline tmt-1 truncate ttext-gray-600 ttext-sm">
+                        <a href="{{ item_show_slug($item['title'], $item['id']) }}" style="font-size: 14px; height: 43px;" class="hover:ttext-primary hover:tunderline product-title tfont-medium tmt-1 truncate ttext-sm">
                             {{ $item['title'] }}
                         </a>
                     </div>
@@ -178,7 +178,7 @@
             <div class="product tw-1/2 sm:tw-1/3 lg:tw-1/4 xl:tw-1/5 tmb-8" style="padding-right: 5px !important; padding-left: 5px !important;">
                 <div class="product-hover hover:tshadow-xl tbg-white tshadow-md trounded-lg toverflow-hidden">
                     <div class="tpx-4 tpy-2"  style="min-height: 60.75px;">
-                        <a href="{{ item_show_slug($item['title'], $item['id']) }}" style="font-size: 14px;" class="product-title hover:ttext-primary hover:tunderline tmt-1 truncate ttext-gray-600 ttext-sm">
+                        <a href="{{ item_show_slug($item['title'], $item['id']) }}" style="font-size: 14px;" class="hover:ttext-primary hover:tunderline product-title tfont-medium tmt-1 truncate ttext-sm">
                             {{ $item['title'] }}
                         </a>
                     </div>
