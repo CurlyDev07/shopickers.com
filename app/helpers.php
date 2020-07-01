@@ -439,3 +439,19 @@ function site_name(){
 function url_has($hasStringofParams) {
     return count(explode($hasStringofParams, url()->current())) == 2? true:false;
 }
+
+function quantity($qty){
+    if ($qty == null) {
+        $qty = 'Only '.lowest_stocks().' items left';// default for dropshipping
+    }elseif ($qty < 20) {
+        $qty = "Only {$qty} items left";// default for dropshipping
+    }elseif ($qty > 20) {
+        $qty = "{$qty} items available";// default for dropshipping
+    }
+
+    return $qty;
+}
+
+function lowest_stocks(){
+    return rand(1, 10);
+}

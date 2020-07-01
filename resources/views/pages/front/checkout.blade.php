@@ -216,7 +216,7 @@
                                         <input type="checkbox" id="credit_debit"/>
                                         <span>Credit/Debit Card</span>
                                     </label>
-                                    <img src="{{ asset('images/payments/credit_debit.png') }}" class="tml-5" style="height:45px" alt="paypal.png">
+                                    <img src="{{ asset('images/payments/paypal.jpg') }}" class="tml-5" style="height:45px" alt="paypal.png">
                                 </div><!-- PAYPAL -->
                             </div>
                         </li><!-- Payment Method -->

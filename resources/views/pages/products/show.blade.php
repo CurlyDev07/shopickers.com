@@ -24,10 +24,9 @@
 @endsection
 
 @section('content')
-
     <div class="tmx-0 tpx-0 md:tmx-10 md:tpx-8 sm:tpt-16 sm:tpb-8 md:tpy-8">
         <div class="tflex tflex-wrap tw-full">
-            <div class="tw-full sm:tw-2/5 tpb-3 tbg-white">
+            <div class="tw-full sm:tw-2/5 tshadow tpb-3 tbg-white">
                 <div class="owl-main owl-carousel owl-theme">
                     <div class="item"  data-hash="1">
                         <div class="md:flex-shrink-0">
@@ -88,8 +87,8 @@
                     </li>
                 </ul><!-- SOCIAL MEDIA ICONS --> --}}
             </div><!-- IMAGES -->
-            <div class="tw-full sm:tw-3/5 ">
-                <div class="sm:tpx-5 md:tml-8 tbg-white th-full">
+            <div class="tw-full sm:tw-3/5">
+                <div class="sm:tpx-5 md:tml-8 tbg-white th-full tshadow">
                     <h2 class="tpt-4 sm:tpt-4 tpx-4 sm:tpx-0 tfont-medium tleading-tight ttext-gray-800 ttext-xl">{{ $product['title'] }}</h2>
                     <div class="tpx-4 sm:tpx-0 tflex tjustify-end tpy-3 ttext-md">
                         <div class="tmr-5 ttext-primary">
@@ -99,7 +98,7 @@
                         <div class="tborder-gray-400 tborder-l  tpx-5">182 Ratings</div>
                         <div class="tborder-gray-400 tborder-l  tpl-5">336 Sold</div>
                     </div><!-- RATINGS -->
-                    <div class="tpx-4 sm:tpx-0 tleading-relaxed truncate-long tmt-1">
+                    <div class="tpx-4 sm:tpx-0 tleading-relaxed tmt-1">
                         {!! nl2br($product['short_description']) !!}
                     </div><!-- SHORT DESCRIPTION -->
                     <div class="tpx-4 sm:tpx-0  tborder-b  tmt-2 tpb-5">
@@ -113,11 +112,11 @@
                             @endif
                         </div>
                     </div><!-- PRICE -->
-                    <div class="tpx-4 sm:tpx-0">
+                    <div class="sm:tpb-0 sm:tpx-0 tpb-5 tpx-4">
                         <p class="ttext-center sm:ttext-left tmb-3 tpt-3">Availability: In stock </p>
                         <div class="tflex tflex-col sm:tflex-row titems-center tjustify-center sm:tjustify-start">
                             {!! number_spinner_markup() !!}
-                            <div class="ttext-sm ttext-gray-500 tml-4 tmt-2 sm:mt-0">Only 8 items left</div>
+                            <div class="ttext-sm ttext-gray-500 tml-4 tmt-2 sm:mt-0">{{ quantity($product['qty']) }}</div>
                         </div>
                     </div>
                     <div class="tpy-5 sm:tpy-8 thidden sm:tflex titems-center tjustify-around sm:tjustify-between">
@@ -147,7 +146,7 @@
             </div><!-- DETAILS -->
         
         </div>
-        <div class="tflex tflex-col tmt-2 sm:tmt-8">
+        <div class="tflex tflex-col tmt-5 sm:tmt-8 tshadow">
             <div class="tw-full tbg-white">
                 <ul class="tabs">
                     {{-- <li class="tab col s3 tfont-medium"><a href="#description">OVERVIEW</a></li>

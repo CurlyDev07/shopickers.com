@@ -39,6 +39,7 @@ Route::namespace('Admin')->group(function () {
     Route::prefix('orders')->group(function () {
         Route::get('/', 'OrderCon@index');
         Route::get('/view/{transaction_id}', 'OrderCon@show');
+        Route::post('/change-status', 'OrderCon@change_status');
     });
 
     /*

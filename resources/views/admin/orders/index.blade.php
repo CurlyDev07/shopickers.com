@@ -63,7 +63,31 @@
                             </td>
                             <td class="tp-3 tpx-5">
                                 <a href="orders/view/{{ $order->id }}">
-                                    <i class="fa-eye fas ttext-2xl ttext-blue-500 tcursor-pointer"></i>
+                                    <i class="fa-external-link-alt fas gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="view transaction"></i>
+                                    <a class="modal-trigger" href="#modal-{{ $order['order_number'] }}">
+                                        <i class="fa-cog fas gray-text tcursor-pointer tooltipped" data-position="top" data-tooltip="settings"></i>
+                                    </a>
+
+                                    <div id="modal-{{ $order['order_number'] }}" class="modal modal-fixed-footer">
+                                        <div class="modal-content">
+                                            <h4>#{{ $order['order_number'] }}</h4>
+                                            <!-- Dropdown Trigger -->
+                                            <a class='dropdown-trigger btn' href='#' data-target="dropdown-{{ $order['order_number'] }}">Change Status</a>
+
+                                            <!-- Dropdown Structure -->
+                                            <ul id="dropdown-{{ $order['order_number'] }}" class='dropdown-content'>
+                                                <li><a href="javascript:void(0)" class="change_status" data-id="{{ $order->id }}" data-status="processing">Processing</a></li>
+                                                <li><a href="javascript:void(0)" class="change_status" data-id="{{ $order->id }}" data-status="to_ship">To ship</a></li>
+                                                <li><a href="javascript:void(0)" class="change_status" data-id="{{ $order->id }}" data-status="to_receive">To recieve</a></li>
+                                                <li><a href="javascript:void(0)" class="change_status" data-id="{{ $order->id }}" data-status="completed">Completed</a></li>
+                                                <li><a href="javascript:void(0)" class="change_status" data-id="{{ $order->id }}" data-status="declined">Declined</a></li>
+                                            </ul>
+                                                
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Done</a>
+                                        </div>
+                                    </div>
                                 </a>
                             </td>
                         </tr>
@@ -83,4 +107,32 @@
 
         {{ $orders->appends(request()->except('page'))->links() }}
     </div>
+@endsection
+
+
+@section('js')
+<script>
+    $(document).ready(function(){
+        $('.modal').modal();
+        $('.dropdown-trigger').dropdown();
+
+        // CHANGE STATUS
+        $('.change_status').click(function(){
+            let id = $(this).data('id');
+            let status = $(this).data('status');
+
+            $.ajax({
+                url: '/admin/orders/change-status',
+                type: 'POST',
+                data: {
+                    id: id,
+                    status: status,
+                },
+                success: ()=>{
+                   
+                }
+            });
+        });
+    });
+</script>
 @endsection

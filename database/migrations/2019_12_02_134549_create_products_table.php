@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('price')->nullable();
             $table->integer('compare_price')->nullable()->default(0);
             $table->integer('qty')->nullable()->default(0);
+            $table->integer('threshold')->nullable()->default(0);
             $table->string('sku')->nullable();
             $table->string('barcode')->nullable();
             $table->string('status')->default('inactive')->comment('active|inactive|top-selling|featured');

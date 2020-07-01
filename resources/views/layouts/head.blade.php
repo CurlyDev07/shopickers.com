@@ -77,7 +77,7 @@
     @yield('css')
     @yield('head_js')
 </head>
-<body class="trelative">
+<body class="trelative bg-color">
 
     
     

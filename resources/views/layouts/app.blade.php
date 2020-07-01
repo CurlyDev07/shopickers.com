@@ -2,7 +2,7 @@
 @include('layouts.nav')
   @yield('nav')
 
-  <div style="background: #f3f5f7;scroll-behavior: smooth;" id="body" class="sm:trelative tpb-5">
+  <div style="scroll-behavior: smooth;max-width: 1280px;" id="body" class="sm:trelative tpb-5 bg-color tmx-auto">
     @yield('content') 
   </div>
 

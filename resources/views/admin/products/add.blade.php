@@ -102,8 +102,12 @@
         </div>
         <div class="tflex tpx-5 tpt-4">
             <div class="tw-1/2 tflex tflex-col tmr-3 tpr-3">
-                <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">QUANTITY</label>
+                <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
                 <input type="number" onkeyup="allnumeric(this)" id="qty" class="browser-default form-control" style="padding: 6px;">
+            </div>
+            <div class="tw-1/2 tflex tflex-col tmr-3 tpr-3">
+                <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
+                <input type="number" onkeyup="allnumeric(this)" id="threshold" class="browser-default form-control" style="padding: 6px;">
             </div>
         </div>
     </div>
@@ -230,6 +234,7 @@
             $('.modal').modal();
 
            let description = CKEDITOR.replace( 'description' );
+           let short_description = CKEDITOR.replace( 'short_description' );
         });
     </script>
 
@@ -434,7 +439,7 @@
             progress_loading(true);// show loader
 
             let title = $('#title').val();
-            let short_description = $('#short_description').val();
+            let short_description = CKEDITOR.instances.short_description.getData();
             let description = CKEDITOR.instances.description.getData();
             let price = $('#price').val();
             let compare_price = $('#compare_price').val();
@@ -443,6 +448,7 @@
             let sku = $('#sku').val();
             let barcode = $('#barcode').val();
             let qty = $('#qty').val();
+            let threshold = $('#threshold').val();
             
             let image = [];
 
@@ -493,6 +499,7 @@
                 sku:sku,
                 barcode:barcode,
                 qty:qty,
+                threshold:threshold,
                 images:image,
                 variant_types: variant_types,   
                 variant_options: variant_options,

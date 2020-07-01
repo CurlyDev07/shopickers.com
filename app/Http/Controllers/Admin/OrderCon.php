@@ -38,4 +38,11 @@ class OrderCon extends Controller
 
         return view('admin.orders.view', compact('orders'));
     }
+
+    public function change_status(Request $request){
+        $transaction = Transaction::find($request->id);
+        $transaction->update(['status' => $request->status]);// change trans status
+        $transaction->payments()->update(['payment_status' => $request->status]);// change payment status
+        return response()->json(['status' => true]);
+    }
 }

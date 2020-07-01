@@ -29,18 +29,18 @@ class UploadProductsRequest extends FormRequest
             'short_description' => 'required',
             'price' => 'required|integer',
             // 'compare_price' => 'integer',
-            // 'qty' => 'integer',
+            'qty' => 'required|integer',
             'images' => 'required'
         ];
     }
 
     public function messages(){
         return [
-            'title.required' => 'The <u>Title</u> is required',
-            'description.required'  => 'The <u>Description</u> is required',
-            'price.required'  => 'The <u>Price</u> is required',
-            'qty.required'  => 'The <u>Quantity</u> is required',
-            'images.required'  => 'The <u>Images</u> is required',
+            'title.required' => 'The <b>Title</b> is required',
+            'description.required'  => 'The <b>Description</b> is required',
+            'price.required'  => 'The <b>Price</b> is required',
+            'qty.required'  => 'The <b>Quantity</b> is required',
+            'images.required'  => 'The <b>Images</b> is required',
         ];
     }
 }

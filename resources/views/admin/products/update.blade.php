@@ -36,7 +36,7 @@
             <div class="tflex tpx-5 tpt-5">
                 <div class="tw-full tflex tflex-col tmr-2">
                     <label for="short_description" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Short Description</label>
-                    <textarea id="short_description" class="browser-default form-control" name="short_description" rows="5" style="padding: 6px;">{!! ($products['short_description']) !!}</textarea>
+                    <textarea id="short_description" class="browser-default form-control" name="short_description" rows="5" style="padding: 6px;"></textarea>
                 </div>
             </div>
             <div class="tflex tpx-5 tpt-5">
@@ -100,9 +100,13 @@
                 </div>
             </div>
             <div class="tflex tpx-5 tpt-4">
-                <div class="tw-1/2 tflex tflex-col tmr-3 tpr-3">
-                    <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">QUANTITY</label>
+                <div class="tw-1/2 tflex tflex-col tmr-3">
+                    <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
                     <input type="number" onkeyup="allnumeric(this)" id="qty" class="browser-default form-control" value="{{ $products['qty'] }}" style="padding: 6px;">
+                </div>
+                <div class="tw-1/2 tflex tflex-col tml-3">
+                    <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
+                    <input type="number" onkeyup="allnumeric(this)" id="threshold" class="browser-default form-control" value="{{ $products['threshold'] }}" style="padding: 6px;">
                 </div>
             </div>
         </div>
@@ -145,6 +149,9 @@
 
             let description = CKEDITOR.replace( 'description' );
             CKEDITOR.instances['description'].setData(`{!! $products['description'] !!}`);
+
+            let short_description = CKEDITOR.replace( 'short_description' );
+            CKEDITOR.instances['short_description'].setData(`{!! $products['short_description'] !!}`);
         });
 
         
@@ -378,7 +385,7 @@
             progress_loading(true);// show loader
 
             let title = $('#title').val();
-            let short_description = $('#short_description').val();
+            let short_description = CKEDITOR.instances.short_description.getData();
             let description = CKEDITOR.instances.description.getData();
             let price = $('#price').val();
             let compare_price = $('#compare_price').val();
@@ -387,6 +394,7 @@
             let sku = $('#sku').val();
             let barcode = $('#barcode').val();
             let qty = $('#qty').val();
+            let threshold = $('#threshold').val();
             
             let image = [];
             $.each($('.image'), function (i, el) {
@@ -407,6 +415,7 @@
                 sku:sku,
                 barcode:barcode,
                 qty:qty,
+                threshold:threshold,
                 images:image,
             })
             .fail(function(response) {
