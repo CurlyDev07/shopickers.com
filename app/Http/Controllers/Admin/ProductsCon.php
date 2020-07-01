@@ -92,7 +92,7 @@ class ProductsCon extends Controller
         foreach ($old_imgs as $old_img) {
             if (!in_array($old_img, $get_image_names_from_req_img)) {
                 ProductImage::where('img', rm_cloudfront($old_img))->delete();
-                Storage::disk('s3')->delete(rm_cloudfront($old_img));
+                // Storage::disk('public')->delete($old_img);
             }
         }
 
