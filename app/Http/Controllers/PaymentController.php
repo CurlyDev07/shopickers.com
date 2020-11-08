@@ -8,6 +8,7 @@ use App\Transaction;
 use App\TransactionPayment;
 use App\TransactionProducts;
 use App\Product;
+use App\PaymentMethod;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -37,16 +38,22 @@ class PaymentController extends Controller
     }
  
     public function charge(Request $request) {
-        if ($request->payment_method == 'cod') {
+        $payment_method = $this->get_payment_method($request->payment_method);// get payment method
+
+        if ($payment_method == 'COD') {
             return $this->cod($request);
         }
 
        $this->paypal($request);
     }
+
+    public function get_payment_method($payment_method_id){
+        return PaymentMethod::find($payment_method_id)->toArray()['name'];
+    }
    
     public function cod($request){
         $markdown = $this->save_products($request);// save the transaction and get the markdown
-        $markdown['payment_id'] = "COD-".strtoupper(Str::random(20));
+        $markdown['payment_id'] = "LX-".strtoupper(Str::random(20));
         $markdown['payer_id'] = "N/A";
         $markdown['payer_email'] = $request->email;
         $markdown['currency'] = "PHP";
@@ -83,6 +90,8 @@ class PaymentController extends Controller
         $subtotal = 0;
 
         $transaction = Transaction::create([
+            'sold_from_id' => 1,// 1 = Sold from onsite/website
+            'payment_method_id' => $request->payment_method,
             'user_id' => Auth::check()? Auth::id() : 0,
             "first_name" => $request->first_name,
             "last_name" => $request->last_name, 
@@ -96,7 +105,7 @@ class PaymentController extends Controller
         ]);
 
         $transaction->update([
-            'order_number' => $this->order_number($request->payment_method ,$transaction['id'])
+            'order_number' => generateOrderNumber($transaction['id'])
         ]);// Add transaction id
 
         foreach ($items_decode as $item) {
@@ -119,16 +128,7 @@ class PaymentController extends Controller
         ];
     }
 
-    public function order_number($payment_method, $transaction_id){
-        $payment_method_code = [
-            "cod" => "C",
-            "paypal" => "P",
-        ];
-        return "SP{$payment_method_code[$payment_method]}".now()->format('ymd').$transaction_id;
-    }
-
     public function payment_success(){
-
     }
 
     public function paypal($request){
@@ -216,5 +216,4 @@ class PaymentController extends Controller
     public function payment_error(){
         return redirect('/');
     }// not used yet
-
 }

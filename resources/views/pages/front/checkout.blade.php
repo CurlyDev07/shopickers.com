@@ -111,7 +111,7 @@
                                     {{ csrf_field() }}
                                     <input type="submit" id="submit" name="submit" class="thidden">
                                     <input type="hidden" name="base64_item_details" value="{{ request()->base64_item_details }}">
-                                    <input type="hidden" name="payment_method" value="cod">
+                                    <input type="hidden" name="payment_method" value="3"><!-- CASH ON DELIVERY DEFAULT PAYMENT METHOD -->
 
                                     <div class="row">
                                         <div class="input-field col s6">
@@ -319,12 +319,12 @@
 
         $('#cod').change(function () {
             $("#credit_debit").prop('checked', false);
-            change_payment_method('cod');
+            change_payment_method(3);
         });
 
         $('#credit_debit').change(function () {
             $("#cod").prop('checked', false);
-            change_payment_method('paypal');
+            change_payment_method(1);
         });
 
         function change_payment_method(payment_method) {

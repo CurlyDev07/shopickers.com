@@ -105,7 +105,7 @@
                 <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
                 <input type="number" onkeyup="allnumeric(this)" id="qty" class="browser-default form-control" style="padding: 6px;">
             </div>
-            <div class="tw-1/2 tflex tflex-col tmr-3 tpr-3">
+            <div class="tw-1/2 tflex tflex-col tml-3">
                 <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
                 <input type="number" onkeyup="allnumeric(this)" id="threshold" class="browser-default form-control" style="padding: 6px;">
             </div>

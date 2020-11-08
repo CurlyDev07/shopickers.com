@@ -7,6 +7,14 @@ use App\Product;
 
 class ProductsCon extends Controller
 {
+
+    public $products;
+
+    function __construct(Product $products) {
+        $this->products = $products;
+    }
+
+
     public function show($slug, $item_id){
         $product = Product::with(['images'])
         ->findOrFail($item_id)->toArray();
@@ -47,5 +55,10 @@ class ProductsCon extends Controller
         ];
 
         return view('pages.products.all', compact('products', 'seo'));
+    }
+
+    public function auto_complete(){
+        $products = json_encode($this->products->active()->pluck('id', 'title'));
+        return response()->json($products);
     }
 }

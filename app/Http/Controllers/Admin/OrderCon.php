@@ -4,11 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Transaction;
 use App\TransactionPayment;
+use App\TransactionProducts;
+use App\Product;
+use App\PaymentMethod;
+use App\SoldFrom;
+use App\Http\Requests\Orders\CreateOrderRequest;
+use Illuminate\Support\Str;
+
 
 class OrderCon extends Controller
 {
+    protected $products;
+
+    public function __construct(Product $products) {
+        $this->products = $products;
+    }
+
     public function index(Request $request){
         $orders = Transaction::with('payments:id,transaction_id,total,payment_status,created_at')
         ->when($request->sort, function($q){
@@ -34,10 +48,66 @@ class OrderCon extends Controller
             }
         ])
         ->get()->toArray()[0];
-        // dd($orders);
 
         return view('admin.orders.view', compact('orders'));
     }
+
+    public function create(){
+        $products = $this->products->active()->get(['id', 'title', 'price']);
+        $payment_method = PaymentMethod::all();
+        $sold_from = SoldFrom::all();
+
+        return view('admin.orders.create', compact('products', 'payment_method', 'sold_from'));
+    }
+
+    public function store(CreateOrderRequest $request){
+        // CREATE TRANSACTION 
+        $transaction = Transaction::create([
+            'sold_from_id' => $request->sold_from,
+            'payment_method_id' => $request->payment_method,
+            'user_id' => 0,
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name, 
+            "phone_number" => $request->phone_number,  
+            "email" => 'N/A', 
+            "address" => $request->address,   
+            "barangay" => 'N/A', 
+            "city" =>'N/A', 
+            "province" => 'N/A',
+            "zip_code" => 'N/A',
+            'status' => 'completed'
+        ]);
+
+        $transaction->update([
+            'order_number' => generateOrderNumber($transaction['id'])
+        ]);// Add transaction id
+
+
+        // CREATE TRANSACTION PRODUCTS
+        $transaction->products()->create([
+            'product_id' => $request->product,
+            'price' => $request->price,
+            'qty' => $request->quantity,
+            'subtotal' => ($request->price * $request->quantity),
+        ]); // save item
+
+
+        // CREATE TRANSACTION PAYMENT
+        TransactionPayment::create([
+            'transaction_id' => $transaction['id'],
+            'payment_id' => "LX-".strtoupper(Str::random(20)),
+            'payer_id' => 'N/A',
+            'payer_email' => 'N/A',
+            'shipping_fee' => 0,
+            'subtotal' => ($request->price * $request->quantity),
+            'total' => ($request->price * $request->quantity),
+            'currency' => 'PHP',
+            'payment_status' => 'completed',
+        ]);
+
+        return response()->json(['status' => true]);
+    }
+
 
     public function change_status(Request $request){
         $transaction = Transaction::find($request->id);
@@ -45,4 +115,5 @@ class OrderCon extends Controller
         $transaction->payments()->update(['payment_status' => $request->status]);// change payment status
         return response()->json(['status' => true]);
     }
+
 }

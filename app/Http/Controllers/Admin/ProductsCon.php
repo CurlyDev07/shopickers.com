@@ -18,7 +18,7 @@ class ProductsCon extends Controller
         $products = Product::with(array('images' => function($query){
                 $query->where('primary', 1);
             })
-        )->get()->toArray();
+        )->latest()->get()->toArray();
         return view('admin.products.index', compact('products'));
     }
     

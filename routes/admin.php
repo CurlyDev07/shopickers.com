@@ -39,7 +39,20 @@ Route::namespace('Admin')->group(function () {
     Route::prefix('orders')->group(function () {
         Route::get('/', 'OrderCon@index');
         Route::get('/view/{transaction_id}', 'OrderCon@show');
+        Route::get('/create', 'OrderCon@create');
+        Route::post('/store', 'OrderCon@store');
         Route::post('/change-status', 'OrderCon@change_status');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | INVENTORY Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('inventory')->group(function () {
+        Route::get('/', function(){
+            dd('inventory');
+        });
     });
 
     /*

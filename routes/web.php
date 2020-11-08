@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth']], function () {
 //Products
 Route::get('{slug}-i.{item_id}', 'ProductsCon@show')->where(['item_id' => '[0-9]+', 'slug' => '.*']);
 Route::get('products', 'ProductsCon@all')->name('products.all');
+Route::get('auto-complete', 'ProductsCon@auto_complete')->name('products.auto_complete');
+
 
 
 // CART

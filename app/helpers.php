@@ -455,3 +455,7 @@ function quantity($qty){
 function lowest_stocks(){
     return rand(1, 10);
 }
+
+function generateOrderNumber($transaction_id){
+    return "LX".now()->format('ymd').$transaction_id;
+}
