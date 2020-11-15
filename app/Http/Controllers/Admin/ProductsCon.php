@@ -93,7 +93,7 @@ class ProductsCon extends Controller
         $get_image_names_from_req_img = Arr::pluck($request->images, 'base64_image');
         foreach ($old_imgs as $old_img) {
             if (!in_array($old_img, $get_image_names_from_req_img)) {
-                ProductImage::where('img', rm_cloudfront($old_img))->delete();
+                ProductImage::where('img', $old_img)->delete();
                 // Storage::disk('public')->delete($old_img);
             }
         }
@@ -117,7 +117,7 @@ class ProductsCon extends Controller
             /*--------------------------------------------------------------------------
             | UPDATE ALL IMAGE PRIMARY
             |--------------------------------------------------------------------------*/
-            ProductImage::where('img', rm_cloudfront($value['base64_image']))->update(['primary' => $value['primary']]);
+            ProductImage::where('img', $value['base64_image'])->update(['primary' => $value['primary']]);
             $value['primary'] == 1 ? $primary++ : '';
         }
 
