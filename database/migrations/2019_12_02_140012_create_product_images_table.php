@@ -17,6 +17,7 @@ class CreateProductImagesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('product_id')->index()->nullable();
             $table->string('img')->nullable();
+            $table->string('size')->nullable();
             $table->integer('primary')->nullable();
         });
     }

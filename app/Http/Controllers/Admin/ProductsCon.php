@@ -27,18 +27,30 @@ class ProductsCon extends Controller
     }
 
     public function store(UploadProductsRequest $request){
-        // $product = Product::create($request->all());
+        $product = Product::create($request->all());
 
         $primary = 0;
         foreach ($request->images as $key => $value) {
             $img = uuid().'.jpg';
-            return response()->json($img);
+            $small_image = 'small-'.$img;
+            $original_image = 'original-'.$img;
 
-            s3_upload_image($img, $value['base64_image']);
+            // small image
+            upload_resize_product_image($small_image, $value['base64_image'], 'small');
             $product->images()->create([
-                'img' => '/images/products/'.$img,
-                'primary' => $value['primary']
+                'img' => $small_image,
+                'primary' => $value['primary'],
+                'size' => 'small'
             ]);
+
+            // original image
+            upload_resize_product_image($original_image, $value['base64_image'], 'original');
+            $product->images()->create([
+                'img' => $original_image,
+                'primary' => $value['primary'],
+                'size' => 'original'
+            ]);
+
             $value['primary'] == 1 ? $primary++ : '';
         }// Upload Images
 

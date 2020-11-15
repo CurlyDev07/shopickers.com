@@ -26,7 +26,7 @@ class Product extends Model
     }
 
     public function getPrimaryImageAttribute(){
-        return config('app.cloudfront').$this->images()->where('primary', true)->first()['img'];
+        return $this->images()->where('primary', true)->first()['img'];
     }
 
     public function active(){

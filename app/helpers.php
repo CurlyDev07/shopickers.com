@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 function uuid(){
     return Str::slug(Str::uuid(), '');
@@ -392,6 +393,23 @@ function s3_upload_image($path_and_file_name, $base64_string){
     // $upload_success_md = Storage::disk('s3')->put($path_and_file_name, $base64decoded); // production
     $upload_success_md = Storage::disk('public')->put($path_and_file_name, $base64decoded); // development
 }
+
+function upload_resize_product_image($image_name, $base64, $size){
+    if ($size == 'small') {
+        $small = Image::make($base64);
+        return Storage::disk('public')->put($image_name, $small->fit(320, 320)->save($base64));
+
+        // $make = Image::make($base64);
+        // return Storage::disk('public')->put($image_name, $make->fit(320, 320)->save($base64));
+    }// crop image to 320x320px
+
+    if ($size == 'original') {
+        $original = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64));
+        return Storage::disk('public')->put($image_name, $original);
+    }// Retain original image
+}
+
+
 
 function rm_cloudfront($img){
     return str_replace(config('app.cloudfront'), "", $img);
