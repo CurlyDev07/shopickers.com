@@ -530,7 +530,7 @@
             })
             .done(function( res ) {
                 progress_loading(false);// hide loader
-                window.location.href = '/admin/products';
+                // window.location.href = '/admin/products';
             });
         }
     </script>   

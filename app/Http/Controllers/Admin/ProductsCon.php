@@ -27,11 +27,13 @@ class ProductsCon extends Controller
     }
 
     public function store(UploadProductsRequest $request){
-        $product = Product::create($request->all());
+        // $product = Product::create($request->all());
 
         $primary = 0;
         foreach ($request->images as $key => $value) {
             $img = uuid().'.jpg';
+            return response()->json($img);
+
             s3_upload_image($img, $value['base64_image']);
             $product->images()->create([
                 'img' => '/images/products/'.$img,
