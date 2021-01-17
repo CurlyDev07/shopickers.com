@@ -28,7 +28,7 @@ class UploadProductsRequest extends FormRequest
             'description' => 'required',
             'short_description' => 'required',
             'price' => 'required|integer',
-            // 'compare_price' => 'integer',
+            'sku' => 'required',
             'qty' => 'required|integer',
             'images' => 'required'
         ];

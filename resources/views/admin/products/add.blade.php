@@ -93,7 +93,7 @@
         <div class="tflex tpx-5">
             <div class="tw-1/2 tflex tflex-col tmr-3">
                 <label for="sku" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU (Stock Keeping Unit)</label>
-                <input type="number" onkeyup="allnumeric(this)" id="sku" class="browser-default form-control" style="padding: 6px;">
+                <input type="text" id="sku" class="browser-default form-control" style="padding: 6px;">
             </div>
             <div class="tw-1/2 tflex tflex-col tml-3">
                 <label for="barcode" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode (ISBN, UPC, GTIN, etc.)</label>
@@ -107,7 +107,7 @@
             </div>
             <div class="tw-1/2 tflex tflex-col tml-3">
                 <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
-                <input type="number" onkeyup="allnumeric(this)" id="threshold" class="browser-default form-control" style="padding: 6px;">
+                <input type="number" onkeyup="allnumeric(this)" value="10" id="threshold" class="browser-default form-control" style="padding: 6px;">
             </div>
         </div>
     </div>

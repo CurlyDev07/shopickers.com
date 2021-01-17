@@ -22,11 +22,11 @@ class CreateSoldFromsTable extends Migration
         });
 
         SoldFrom::insert([
-            ['name' => 'WEBSITE', 'description' => 'Sold from website', 'created_at' => now(), 'updated_at' => now(), ],
             ['name' => 'FB', 'description' => 'Sold from facebook, groups, marketplace or organic post', 'created_at' => now(), 'updated_at' => now(), ],
-            ['name' => 'LAZADA', 'description' => 'Sold from lazada', 'created_at' => now(), 'updated_at' => now(), ],
             ['name' => 'SHOPEE', 'description' => 'Sold from shopee', 'created_at' => now(), 'updated_at' => now(), ],
+            ['name' => 'LAZADA', 'description' => 'Sold from lazada', 'created_at' => now(), 'updated_at' => now(), ],
             ['name' => 'CAROUSEL', 'description' => 'Sold from carousel buy and sell', 'created_at' => now(), 'updated_at' => now(), ],
+            ['name' => 'WEBSITE', 'description' => 'Sold from website', 'created_at' => now(), 'updated_at' => now(), ],
         ]);
 
     }

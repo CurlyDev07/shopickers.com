@@ -69,12 +69,13 @@ class OrderCon extends Controller
             "first_name" => $request->first_name,
             "last_name" => $request->last_name, 
             "phone_number" => $request->phone_number,  
-            "email" => 'N/A', 
+            "email" => '', 
+            'fb_link' => $request->fb_link,
             "address" => $request->address,   
-            "barangay" => 'N/A', 
-            "city" =>'N/A', 
-            "province" => 'N/A',
-            "zip_code" => 'N/A',
+            "barangay" => '', 
+            "city" =>'', 
+            "province" => '',
+            "zip_code" => '',
             'status' => 'completed'
         ]);
 
@@ -82,14 +83,31 @@ class OrderCon extends Controller
             'order_number' => generateOrderNumber($transaction['id'])
         ]);// Add transaction id
 
+        
+        $total = 0;
 
         // CREATE TRANSACTION PRODUCTS
-        $transaction->products()->create([
-            'product_id' => $request->product,
-            'price' => $request->price,
-            'qty' => $request->quantity,
-            'subtotal' => ($request->price * $request->quantity),
-        ]); // save item
+        foreach ($request->products as $product) {
+            // dd($product);
+            $transaction->products()->create([
+                'product_id' => $product['product_id'],
+                'price' => $product['price'],
+                'qty' => $product['qty'],
+                'subtotal' => $product['subtotal'],
+            ]); // save product
+            
+            $total += $product['subtotal'];// add subtotal
+
+            // UPDATE PRODUCT STOCKS
+            $this->products->updateStocks($product['product_id'], $product['qty']);
+        }
+
+        // $transaction->products()->create([
+        //     'product_id' => $request->product,
+        //     'price' => $request->price,
+        //     'qty' => $request->quantity,
+        //     'subtotal' => ($request->price * $request->quantity),
+        // ]);
 
 
         // CREATE TRANSACTION PAYMENT
@@ -99,11 +117,13 @@ class OrderCon extends Controller
             'payer_id' => 'N/A',
             'payer_email' => 'N/A',
             'shipping_fee' => 0,
-            'subtotal' => ($request->price * $request->quantity),
-            'total' => ($request->price * $request->quantity),
+            'subtotal' => $total,
+            'total' => $total,
             'currency' => 'PHP',
             'payment_status' => 'completed',
         ]);
+
+
 
         return response()->json(['status' => true]);
     }

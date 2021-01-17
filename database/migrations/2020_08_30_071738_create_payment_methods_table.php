@@ -22,12 +22,12 @@ class CreatePaymentMethodsTable extends Migration
         });
 
         PaymentMethod::insert([
-            ['name' => 'PAYPAL', 'description' => 'Paid via paypal', 'created_at' => now(), 'updated_at' => now(), ],
-            ['name' => 'BANK TRANSFER', 'description' => 'Paid via bank transfer', 'created_at' => now(), 'updated_at' => now(), ],
             ['name' => 'COD', 'description' => 'Paid via cash on delivery', 'created_at' => now(), 'updated_at' => now(), ],
+            ['name' => 'BANK TRANSFER', 'description' => 'Paid via bank transfer', 'created_at' => now(), 'updated_at' => now(), ],
             ['name' => 'GCASH', 'description' => 'Paid via gcash', 'created_at' => now(), 'updated_at' => now(), ],
-            ['name' => 'UPFRONT MEETUP', 'description' => 'Paid via meetup', 'created_at' => now(), 'updated_at' => now(), ],
-            ['name' => 'UPFRONT PICKUP', 'description' => 'Paid via pickup', 'created_at' => now(), 'updated_at' => now(), ],
+            ['name' => 'MEETUP', 'description' => 'Paid via meetup', 'created_at' => now(), 'updated_at' => now(), ],
+            ['name' => 'PICKUP', 'description' => 'Paid via pickup', 'created_at' => now(), 'updated_at' => now(), ],
+            ['name' => 'PAYPAL', 'description' => 'Paid via paypal', 'created_at' => now(), 'updated_at' => now(), ],
         ]);
 
     }

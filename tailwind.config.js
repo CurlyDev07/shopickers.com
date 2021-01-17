@@ -12,7 +12,7 @@ module.exports = {
       }
     },
     backgroundColors: {
-      primary: '#2d7bbf',
+      primary: '#f4ad2b',
     },
     container: {
       center: true,

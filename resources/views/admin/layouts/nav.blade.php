@@ -79,6 +79,13 @@
                         Settings
                     </a>
                 </li>
+
+                <li class="tab col">
+                    <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'inventory', 'active') }}" onclick="location.href = '/admin/inventory'">
+                        <i class="fas fa-cogs tmr-1 fa-lg"></i> 
+                        Inventory
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

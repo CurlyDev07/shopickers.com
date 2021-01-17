@@ -108,6 +108,7 @@ class PaymentController extends Controller
             'order_number' => generateOrderNumber($transaction['id'])
         ]);// Add transaction id
 
+        // CREATE TRANSACTION PRODUCTS
         foreach ($items_decode as $item) {
             $products = Product::where('id', $item->id)->get()->toArray();
 

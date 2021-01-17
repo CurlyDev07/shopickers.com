@@ -55,7 +55,8 @@ class ProductsCon extends Controller
         }// Upload Images
 
         if ($primary == 0) {
-            $product->images()->first()->update(['primary' => 1]);
+            $product->images()->first()->update(['primary' => 1]); // update the first small image
+            $product->images()->second()->update(['primary' => 1]); // update the first original image
         }// Set Main image if user didn't choose primary img
 
         // if ($request->has_variant == false) {

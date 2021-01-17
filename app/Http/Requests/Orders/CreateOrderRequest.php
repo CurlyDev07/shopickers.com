@@ -24,10 +24,10 @@ class CreateOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'product'=> 'required',
-            'price'=> 'required|integer',
-            'quantity'=> 'required|integer',
-            'total'=> 'required|integer',
+            'products'=> 'required',
+            // 'price'=> 'required|integer',
+            // 'quantity'=> 'required|integer',
+            // 'total'=> 'required|integer',
             
             'first_name' => 'required',
             'sold_from'=> 'required|integer',

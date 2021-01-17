@@ -16,43 +16,52 @@
         <div class="tborder-b text-base tfont-medium tpx-5 tpy-4 t ttext-title">
             Create Order
         </div>
-        <div class="tflex tpx-5 tpt-5">
-            <div class="tw-full tflex tflex-col tmr-2">
-                <label for="product" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Product</label>
-                <select name="" id="product" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
-                    <option value="" data-price="" selected>Choose product ...</option>
-                    @foreach ($products as $product)
-                        <option value="{{ $product->id }}" data-price="{{ $product->price }}">{{ $product->title }}</option>
-                    @endforeach
-                </select>
-            </div><!-- Product Text -->
-
+        <div class="text-sm tfont-medium tpx-5 tpt-4 tpt-2 t ttext-title">
+            Product
         </div>
-    </div><!-- Product -->
-
-    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
-        <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-            Pricing
-        </div>
-        <div class="tflex tpx-5">
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
-                <input type="text" onkeyup="allnumeric(this)" value="0" id="price" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Price -->
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="quantity" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
-                <select name="" id="quantity" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
-                    @for ($qty = 1; $qty < 50; $qty++)
-                        <option value="{{ $qty }}">{{ $qty }}</option>
-                    @endfor
-                </select>
-            </div>
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="total" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Total</label>
-                <input type="text" onkeyup="allnumeric(this)" id="total" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Total -->
-        </div>
-    </div><!-- Pricing -->
+        <div id="items">
+            <div class="item trelative">
+                <i class="closeItem material-icons hover:tunderline tabsolute tcursor-pointer tmr-6 tmt-2 tright-0 ttext-error thidden">close</i>
+                <div class="tborder-b tflex tmx-5 tpy-3">
+                    <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
+                        <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Item </label>
+                        <select class="product tcursor-pointer browser-default form-control" style="padding: 6px;">
+                            <option value="" data-price="" selected>Choose product ...</option>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}" data-price="{{ $product->price }}">{{ $product->title }}</option>
+                            @endforeach
+                        </select>
+                    </div><!-- Product -->
+                    <div class="tw-1/6 tflex tflex-col tmr-3">
+                        <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
+                        <input type="text" onkeyup="allnumeric(this)" value="0" class="price browser-default form-control" style="padding: 6px;">
+                    </div><!-- Price -->
+                    <div class="tw-1/6 tflex tflex-col tmr-3">
+                        <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
+                        <select name="" class="quantity tcursor-pointer browser-default form-control" style="padding: 6px;">
+                            @for ($qty = 1; $qty < 50; $qty++)
+                                <option value="{{ $qty }}">{{ $qty }}</option>
+                            @endfor
+                        </select>
+                    </div><!-- QTY -->
+                    <div class="tw-1/6 tflex tflex-col tmr-3">
+                        <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
+                        <input type="text" disabled class="subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9;cursor: not-allowed;">
+                    </div><!-- Sub Total -->
+                </div>
+            </div><!-- Items -->
+        </div><!-- Items Container -->
+        <div class="tflex titems-center tjustify-end tmx-5 tpr-3 tpy-3">
+            <div class="tpr-5 tborder-r"><small class="ttext-gray-500"><span id="total_items">1</span> item(s)</small> TOTAL</div>
+            <div class="tpx-6" style="font-size: 24px;">₱<span id="total">0</span> </div>
+            
+        </div><!-- TOTAL -->
+        <div class="tflex tmx-5 tpy-3 tjustify-end">
+            <button id="add_item" class="focus:tbg-gray-100 focus:toutline-none hover:tbg-gray-100 tbg-white tshadow-md tborder tpx-6 tpy-2 trounded ttext-black-100 ttext-sm waves-effect">
+                Add product
+            </button>
+        </div><!-- Add Items -->
+    </div><!-- Create Order -->
 
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
         <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
@@ -137,36 +146,108 @@
         $(document).ready(function(){
             $('.modal').modal();// initiate modal
 
-            $('#product').change(function(){
-                let selected = $('#product option:selected');
-                $('#price').val(selected.data('price'));
-                updateTotalPrice();// update total Price
-            });
-            
-            $('#price').change(()=>{
-                updateTotalPrice();
-            });// update total Price
-            
-            $('#quantity').change(()=>{
-                updateTotalPrice();
-            });// update total Price
+            // On Change Product
+            $('.product').change(function(){
+                let self = $(this).find(":selected")
+                let id = self.val(); //get product id
+                let price = self.data('price'); //get product id
 
-            function updateTotalPrice() {
-                let price = $('#price').val();
-                let quantity = $('#quantity').val();
-                $('#total').val(price*quantity);
-            }// update total Price
+                // update price
+                $(this).parent().next().find('.price').val(price);
+
+                changeSubtotal($(this).parent().parent());
+                getTotal();
+            });
+
+            // On Change Quantity
+            $('.quantity').change(function(){
+                changeSubtotal($(this).parent().parent());
+                getTotal();
+            });
+
+            // On Change Price
+            $('.price').change(function(){
+                changeSubtotal($(this).parent().parent());
+                getTotal();
+            });
+
+            $('#add_item').click(function () {
+                let item =  $('#items').children().last().clone(true, true);
+                $('#items').append(item);
+
+                hideRemoveFirstItem();
+                getTotal();
+            });
+
+            $('.closeItem').click(function () {
+                $(this).parent().remove();
+                getTotal();
+            });
+
+            function hideRemoveFirstItem() {
+                $('.item').each(function (index, event) {
+                    if (index != 0) {
+                        $(this).find('.closeItem').removeClass('thidden');
+                    }
+                });
+            }// show remove product button
+
+            function changeSubtotal(parent){
+                let price = parent.find('.price').val();
+                let quantity = parent.find('.quantity').val();
+                let subtotal = parent.find('.subtotal');
+
+                subtotal.val(price*quantity);
+            }
+
+            function getTotal() {
+                let subtotal = 0;
+                let quantity = 0;
+
+                $('.subtotal').each(function () {
+                    subtotal += parseInt($(this).val());
+                });
+                $('.quantity').each(function () {
+                    quantity += parseInt($(this).val());
+                });
+
+                $('#total').html(numberWithCommas(subtotal));
+                $('#total_items').html(numberWithCommas(quantity));
+            }
+
+            function numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            function getAllProducts() {
+                let products = [];
+
+                $('#items').children().each(function () {
+                    let = product_id = $(this).find('.product').val();
+                    let = price = $(this).find('.price').val();
+                    let = qty = $(this).find('.quantity').val();
+                    let = subtotal = $(this).find('.subtotal').val();
+
+                    products.push({
+                        product_id: product_id,
+                        price: price,
+                        qty: qty,
+                        subtotal: subtotal,
+                    })
+                });
+
+                return products;
+            }
 
             $('#submit_btn').click(()=>{
                 $('#submit_btn').attr('disabled', 'true');
                 progress_loading(true);// show loader
 
+                let products = getAllProducts();
+
                 $.post( "/admin/orders/store", {
-                    'product': $('#product').val(),
-                    'price': $('#price').val(),
-                    'quantity': $('#quantity').val(),
-                    'total': $('#total').val(),
-                    
+                    'products': products,
+
                     'sold_from': $('#sold_from').val(),
                     'payment_method': $('#payment_method').val(),
 
@@ -208,7 +289,7 @@
                         title: 'Awesome',
                         text: 'Added Successfuly',
                     });
-                    // window.location.reload();
+                    location.href = '/admin/orders';
                 });
             })
         });  

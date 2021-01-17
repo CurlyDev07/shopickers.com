@@ -4,9 +4,9 @@ use App\ProductImage;
 
 Route::namespace('Admin')->group(function () {
 
-    Route::get('/', function(){
-        return redirect('/admin/products');
-    });
+    // Route::get('/', function(){
+    //     return redirect('/admin/products');
+    // });
 
     Route::get('dashboard', 'DashboardCon@index');
     
@@ -50,9 +50,7 @@ Route::namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('inventory')->group(function () {
-        Route::get('/', function(){
-            dd('inventory');
-        });
+        Route::get('/', 'InventoryCon@index')->name('inventory.view');
     });
 
     /*

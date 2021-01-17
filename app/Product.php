@@ -32,4 +32,9 @@ class Product extends Model
     public function active(){
         return $this->where('status', 'active');
     }
+
+    public function updateStocks($id, $purchasedQty){
+        $product = $this->find($id);
+        $product->update(['qty' => ($product->qty - $purchasedQty)]);
+    }
 }
