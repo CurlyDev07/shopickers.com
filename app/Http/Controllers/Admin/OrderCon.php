@@ -24,14 +24,14 @@ class OrderCon extends Controller
     }
 
     public function index(Request $request){
-        $orders = Transaction::with('payments:id,transaction_id,total,payment_status,created_at')
+        $orders = Transaction::with('payments:id,transaction_id,total,payment_status')
         ->when($request->sort, function($q){
             return $q->orderBy('id', request()->sort);
         })// sort
         ->when($request->search, function($q){
             return $q->where('order_number', 'like', request()->search.'%');
         })// search
-        ->select('id', 'order_number', 'first_name', 'last_name')
+        ->select('id', 'order_number', 'first_name', 'last_name', 'created_at')
         ->OrderBy('id', 'desc')
         ->paginate(10);
        
@@ -60,7 +60,7 @@ class OrderCon extends Controller
         return view('admin.orders.create', compact('products', 'payment_method', 'sold_from'));
     }
 
-    public function store(CreateOrderRequest $request){
+    public function store(Request $request){
         // CREATE TRANSACTION 
         $transaction = Transaction::create([
             'sold_from_id' => $request->sold_from,
@@ -76,7 +76,8 @@ class OrderCon extends Controller
             "city" =>'', 
             "province" => '',
             "zip_code" => '',
-            'status' => 'completed'
+            'status' => 'completed',
+            'created_at' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now()
         ]);
 
         $transaction->update([
@@ -101,14 +102,6 @@ class OrderCon extends Controller
             // UPDATE PRODUCT STOCKS
             $this->products->updateStocks($product['product_id'], $product['qty']);
         }
-
-        // $transaction->products()->create([
-        //     'product_id' => $request->product,
-        //     'price' => $request->price,
-        //     'qty' => $request->quantity,
-        //     'subtotal' => ($request->price * $request->quantity),
-        // ]);
-
 
         // CREATE TRANSACTION PAYMENT
         TransactionPayment::create([

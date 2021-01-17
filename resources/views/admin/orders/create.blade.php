@@ -38,11 +38,12 @@
                     </div><!-- Price -->
                     <div class="tw-1/6 tflex tflex-col tmr-3">
                         <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
-                        <select name="" class="quantity tcursor-pointer browser-default form-control" style="padding: 6px;">
+                        <input type="number" onkeyup="allnumeric(this)" value="1" class="quantity browser-default form-control" style="padding: 6px;">
+                        {{-- <select name="" class="quantity tcursor-pointer browser-default form-control" style="padding: 6px;">
                             @for ($qty = 1; $qty < 50; $qty++)
                                 <option value="{{ $qty }}">{{ $qty }}</option>
                             @endfor
-                        </select>
+                        </select> --}}
                     </div><!-- QTY -->
                     <div class="tw-1/6 tflex tflex-col tmr-3">
                         <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
@@ -68,7 +69,7 @@
             Transaction
         </div>
         <div class="tflex tpx-5">
-            <div class="tw-1/2 tflex tflex-col tmr-3">
+            <div class="tw-2/5 tflex tflex-col tmr-3">
                 <label for="sold_from" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Sold from</label>
                 <select name="" id="sold_from" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
                     @foreach ($sold_from as $item)
@@ -76,7 +77,7 @@
                 @endforeach
                 </select>
             </div>
-            <div class="tw-1/2 tflex tflex-col tmr-3">
+            <div class="tw-2/5 tflex tflex-col tmr-3">
                 <label for="payment_method" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Payment method</label>
                 <select name="" id="payment_method" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
                     @foreach ($payment_method as $item)
@@ -84,8 +85,12 @@
                     @endforeach
                 </select>
             </div>
+            <div class="tw-1/5 tflex tflex-col tmr-3">
+                <label for="payment_method" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
+                <input type="text" class="datepicker browser-default form-control">
+            </div>
         </div>
-    </div><!-- Pricing -->
+    </div><!-- Transaction -->
 
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
         <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
@@ -143,8 +148,11 @@
 @section('js')
     <script src="{{ asset('js/plugins/sweatalert.js') }}"></script>
     <script>
+            
         $(document).ready(function(){
             $('.modal').modal();// initiate modal
+            $('.datepicker').datepicker();// initiate datepicker
+
 
             // On Change Product
             $('.product').change(function(){
@@ -198,7 +206,7 @@
                 let subtotal = parent.find('.subtotal');
 
                 subtotal.val(price*quantity);
-            }
+            }// get changeSubtotal
 
             function getTotal() {
                 let subtotal = 0;
@@ -213,20 +221,20 @@
 
                 $('#total').html(numberWithCommas(subtotal));
                 $('#total_items').html(numberWithCommas(quantity));
-            }
+            }// get getTotal
 
             function numberWithCommas(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            }
+            }// get getTotal
 
             function getAllProducts() {
                 let products = [];
 
                 $('#items').children().each(function () {
-                    let = product_id = $(this).find('.product').val();
-                    let = price = $(this).find('.price').val();
-                    let = qty = $(this).find('.quantity').val();
-                    let = subtotal = $(this).find('.subtotal').val();
+                    let product_id = $(this).find('.product').val();
+                    let price = $(this).find('.price').val();
+                    let qty = $(this).find('.quantity').val();
+                    let subtotal = $(this).find('.subtotal').val();
 
                     products.push({
                         product_id: product_id,
@@ -237,7 +245,7 @@
                 });
 
                 return products;
-            }
+            }// get getAllProducts
 
             $('#submit_btn').click(()=>{
                 $('#submit_btn').attr('disabled', 'true');
@@ -250,6 +258,7 @@
 
                     'sold_from': $('#sold_from').val(),
                     'payment_method': $('#payment_method').val(),
+                    'date': $('.datepicker').val(),
 
                     'first_name': $('#first_name').val(),
                     'last_name': $('#last_name').val(),
@@ -291,7 +300,7 @@
                     });
                     location.href = '/admin/orders';
                 });
-            })
+            })// Submit
         });  
 
     </script>

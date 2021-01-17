@@ -45,11 +45,12 @@
                     </tr>
                     
                     @foreach ($orders as $order)
+                    {{-- {{ dd($order) }} --}}
                         <tr class="tborder-0 hover:tbg-blue-100">
                             <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $order['order_number'] }}</td>
                             <td class="tp-3 tpx-5">{{ $order['first_name'] .' '. $order['last_name'] }}</td>
                             <td class="tp-3 tpx-5">₱{{ number_format($order['payments']['total']) }}</td>
-                            <td class="tp-3 tpx-5">{{ $order['payments']['created_at']->format('M d, Y g:i a') }}</td>
+                            <td class="tp-3 tpx-5">{{ $order['created_at']->format('M d, Y g:i a') }}</td>
                             <td class="tp-3 tpx-5">
                                 @if ($order['payments']['payment_status'] == 'completed')
                                     <span class="chip green lighten-5">

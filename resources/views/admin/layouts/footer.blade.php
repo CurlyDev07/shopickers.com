@@ -24,7 +24,6 @@
             }
 
             function progress_loading(visibility) {
-                console.log('clock')
                 if (visibility) {
                     return $('#progress').show();
                 }
